@@ -145,14 +145,14 @@ def parse_books_csv():
             b = Book(**book)
             book_list.append(b.__dict__)
 
-    with open('data/books.json', 'wb') as writefile:
+    with open('www/static-data/books.json', 'wb') as writefile:
         writefile.write(json.dumps(book_list))
 
 
 def load_images():
     secrets = app_config.get_secrets()
 
-    with open('data/books.json', 'rb') as readfile:
+    with open('www/static-data/books.json', 'rb') as readfile:
         books = json.loads(readfile.read())
 
     for book in books:

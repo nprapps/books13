@@ -45,3 +45,4 @@ data/books.csv
 data/books.json
 data/books.pickle
 www/img/cover
+www/static-data/books.json

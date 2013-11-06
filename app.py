@@ -25,7 +25,7 @@ def index():
     context = make_context()
 
     # Read the books JSON into the page.
-    with open('data/books.json', 'rb') as readfile:
+    with open('www/static-data/books.json', 'rb') as readfile:
         context['books'] = readfile.read()
 
     # Set up a list of all tags.
