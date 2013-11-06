@@ -43,7 +43,7 @@ class Book(object):
         for key, value in kwargs.items():
 
             # Handle wacky characters.
-            value = unicode(value.decode('utf-8'))
+            value = unicode(value.decode('utf-8')).strip()
 
             # List of keys that need special treatment and serialization.
             if key in [u'tags', u'book_seamus_id', u'author_seamus_id', u'review_seamus_id', u'other_seamus_id']:
@@ -90,9 +90,10 @@ class Book(object):
                 setattr(self, key, value)
 
         # Slugify.
-        self.slug = self.title.lower()
-        self.slug = re.sub(r"[^\w\s]", '', self.slug)
-        self.slug = re.sub(r"\s+", '-', self.slug)
+        slug = self.title.lower()
+        slug = re.sub(r"[^\w\s]", '', slug)
+        slug = re.sub(r"\s+", '-', slug)
+        setattr(self, "slug", slug[:254])
 
 
 def get_books_csv():
