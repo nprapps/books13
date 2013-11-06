@@ -87,6 +87,8 @@ Project secrets
 
 Project secrets should **never** be stored in ``app_config.py`` or anywhere else in the repository. They will be leaked to the client if you do. Instead, always store passwords, keys, etc. in environment variables and document that they are needed here in the README.
 
+The secrets for this project are stored in DropBox in `books13/baker_taylor_creds.txt`; please add these to your `~/.bashrc` or `~/.zshrc`.
+
 Adding a template/view
 ----------------------
 
@@ -103,6 +105,8 @@ A flask app is used to run the project locally. It will automatically recompile 
 
 ```
 workon books13
+fab update_copy
+fab bootstrap
 python app.py
 ```
 
@@ -231,7 +235,7 @@ To install your crontab set `INSTALL_CRONTAB` to `True` in `app_config.py`. Cron
 Install web services
 ---------------------
 
-Web services are configured in the `confs/` folder. 
+Web services are configured in the `confs/` folder.
 
 Running ``fab setup_server`` will deploy your confs if you have set ``DEPLOY_TO_SERVERS`` and ``DEPLOY_WEB_SERVICES`` both to ``True`` at the top of ``app_config.py``.
 
