@@ -2,6 +2,7 @@
 
 import json
 from mimetypes import guess_type
+import pickle
 import urllib
 
 import envoy
@@ -19,7 +20,12 @@ def index():
     """
     Example view demonstrating rendering a simple HTML page.
     """
-    return render_template('index.html', **make_context())
+
+    context = make_context()
+    with open('data/books.pickle', 'rb') as readfile:
+        context['books'] = pickle.load(readfile)
+
+    return render_template('index.html', **context)
 
 @app.route('/widget.html')
 def widget():
