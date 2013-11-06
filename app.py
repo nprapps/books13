@@ -2,6 +2,7 @@
 
 import json
 from mimetypes import guess_type
+from sets import Set
 import urllib
 
 import envoy
@@ -17,12 +18,26 @@ app = Flask(app_config.PROJECT_NAME)
 @app.route('/')
 def index():
     """
-    Example view demonstrating rendering a simple HTML page.
+    The index page.
     """
 
+    # Set up standard page context.
     context = make_context()
+
+    # Read the books JSON into the page.
     with open('data/books.json', 'rb') as readfile:
         context['books'] = readfile.read()
+
+    # Set up a list of all tags.
+    context['tags'] = Set([])
+    books = json.loads(context['books'])
+    for book in books:
+        if book['tags']:
+            for tag in book['tags']:
+                context['tags'].add(tag)
+
+    # Sorted in case-insensitive alpha order.
+    context['tags'] = sorted(list(context['tags']), key=unicode.lower)
 
     return render_template('index.html', **context)
 
