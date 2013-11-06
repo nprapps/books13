@@ -95,7 +95,6 @@ class Book(object):
         slug = re.sub(r"\s+", '-', slug)
         setattr(self, "slug", slug[:254])
 
-        setattr(self, "img_url", "http://imagesa.btol.com/ContentCafe/Jacket.aspx?UserID=ContentCafeClient&Password=Client&Return=T&Type=L&Value=%s" % self.isbn)
 
 def get_books_csv():
     csv_url = "https://docs.google.com/spreadsheet/pub?key=%s&single=true&gid=0&output=csv" % (
@@ -118,14 +117,3 @@ def parse_books_csv():
 
     with open('data/books.json', 'wb') as writefile:
         writefile.write(json.dumps(book_list))
-
-
-def load_images():
-    with open('data/books.json', 'rb') as readfile:
-        books = json.loads(readfile.read())
-
-    for book in books:
-        r = requests.get(book['img_url'])
-
-        with open('www/img/cover/%s.jpg' % book['slug'], 'wb') as writefile:
-            writefile.write(r.content)
