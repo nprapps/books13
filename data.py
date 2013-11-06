@@ -28,6 +28,8 @@ class Book(object):
     review_seamus_id = None
     other_seamus_id = None
 
+    amazon_link = None
+
     def __unicode__(self):
         """
         Returns a pretty value.
@@ -68,7 +70,7 @@ class Book(object):
                         # Returning an empty list is better than a blank
                         # string inside the list.
                         if item != u"":
-                            item_list.append(item)
+                            item_list.append(item.strip())
 
                     try:
 
@@ -95,6 +97,9 @@ class Book(object):
         slug = re.sub(r"\s+", '-', slug)
         setattr(self, "slug", slug[:254])
 
+        # Amazon link.
+        setattr(self, "amazon_link", "http://www.amazon.com/dp/%s" % self.isbn)
+
 
 def get_books_csv():
     csv_url = "https://docs.google.com/spreadsheet/pub?key=%s&single=true&gid=0&output=csv" % (
@@ -112,8 +117,9 @@ def parse_books_csv():
     book_list = []
 
     for book in books:
-        b = Book(**book)
-        book_list.append(b.__dict__)
+        if book['title'] != "":
+            b = Book(**book)
+            book_list.append(b.__dict__)
 
     with open('data/books.json', 'wb') as writefile:
         writefile.write(json.dumps(book_list))
