@@ -1,5 +1,6 @@
 import csv
 import json
+import re
 
 import requests
 
@@ -19,6 +20,7 @@ class Book(object):
     genre = None
     reviewer = None
     text = None
+    slug = None
 
     tags = None
     book_seamus_id = None
@@ -87,6 +89,10 @@ class Book(object):
                 # Don't modify the value for stuff that isn't in the list above.
                 setattr(self, key, value)
 
+        # Slugify.
+        self.slug = self.title.lower()
+        self.slug = re.sub(r"[^\w\s]", '', self.slug)
+        self.slug = re.sub(r"\s+", '-', self.slug)
 
 
 def get_books_csv():
