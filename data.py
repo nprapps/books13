@@ -117,3 +117,22 @@ def parse_books_csv():
 
     with open('data/books.json', 'wb') as writefile:
         writefile.write(json.dumps(book_list))
+
+
+def load_images():
+    secrets = app_config.get_secrets()
+    print secrets
+
+    with open('data/books.json', 'rb') as readfile:
+        books = json.loads(readfile.read())
+
+    for book in books:
+        book_url = "http://imagesa.btol.com/ContentCafe/Jacket.aspx?UserID=%s&Password=%s&Return=T&Type=L&Value=%s" % (
+            secrets['BAKER_TAYLOR_USERID'],
+            secrets['BAKER_TAYLOR_PASSWORD'],
+            book['isbn'])
+        print book_url
+        r = requests.get(book_url)
+
+        with open('www/img/cover/%s.jpg' % book['slug'], 'wb') as writefile:
+            writefile.write(r.content)

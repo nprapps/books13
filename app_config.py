@@ -128,7 +128,8 @@ def get_secrets():
     A method for accessing our secrets.
     """
     secrets = [
-        'EXAMPLE_SECRET'
+        'BAKER_TAYLOR_USERID',
+        'BAKER_TAYLOR_PASSWORD'
     ]
 
     secrets_dict = {}

@@ -462,9 +462,34 @@ def cron_test():
 """
 App-Specific Commands
 """
-def bootstrap():
+def load_images():
+    """
+    Scrapes images from Baker & Taylor API.
+    Does not save book data.
+    Requires existing books.json to work.
+    """
+    with settings(warn_only=True):
+        local('mkdir -p www/img/cover')
+    data.load_images()
+
+
+def load_books():
+    """
+    Loads/reloads just the book data.
+    Does not save image files.
+    """
     data.get_books_csv()
     data.parse_books_csv()
+
+def bootstrap():
+    """
+    Loads initial project data.
+    First, loads books data from Google docs.
+    Next, loads images from Baker & Taylor's API.
+    """
+    load_books()
+    load_images()
+
 
 """
 Destruction
