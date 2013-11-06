@@ -1,5 +1,5 @@
 <div class="book card">
-    <h4><a href="<%= book.amazon_link %>"><%= book.title %></h4>
+    <h4><a href="<%= book.amazon_link %>"><%= book.title %></a></h4>
     <img src="img/cover/<%= book.slug %>.jpg" alt="<%= book.title %>" />
     <% _.each(book.tags, function(tag, index, list){ %>
         <button class="btn btn-large btn-info"><%= tag %></button>

@@ -141,9 +141,13 @@ def parse_books_csv():
     book_list = []
 
     for book in books:
-        if book['title'] != "":
-            b = Book(**book)
-            book_list.append(b.__dict__)
+        if book['title'] == "":
+            continue
+
+        print book['title']
+
+        b = Book(**book)
+        book_list.append(b.__dict__)
 
     with open('www/static-data/books.json', 'wb') as writefile:
         writefile.write(json.dumps(book_list))
