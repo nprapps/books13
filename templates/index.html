@@ -33,16 +33,6 @@
 
 <h2>JST example</h2>
 <p id="template-example"></p>
-
-<h2>Books as HTML elements</h2>
-{% for book in books %}
-    <p>{{ book.title }}</p>
-    {% if book.clean_tags %}
-        {% for tag in book.clean_tags %}
-            <p><strong>{{ tag }}</strong></p>
-        {% endfor %}
-    {% endif %}
-{% endfor %}
 {% endblock %}
 
 
@@ -53,4 +43,10 @@
         <p>{{ COPY.content.lorem_ipsum }}</p>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_foot %}
+    <script type="text/javascript">
+        window.BOOKS = {{ books|safe }}
+    </script>
 {% endblock %}

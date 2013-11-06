@@ -2,7 +2,6 @@
 
 import json
 from mimetypes import guess_type
-import pickle
 import urllib
 
 import envoy
@@ -22,8 +21,8 @@ def index():
     """
 
     context = make_context()
-    with open('data/books.pickle', 'rb') as readfile:
-        context['books'] = pickle.load(readfile)
+    with open('data/books.json', 'rb') as readfile:
+        context['books'] = readfile.read()
 
     return render_template('index.html', **context)
 
