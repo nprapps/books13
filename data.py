@@ -2,6 +2,7 @@ import csv
 import json
 import re
 
+from bs4 import BeautifulSoup
 import requests
 
 import app_config
@@ -21,6 +22,7 @@ class Book(object):
     reviewer = None
     text = None
     slug = None
+    page_count = None
 
     tags = None
     book_seamus_id = None
@@ -42,6 +44,8 @@ class Book(object):
         Removes non-integer junk from the cells.
         Serializes based on commas.
         """
+        secrets = app_config.get_secrets()
+
         for key, value in kwargs.items():
 
             # Handle wacky characters.
@@ -100,6 +104,26 @@ class Book(object):
         # Amazon link.
         setattr(self, "amazon_link", "http://www.amazon.com/dp/%s" % self.isbn)
 
+        # Page count.
+        data = {}
+        data['userID'] = secrets['BAKER_TAYLOR_API_USERID']
+        data['password'] = secrets['BAKER_TAYLOR_API_PASSWORD']
+        data['key'] = self.isbn
+        data['content'] = "ProductDetail"
+
+        r = requests.post("http://contentcafe2.btol.com/contentcafe/contentcafe.asmx/Single", data=data)
+
+        soup = BeautifulSoup(r.content, "xml")
+
+        try:
+            pagination = soup.find_all('Pagination')[0].text.split(' ')
+            for possible_page_count in pagination:
+                try:
+                    setattr(self, "page_count", int(possible_page_count))
+                except ValueError:
+                    pass
+        except IndexError:
+            pass
 
 def get_books_csv():
     csv_url = "https://docs.google.com/spreadsheet/pub?key=%s&single=true&gid=0&output=csv" % (
@@ -127,7 +151,6 @@ def parse_books_csv():
 
 def load_images():
     secrets = app_config.get_secrets()
-    print secrets
 
     with open('data/books.json', 'rb') as readfile:
         books = json.loads(readfile.read())

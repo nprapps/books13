@@ -129,7 +129,9 @@ def get_secrets():
     """
     secrets = [
         'BAKER_TAYLOR_USERID',
-        'BAKER_TAYLOR_PASSWORD'
+        'BAKER_TAYLOR_PASSWORD',
+        'BAKER_TAYLOR_API_USERID',
+        'BAKER_TAYLOR_API_PASSWORD'
     ]
 
     secrets_dict = {}
