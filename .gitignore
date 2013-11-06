@@ -40,3 +40,6 @@ www/js/app_config.js
 confs/rendered/*
 data/copy.xls
 tumblr-theme.html
+
+data/books.csv
+data/books.json

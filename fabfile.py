@@ -9,6 +9,7 @@ from jinja2 import Template
 
 import app
 import app_config
+import data
 from etc import github
 
 """
@@ -457,6 +458,14 @@ def cron_test():
 
     local('echo $DEPLOYMENT_TARGET > /tmp/cron_test.txt')
 
+
+"""
+App-Specific Commands
+"""
+def bootstrap():
+    data.get_books_csv()
+    data.parse_books_csv()
+
 """
 Destruction
 
@@ -482,7 +491,7 @@ def nuke_confs():
             installed_path = _get_installed_conf_path(service, remote_path, extension)
 
             sudo('rm -f %s' % installed_path)
-            
+
             if service == 'nginx':
                 sudo('service nginx reload')
             elif service == 'uwsgi':
@@ -528,8 +537,8 @@ def app_template_bootstrap(project_name=None, repository_name=None):
 
     config = {}
     config['$NEW_PROJECT_SLUG'] = os.getcwd().split('/')[-1]
-    config['$NEW_PROJECT_NAME'] = project_name or config['$NEW_PROJECT_SLUG'] 
-    config['$NEW_REPOSITORY_NAME'] = repository_name or config['$NEW_PROJECT_SLUG'] 
+    config['$NEW_PROJECT_NAME'] = project_name or config['$NEW_PROJECT_SLUG']
+    config['$NEW_REPOSITORY_NAME'] = repository_name or config['$NEW_PROJECT_SLUG']
     config['$NEW_PROJECT_FILENAME'] = config['$NEW_PROJECT_SLUG'].replace('-', '_')
 
     _confirm("Have you created a Github repository named \"%s\"?" % config['$NEW_REPOSITORY_NAME'])

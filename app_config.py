@@ -78,6 +78,7 @@ DEBUG = True
 COPY EDITING
 """
 COPY_GOOGLE_DOC_KEY = '0AlXMOHKxzQVRdHZuX1UycXplRlBfLVB0UVNldHJYZmc'
+DATA_GOOGLE_DOC_KEY = '0AlPD88PpyGPUdExyUWV1Z2ZleVl6cGpJa0tOQkMzZnc'
 
 """
 SHARING
@@ -88,7 +89,7 @@ SHARE_URL = 'http://%s/%s/' % (PRODUCTION_S3_BUCKETS[0], PROJECT_SLUG)
 TWITTER = {
     'TEXT': PROJECT_NAME,
     'URL': SHARE_URL,
-    # Will be resized to 120x120, can't be larger than 1MB 
+    # Will be resized to 120x120, can't be larger than 1MB
     'IMAGE_URL': ''
 }
 
@@ -163,7 +164,7 @@ def configure_targets(deployment_target):
         SERVER_BASE_URL = 'http://%s/%s' % (SERVERS[0], PROJECT_SLUG)
         DEBUG = True
     else:
-        S3_BUCKETS = [] 
+        S3_BUCKETS = []
         S3_BASE_URL = 'http://127.0.0.1:8000'
         SERVERS = []
         SERVER_BASE_URL = 'http://127.0.0.1:8001/%s' % PROJECT_SLUG
