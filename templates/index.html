@@ -24,30 +24,13 @@
     </p>
 </div>
 
-<h2>Example COPY list</h2>
-<dl>
-    {% for row in COPY.example_list %}
-    <dt>{{ row.term }}</dt><dd>{{ row.definition }}</dd>
-    {% endfor %}
-</dl>
-
-<h2>JST example</h2>
-<p id="template-example"></p>
-
 <h2>All Tags</h2>
 {% for tag in tags %}
     <p>{{ tag }}</p>
 {% endfor %}
 {% endblock %}
 
-
 {% block wide_content %}
-<div class="row">
-    <div class="col-md-12">
-        <h2>{{ COPY.content.footer_title }}</h2>
-        <p>{{ COPY.content.lorem_ipsum }}</p>
-    </div>
-</div>
 {% endblock %}
 
 {% block extra_foot %}
