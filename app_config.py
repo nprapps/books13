@@ -7,7 +7,7 @@ DO NOT STORE SECRETS, PASSWORDS, ETC. IN THIS FILE.
 They will be exposed to users. Use environment variables instead.
 See get_secrets() below for a fast way to access them.
 """
-
+from exceptions import Exception
 import os
 
 """
@@ -124,6 +124,13 @@ GOOGLE_ANALYTICS_ID = 'UA-5828686-4'
 Utilities
 """
 def get_secrets():
+    class MissingSecretsError(Exception):
+        def __init__(self, secret):
+            self.secret = secret
+
+        def __str__(self):
+            return repr("Missing secret: %s" % self.secret)
+
     """
     A method for accessing our secrets.
     """
@@ -131,7 +138,7 @@ def get_secrets():
         'BAKER_TAYLOR_USERID',
         'BAKER_TAYLOR_PASSWORD',
         'BAKER_TAYLOR_API_USERID',
-        'BAKER_TAYLOR_API_PASSWORD'
+        'BAKER_TAYLOR_API_PASSWORD',
     ]
 
     secrets_dict = {}
@@ -139,6 +146,8 @@ def get_secrets():
     for secret in secrets:
         name = '%s_%s' % (PROJECT_FILENAME, secret)
         secrets_dict[secret] = os.environ.get(name, None)
+        if not secrets_dict[secret]:
+            raise MissingSecretsError(secret)
 
     return secrets_dict
 
