@@ -177,21 +177,23 @@ h1 + #story-meta { margin-top: -11px; }
 		bottom: 0;
 		width: 90%;
 
-		.book-card-links {
-			margin-bottom: 2em;
-		}
-
-		#back-to-top, #read-more {
-			font-size: 12px;
-			margin-bottom: 0;
-			line-height: 1.3em;
-			text-align: right;
-		}
-
 		p {
 			font-size: 14px;
 			line-height: 1.3em;
 		}
+	}
+
+	.book-card-links {
+		position: relative;
+		margin-bottom: 2em;
+		float: right;
+	}
+
+	#back-to-top, #read-more {
+		font-size: 12px;
+		margin-bottom: 0;
+		line-height: 1.3em;
+		text-align: right;
 	}
 
 	
@@ -202,7 +204,7 @@ h1 + #story-meta { margin-top: -11px; }
 
 	#book-image {
 		width: 250px;
-		//height: 250px;
+		//height: 360px;
 
 		@media (max-width: @screen-xs-max) {
 			width: 200px;

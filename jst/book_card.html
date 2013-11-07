@@ -8,14 +8,14 @@
 
         <h4 class="book-title"><a href="<%= book.amazon_link %>"><%= book.title %></a></h4>
 
+        <div class="tags book-card-links">
+	    	<a href="/#top"><p id="read-more">Read More > </p></a>
+		    <a href="/#top"><p id="back-to-top">Back To Top > </p></a>
+		</div>
+
          <!-- START TAGS -->
         <% if (book.tags.length > 0) { %>
         <div class="tags">
-
-        	<div class="book-card-links">
-		    	<a href="/#top"><p id="read-more">Read More > </p></a>
-			    <a href="/#top"><p id="back-to-top">Back To Top > </p></a>
-			</div>
 
             <p>Related: <% _.each(book.tags, function(tag, index, list){ %>
             <button
