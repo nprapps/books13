@@ -23,12 +23,24 @@
         <span class="time"> {{ COPY.attribution.pubtime }}</span>
     </p>
 </div>
+
 <h2>Books</h2>
-<div id="books-target">&nbsp;</div>
-<h2>All Tags</h2>
-{% for tag in tags %}
-    <button class="btn btn-large btn-info tag" data-tag-name="{{ tag.replace(' ', '-').lower() }}">{{ tag }}</button>
-{% endfor %}
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12" id="books-target">&nbsp;
+            <div id="books-grid" class="row"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>All Tags</h2>
+            {% for tag in tags %}
+                <button class="btn btn-large btn-info tag" data-tag-name="{{ tag.replace(' ', '-').lower() }}">{{ tag }}</button>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block wide_content %}

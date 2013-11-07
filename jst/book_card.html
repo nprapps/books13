@@ -1,7 +1,17 @@
-<div class="book card">
-    <h4><a href="<%= book.amazon_link %>"><%= book.title %></a></h4>
-    <img src="img/cover/<%= book.slug %>.jpg" alt="<%= book.title %>" />
-    <% _.each(book.tags, function(tag, index, list){ %>
-        <button class="btn btn-large btn-info tag" data-tag-name="<%= tag.replace(/\s/g, '-').toLowerCase() %>"><%= tag %></button>
-    <% }); %>
+<div class="book card col-md-6 col-lg-4">
+
+    <div class="book-outer-wrapper">
+
+        <div class="book-image-wrapper">
+            <img id="book-image" src="img/cover/<%= book.slug %>.jpg" alt="<%= book.title %>"/>
+        </div>
+
+        <h4 class="book-title"><a href="<%= book.amazon_link %>"><%= book.title %></a></h4>
+
+        <p>Tags: <% _.each(book.tags, function(tag, index, list){ %>
+            <button class="btn btn-large btn-info tag" data-tag-name="<%= tag.replace(/\s/g, '-').toLowerCase() %>"><%= tag %></button>
+        <% }); %>
+        </p>
+
+    </div>
 </div>
