@@ -55,10 +55,14 @@ var on_tag_hash = function(slug) {
  * New book hash url.
  */
 var on_book_hash = function(slug) {
-    // Clear current tag filter
-    on_tag_hash('');
+    // Ensure book is on the page
+    load_books(BOOKS);
 
-    console.log('jump to book: ' + slug);
+    var $el = $('#' + slug);
+
+    smooth_scroll($el, 0);
+
+    // TODO: show modal
 }
 
 /*
