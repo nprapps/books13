@@ -27,7 +27,7 @@
 <div id="books-target">&nbsp;</div>
 <h2>All Tags</h2>
 {% for tag in tags %}
-    <p>{{ tag }}</p>
+    <button class="btn btn-large btn-info tag" data-tag-name="{{ tag.replace(' ', '-').lower() }}">{{ tag }}</button>
 {% endfor %}
 {% endblock %}
 
