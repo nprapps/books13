@@ -1,28 +1,37 @@
+var $books_target;
+
+var load_books = function(book_list) {
+    $books_target.empty();
+
+    _.each(book_list, function(element, index, list){
+        $books_target.append(JST.book_card({
+            book: element,
+            app_config: APP_CONFIG
+        }));
+    });
+};
+
+var on_tag_clicked = function(){
+    var tag = $(this).data('tag-slug');
+    hasher.setHash(tag);
+};
+
+var on_hash_changed = function(new_hash, old_hash){
+    var book_list = _.filter(BOOKS, function(book){
+        return book.tags.indexOf(new_hash) >= 0;
+    });
+    load_books(book_list);
+};
+
 $(function() {
     // Variables and CONSTANTS.
-    var $books_target = $('#books-target');
+    $books_target = $('#books-target');
 
-    // Utility functions.
-    var load_books = function(book_list) {
-        _.each(book_list, function(element, index, list){
-            $books_target.append(JST.book_card({
-                book: element,
-                app_config: APP_CONFIG
-            }));
-        });
-    };
+    // Event handlers.
+    $('body').on('click', 'button.tag', on_tag_clicked);
 
-    // Stuff that runs on the page load.
-    var init = function() {
-        load_books(BOOKS);
-    };
-
-    // Click targets.
-    $('body').on('click', 'button.tag', function(){
-        console.log($(this).attr('data-tag-name'));
-    });
-
-    // Run on page load.
-    // Typically, we put all this in init().
-    init();
+    load_books(BOOKS);
+    hasher.changed.add(on_hash_changed);
+    hasher.initialized.add(on_hash_changed);
+    hasher.init();
 });

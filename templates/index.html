@@ -41,7 +41,7 @@
             {% for slug, tag in SLUGS_TO_TAGS.items() %}
                 <button
                     class="btn btn-large btn-info tag"
-                    data-tag-name="{{ slug }}">
+                    data-tag-slug="{{ slug }}">
                     {{ tag }}
                 </button>
             {% endfor %}
