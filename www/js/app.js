@@ -19,17 +19,15 @@ var back_to_top = function() {
 }
 
 /*
- * Render a set of books into the grid.
+ * Show/hide books in the grid.
  */
-var load_books = function(book_list) {
-    $books_grid.empty();
-
-    _.each(book_list, function(element, index, list){
-        $books_grid.append(JST.book_card({
-            book: element,
-            app_config: APP_CONFIG
-        }));
-    });
+var filter_books = function(tag) {
+    if (tag) {
+        $('.book').hide();
+        $('.book.tag-' + tag).show();
+    } else {
+        $('.book').show();
+    }
 };
 
 /*
@@ -46,22 +44,14 @@ var on_tag_clicked = function() {
  * Clear the current tag
  */
 var on_clear_tags_clicked = function() {
-    hasher.setHash('');
+    hasher.setHash(null);
 }
 
 /*
  * Respond to url changes.
  */
 var on_tag_hash = function(slug) {
-    var book_list = BOOKS;
-
-    if (slug != '') {
-        book_list = _.filter(book_list, function(book) {
-            return book.tags.indexOf(slug) >= 0;
-        });
-    }
-
-    load_books(book_list);
+    filter_books(slug);
     back_to_top();
 };
 
@@ -70,7 +60,7 @@ var on_tag_hash = function(slug) {
  */
 var on_book_hash = function(slug) {
     // Ensure book is on the page
-    load_books(BOOKS);
+    filter_books(null);
 
     var $el = $('#' + slug);
 
@@ -107,6 +97,14 @@ $(function() {
     $content.on('click', 'button.tag', on_tag_clicked);
     $content.on('click', 'button.back-to-top', back_to_top);
     $content.on('click', 'button.clear-tags', on_clear_tags_clicked);
+
+    // Render the book grid
+    _.each(BOOKS, function(book){
+        $books_grid.append(JST.book_card({
+            book: book,
+            app_config: APP_CONFIG
+        }));
+    });
 
     // Set up the hasher bits to grab the URL hash.
     hasher.changed.add(on_hash_changed);
