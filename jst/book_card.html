@@ -20,7 +20,7 @@
             <p>Related: <% _.each(book.tags, function(tag, index, list){ %>
             <button
                 class="btn btn-large btn-info tag"
-                data-tag-name="<%= tag %>"><%= app_config.SLUGS_TO_TAGS[tag] %>
+                data-tag-name="<%= tag %>"><%= app_config.SLUGS_TO_TAGS[tag] %>, 
             </button>
             <% }); %>
             </p>
