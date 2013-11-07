@@ -9,12 +9,9 @@
         <h4 class="book-title"><a href="<%= book.amazon_link %>"><%= book.title %></a></h4>
 
         <div class="tags book-card-links">
-	    	<button
-                class="btn btn-small btn-warning read-more"
-                data-toggle="modal"
-                data-target="#myModal">
+	    	<a class="btn btn-small btn-warning read-more" href="#/book/<%= book.slug %>">
                     Read More &rarr;
-            </button>
+            </a>
 		    <button
                 class="btn btn-small btn-warning back-to-top">
                     Back To Top &rarr;
