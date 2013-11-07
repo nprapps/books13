@@ -3,10 +3,10 @@
     <div class="book-outer-wrapper">
    		<!-- Book Image -->
         <div class="book-image-wrapper">
-            <img id="book-image" src="img/cover/<%= book.slug %>.jpg" alt="<%= book.title %>"/>
+            <a href="#/book/<%= book.slug %>"><img id="book-image" src="img/cover/<%= book.slug %>.jpg" alt="<%= book.title %>"/></a>
         </div>
 
-        <h4 class="book-title"><a href="<%= book.amazon_link %>"><%= book.title %></a></h4>
+        <h4 class="book-title"><a href="#/book/<%= book.slug %>"><%= book.title %></a></h4>
 
         <div class="tags book-card-links">
 	    	<a class="btn btn-small btn-warning read-more" href="#/book/<%= book.slug %>">
@@ -17,21 +17,6 @@
                     Back To Top &rarr;
             </button>
 		</div>
-
-         <!-- START TAGS -->
-        <% if (book.tags.length > 0) { %>
-        <div class="tags">
-
-            <p>Related: <% _.each(book.tags, function(tag, index, list){ %>
-            <button
-                class="btn btn-large btn-info tag"
-                data-tag-slug="<%= tag %>"><%= app_config.SLUGS_TO_TAGS[tag] %>
-            </button>
-            <% }); %>
-            </p>
-        </div>
-        <% } %>
-        <!-- END TAGS -->
     </div>
 
 </div>
