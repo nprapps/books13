@@ -1,19 +1,28 @@
 <div class="book card col-md-6 col-lg-4">
 
     <div class="book-outer-wrapper">
-
+   		<!-- Book Image -->
         <div class="book-image-wrapper">
             <img id="book-image" src="img/cover/<%= book.slug %>.jpg" alt="<%= book.title %>"/>
         </div>
 
         <h4 class="book-title"><a href="<%= book.amazon_link %>"><%= book.title %></a></h4>
 
+        <!-- START TAGS -->
 	    <div class="tags">
-		    <p>Tags: <% _.each(book.tags, function(tag, index, list){ %>
-	        <button class="btn btn-large btn-info tag" data-tag-name="<%= tag.replace(/\s/g, '-').toLowerCase() %>"><%= tag %></button>
+	    	
+	    	<div class="book-card-links">
+		    	<a href="/#top"><p id="read-more">Read More > </p></a>
+			    <a href="/#top"><p id="back-to-top">Back To Top > </p></a>
+			</div>
+
+		    <p>Related: <% _.each(book.tags, function(tag, index, list){ %>
+	        <button class="btn btn-large btn-info tag" data-tag-name="<%= tag.replace(/\s/g, '-').toLowerCase() %>"><%= tag %>, </button>
 	        <% }); %>
 	        </p>
 		</div>
+		<!-- END TAGS -->
 
     </div>
+
 </div>
