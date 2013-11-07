@@ -36,7 +36,7 @@ var on_tag_clicked = function() {
 };
 
 /*
- * New tag hash url.
+ * Respond to url changes.
  */
 var on_tag_hash = function(slug) {
     var book_list = BOOKS;
@@ -48,9 +48,7 @@ var on_tag_hash = function(slug) {
     }
 
     load_books(book_list);
-    
     smooth_scroll($content, 0);
-
 };
 
 /*
@@ -88,6 +86,7 @@ $(function() {
     // Event handlers.
     $content.on('click', 'button.tag', on_tag_clicked);
 
+    // Set up the hasher bits to grab the URL hash.
     hasher.changed.add(on_hash_changed);
     hasher.initialized.add(on_hash_changed);
     hasher.init();
