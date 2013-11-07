@@ -43,6 +43,13 @@ var on_tag_clicked = function() {
 };
 
 /*
+ * Clear the current tag
+ */
+var on_clear_tags_clicked = function() {
+    hasher.setHash('');
+}
+
+/*
  * Respond to url changes.
  */
 var on_tag_hash = function(slug) {
@@ -84,6 +91,8 @@ var on_hash_changed = function(new_hash, old_hash) {
         on_tag_hash(hash_slug);
     } else if (hash_type == 'book') {
         on_book_hash(hash_slug);
+    } else {
+        on_tag_hash('');
     }
 
     return false;
@@ -97,6 +106,7 @@ $(function() {
     // Event handlers.
     $content.on('click', 'button.tag', on_tag_clicked);
     $content.on('click', 'button.back-to-top', back_to_top);
+    $content.on('click', 'button.clear-tags', on_clear_tags_clicked);
 
     // Set up the hasher bits to grab the URL hash.
     hasher.changed.add(on_hash_changed);
