@@ -1,6 +1,8 @@
 <% _.each(books, function(book, i) { %>
     <%= book_card({ book: book, app_config: app_config }) %>
-    <% if (i != 0 && i % 6 == 0) { %>
+
+    <% if ((i + 1) % 6 == 0) { %>
+    <div class="clearfix visible-lg"></div>
     <div class="col-md-12 col-lg-12">
         <a class="back-to-top" href="#">Back to top</a>
     </div>
