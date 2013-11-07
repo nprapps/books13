@@ -4,10 +4,10 @@ import os
 import re
 
 from bs4 import BeautifulSoup
+from PIL import Image
 import requests
 
 import app_config
-
 
 class Book(object):
     """
@@ -221,13 +221,23 @@ def load_images():
         # Request the image.
         r = requests.get(book_url)
 
+        path = 'www/img/cover/%s.jpg' % book['slug']
+
         # Write the image to www using the slug as the filename.
-        with open('www/img/cover/%s.jpg' % book['slug'], 'wb') as writefile:
+        with open(path, 'wb') as writefile:
             writefile.write(r.content)
 
-        file_size = os.path.getsize('www/img/cover/%s.jpg' % book['slug'])
+        file_size = os.path.getsize(path)
 
         if file_size < 10000:
             print "Image not available for ISBN: %s" % book['isbn']
+
+        image = Image.open(path) 
+
+        width = 200
+        height = int((float(width) / image.size[0]) * image.size[1])
+
+        image.thumbnail([width, height], Image.ANTIALIAS)
+        image.save(path.replace('.jpg', '-thumb.jpg'), 'JPEG')
 
     print "End."
