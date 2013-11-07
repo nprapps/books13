@@ -38,8 +38,12 @@
     <div class="row">
         <div class="col-md-12">
             <h2>All Tags</h2>
-            {% for tag in tags %}
-                <button class="btn btn-large btn-info tag" data-tag-name="{{ tag.replace(' ', '-').lower() }}">{{ tag }}</button>
+            {% for slug, tag in SLUGS_TO_TAGS.items() %}
+                <button
+                    class="btn btn-large btn-info tag"
+                    data-tag-name="{{ slug }}">
+                    {{ tag }}
+                </button>
             {% endfor %}
         </div>
     </div>

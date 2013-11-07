@@ -1,5 +1,6 @@
 import csv
 import json
+import os
 import re
 
 from bs4 import BeautifulSoup
@@ -47,6 +48,9 @@ class Book(object):
             # Handle wacky characters.
             value = unicode(value.decode('utf-8')).strip()
 
+            if key == 'isbn':
+                value = value.zfill(10)
+
             # List of keys that need special treatment and serialization.
             if key in [u'tags', u'book_seamus_id', u'author_seamus_id', u'review_seamus_id', u'other_seamus_id']:
 
@@ -70,7 +74,19 @@ class Book(object):
                         # Returning an empty list is better than a blank
                         # string inside the list.
                         if item != u"":
-                            item_list.append(item.strip())
+
+                            # Clean.
+                            item = item.strip()
+
+                            # Look up from our map.
+                            tag_slug = app_config.TAGS_TO_SLUGS.get(item, None)
+
+                            # Append if the tag exists.
+                            if tag_slug:
+                                item_list.append(tag_slug)
+
+                            else:
+                                print "Unknown tag: '%s'" % item
 
                     try:
 
@@ -143,6 +159,8 @@ def parse_books_csv():
     with open('data/books.csv', 'rb') as readfile:
         books = list(csv.DictReader(readfile))
 
+    print "Start parse_books_csv(): %i rows." % len(books)
+
     book_list = []
 
     # Loop.
@@ -155,8 +173,6 @@ def parse_books_csv():
         if book['isbn'] == "":
             continue
 
-        print book['title']
-
         # Init a book class, passing our data as kwargs.
         # The class constructor handles cleaning of the data.
         b = Book(**book)
@@ -167,6 +183,8 @@ def parse_books_csv():
     # Dump the list to JSON.
     with open('www/static-data/books.json', 'wb') as writefile:
         writefile.write(json.dumps(book_list))
+
+    print "End."
 
 
 def load_images():
@@ -181,6 +199,8 @@ def load_images():
     # Open the books JSON.
     with open('www/static-data/books.json', 'rb') as readfile:
         books = json.loads(readfile.read())
+
+    print "Start load_images(): %i books." % len(books)
 
     # Loop.
     for book in books:
@@ -198,11 +218,16 @@ def load_images():
             secrets['BAKER_TAYLOR_PASSWORD'],
             book['isbn'])
 
-        print book_url
-
         # Request the image.
         r = requests.get(book_url)
 
         # Write the image to www using the slug as the filename.
         with open('www/img/cover/%s.jpg' % book['slug'], 'wb') as writefile:
             writefile.write(r.content)
+
+        file_size = os.path.getsize('www/img/cover/%s.jpg' % book['slug'])
+
+        if file_size < 10000:
+            print "Image not available for ISBN: %s" % book['isbn']
+
+    print "End."
