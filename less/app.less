@@ -166,7 +166,7 @@ h1 + #story-meta { margin-top: -11px; }
 	margin-bottom: 11px;
 	padding: 22px 11px 22px 11px;
 	text-align: left;
-	height: 600px;
+	height: 520px;
 
 	>h4 {
 		text-align: center;
@@ -175,11 +175,25 @@ h1 + #story-meta { margin-top: -11px; }
 	.tags {
 		position: absolute;
 		bottom: 0;
+		width: 90%;
+
+		.book-card-links {
+			margin-bottom: 2em;
+		}
+
+		#back-to-top, #read-more {
+			font-size: 12px;
+			margin-bottom: 0;
+			line-height: 1.3em;
+			text-align: right;
+		}
 
 		p {
 			font-size: 14px;
+			line-height: 1.3em;
 		}
 	}
+
 	
 }
 
@@ -286,7 +300,7 @@ footer {
 	}
 }
 @media (max-width: 767px) {
-	nav, header, footer { margin-left: -20px; margin-right: -20px; }
+	//nav, header, footer { margin-left: -20px; margin-right: -20px; }
 	nav .site-links { margin-left: 20px; }
 	footer { 
 		.primary { display: none; }
