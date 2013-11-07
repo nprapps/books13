@@ -1,4 +1,12 @@
+var $body;
+var $content;
 var $books_target;
+
+var smooth_scroll = function(offset_element, padding) {
+    var elementOffset = offset_element.offset().top;
+    var distance =  elementOffset - padding;
+    $body.animate({ scrollTop: distance + "px" });
+};
 
 var load_books = function(book_list) {
     $books_target.empty();
@@ -16,12 +24,6 @@ var on_tag_clicked = function(){
     hasher.setHash(tag);
 };
 
-var smooth_scroll = function(offset_element, padding) {
-    var elementOffset = offset_element.offset().top;
-    var distance =  elementOffset - padding;
-    $('body').animate({ scrollTop: distance + "px" });
-};
-
 var on_hash_changed = function(new_hash, old_hash){
     var book_list = _.filter(BOOKS, function(book){
         return book.tags.indexOf(new_hash) >= 0;
@@ -29,20 +31,20 @@ var on_hash_changed = function(new_hash, old_hash){
 
     load_books(book_list);
 
-    smooth_scroll($('#content'), 0);
+    smooth_scroll($content, 0);
 };
 
 $(function() {
-    // Variables and CONSTANTS.
+    $body = $('body');
+    $content = $('#content');
     $books_target = $('#books-target');
 
     // Event handlers.
-    $('body').on('click', 'button.tag', on_tag_clicked);
+    $content.on('click', 'button.tag', on_tag_clicked);
 
     hasher.changed.add(on_hash_changed);
     hasher.initialized.add(on_hash_changed);
     hasher.init();
 
     load_books(BOOKS);
-
 });
