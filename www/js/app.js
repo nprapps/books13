@@ -25,9 +25,13 @@ var on_tag_clicked = function(){
 };
 
 var on_hash_changed = function(new_hash, old_hash){
-    var book_list = _.filter(BOOKS, function(book){
-        return book.tags.indexOf(new_hash) >= 0;
-    });
+    var book_list = BOOKS;
+
+    if (new_hash != '') {
+        book_list = _.filter(book_list, function(book){
+            return book.tags.indexOf(new_hash) >= 0;
+        });
+    }
 
     load_books(book_list);
 
@@ -45,6 +49,4 @@ $(function() {
     hasher.changed.add(on_hash_changed);
     hasher.initialized.add(on_hash_changed);
     hasher.init();
-
-    load_books(BOOKS);
 });
