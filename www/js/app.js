@@ -18,6 +18,8 @@ var smooth_scroll = function(offset_element, padding) {
  */
 var back_to_top = function() {
     smooth_scroll($content, 0);
+
+    return false;
 };
 
 /*
@@ -112,16 +114,15 @@ $(function() {
 
     // Event handlers.
     $content.on('click', 'button.tag', on_tag_clicked);
-    $content.on('click', 'button.back-to-top', back_to_top);
+    $content.on('click', '.back-to-top', back_to_top);
     $content.on('click', 'button.clear-tags', on_clear_tags_clicked);
 
     // Render the book grid
-    _.each(BOOKS, function(book){
-        $books_grid.append(JST.book_card({
-            book: book,
-            app_config: APP_CONFIG
-        }));
-    });
+    $books_grid.html(JST.book_grid({
+        books: BOOKS,
+        app_config: APP_CONFIG,
+        book_card: JST.book_card
+    }));
 
     // Set up the hasher bits to grab the URL hash.
     hasher.changed.add(on_hash_changed);
