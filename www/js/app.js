@@ -14,6 +14,11 @@ $(function() {
         load_books(BOOKS);
     };
 
+    // Click targets.
+    $('body').on('click', 'button.tag', function(){
+        console.log($(this).attr('data-tag-name'));
+    });
+
     // Run on page load.
     // Typically, we put all this in init().
     init();
