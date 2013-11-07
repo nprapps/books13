@@ -2,7 +2,6 @@
 
 import json
 from mimetypes import guess_type
-from sets import Set
 import urllib
 
 import envoy
@@ -27,17 +26,6 @@ def index():
     # Read the books JSON into the page.
     with open('www/static-data/books.json', 'rb') as readfile:
         context['books'] = readfile.read()
-
-    # Set up a list of all tags.
-    context['tags'] = Set([])
-    books = json.loads(context['books'])
-    for book in books:
-        if book['tags']:
-            for tag in book['tags']:
-                context['tags'].add(tag)
-
-    # Sorted in case-insensitive alpha order.
-    context['tags'] = sorted(list(context['tags']), key=unicode.lower)
 
     return render_template('index.html', **context)
 

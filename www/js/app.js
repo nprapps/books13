@@ -5,7 +5,10 @@ $(function() {
     // Utility functions.
     var load_books = function(book_list) {
         _.each(book_list, function(element, index, list){
-            $books_target.append(JST.book_card({book:element}));
+            $books_target.append(JST.book_card({
+                book: element,
+                app_config: APP_CONFIG
+            }));
         });
     };
 
