@@ -1,12 +1,24 @@
-var $books_target;
+var $body;
+var $content;
+var $books_grid;
 
+/*
+ * Scroll to a place in the page.
+ */
+var smooth_scroll = function(offset_element, padding) {
+    var elementOffset = offset_element.offset().top;
+    var distance =  elementOffset - padding;
+    $body.animate({ scrollTop: distance + "px" });
+};
+
+/*
+ * Render a set of books into the grid.
+ */
 var load_books = function(book_list) {
-
-    $books_target.empty();
+    $books_grid.empty();
 
     _.each(book_list, function(element, index, list){
-
-        $books_target.append(JST.book_card({
+        $books_grid.append(JST.book_card({
             book: element,
             app_config: APP_CONFIG
         }));
@@ -15,6 +27,9 @@ var load_books = function(book_list) {
 
 };
 
+/*
+ * Filter the list to a certain tag.
+ */
 var on_tag_clicked = function(){
 
     // Sets up the tag slug we can use in the URL.
@@ -25,50 +40,29 @@ var on_tag_clicked = function(){
     hasher.setHash(tag);
 };
 
-var smooth_scroll = function(offset_element, padding) {
-
-    // Calculate the element against the top of the page.
-    var elementOffset = offset_element.offset().top;
-
-    // Subtract the padding.
-    var distance =  elementOffset - padding;
-
-    // Scroll exactly that far. And make it all animate-y.
-    $('body').animate({ scrollTop: distance + "px" });
-
-};
-
+/*
+ * Respond to url changes.
+ */
 var on_hash_changed = function(new_hash, old_hash){
-    // If the hash isn't blank, filter.
+    var book_list = BOOKS;
+
     if (new_hash !== '') {
-
-        // Set up a filtered list of all books.
-        var book_list = _.filter(BOOKS, function(book){
-
-            // Specifically, filter on the tag.
+        book_list = _.filter(book_list, function(book){
             return book.tags.indexOf(new_hash) >= 0;
         });
-
-        // Load our filtered subset of books.
-        load_books(book_list);
-
-        // Scroll to the top of the #content div.
-        smooth_scroll($('#content'), 0);
-
-    } else {
-
-        // Otherwise, just load everything.
-        load_books(BOOKS);
-
     }
+
+    load_books(book_list);
+    smooth_scroll($content, 0);
 };
 
 $(function() {
-    // Variables and CONSTANTS.
-    $books_target = $('#books-target');
+    $body = $('body');
+    $content = $('#content');
+    $books_grid = $('#books-grid');
 
     // Event handlers.
-    $('body').on('click', 'button.tag', on_tag_clicked);
+    $content.on('click', 'button.tag', on_tag_clicked);
 
     // Set up the hasher bits to grab the URL hash.
     hasher.changed.add(on_hash_changed);
