@@ -12,6 +12,13 @@ var smooth_scroll = function(offset_element, padding) {
 };
 
 /*
+ * Jump back to the top of the page.
+ */
+var back_to_top = function() {
+    smooth_scroll($content, 0)
+}
+
+/*
  * Render a set of books into the grid.
  */
 var load_books = function(book_list) {
@@ -48,7 +55,7 @@ var on_tag_hash = function(slug) {
     }
 
     load_books(book_list);
-    smooth_scroll($content, 0);
+    back_to_top();
 };
 
 /*
@@ -89,9 +96,7 @@ $(function() {
 
     // Event handlers.
     $content.on('click', 'button.tag', on_tag_clicked);
-    $content.on('click', 'button.back-to-top', function(){
-        smooth_scroll($content, 0);
-    });
+    $content.on('click', 'button.back-to-top', back_to_top);
 
     // Set up the hasher bits to grab the URL hash.
     hasher.changed.add(on_hash_changed);
