@@ -39,8 +39,10 @@ $(function() {
     // Event handlers.
     $('body').on('click', 'button.tag', on_tag_clicked);
 
-    load_books(BOOKS);
     hasher.changed.add(on_hash_changed);
     hasher.initialized.add(on_hash_changed);
     hasher.init();
+
+    load_books(BOOKS);
+
 });
