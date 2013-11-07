@@ -144,6 +144,9 @@ def parse_books_csv():
         if book['title'] == "":
             continue
 
+        if book['isbn'] == "":
+            continue
+
         print book['title']
 
         b = Book(**book)
@@ -160,11 +163,19 @@ def load_images():
         books = json.loads(readfile.read())
 
     for book in books:
+        if book['title'] == "":
+            continue
+
+        if book['isbn'] == "":
+            continue
+
         book_url = "http://imagesa.btol.com/ContentCafe/Jacket.aspx?UserID=%s&Password=%s&Return=T&Type=L&Value=%s" % (
             secrets['BAKER_TAYLOR_USERID'],
             secrets['BAKER_TAYLOR_PASSWORD'],
             book['isbn'])
+
         print book_url
+
         r = requests.get(book_url)
 
         with open('www/img/cover/%s.jpg' % book['slug'], 'wb') as writefile:
