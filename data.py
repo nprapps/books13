@@ -10,10 +10,8 @@ import app_config
 
 class Book(object):
     """
-    Because why not have an object?
-    Plus, a convenient way to handle clean()
-    and enumerate the fields we expect from the
-    Google doc.
+    A single book instance.
+    __init__ cleans the data.
     """
     isbn = None
     title = None
@@ -23,13 +21,11 @@ class Book(object):
     text = None
     slug = None
     page_count = None
-
     tags = None
     book_seamus_id = None
     author_seamus_id = None
     review_seamus_id = None
     other_seamus_id = None
-
     amazon_link = None
 
     def __unicode__(self):
@@ -126,6 +122,9 @@ class Book(object):
             pass
 
 def get_books_csv():
+    """
+    Downloads the books CSV from google docs.
+    """
     csv_url = "https://docs.google.com/spreadsheet/pub?key=%s&single=true&gid=0&output=csv" % (
         app_config.DATA_GOOGLE_DOC_KEY)
     r = requests.get(csv_url)
@@ -135,33 +134,75 @@ def get_books_csv():
 
 
 def parse_books_csv():
+    """
+    Parses the books CSV to JSON.
+    Creates book objects which are cleaned and then serialized to JSON.
+    """
+
+    # Open the CSV.
     with open('data/books.csv', 'rb') as readfile:
         books = list(csv.DictReader(readfile))
 
     book_list = []
 
+    # Loop.
     for book in books:
-        if book['title'] != "":
-            b = Book(**book)
-            book_list.append(b.__dict__)
 
+        # Skip books with no title or ISBN
+        if book['title'] == "":
+            continue
+
+        if book['isbn'] == "":
+            continue
+
+        print book['title']
+
+        # Init a book class, passing our data as kwargs.
+        # The class constructor handles cleaning of the data.
+        b = Book(**book)
+
+        # Grab the dictionary representation of a book.
+        book_list.append(b.__dict__)
+
+    # Dump the list to JSON.
     with open('www/static-data/books.json', 'wb') as writefile:
         writefile.write(json.dumps(book_list))
 
 
 def load_images():
+    """
+    Downloads images from Baker and Taylor.
+    Eschews the API for a magic URL pattern, which is faster.
+    """
+
+    # Secrets.
     secrets = app_config.get_secrets()
 
+    # Open the books JSON.
     with open('www/static-data/books.json', 'rb') as readfile:
         books = json.loads(readfile.read())
 
+    # Loop.
     for book in books:
+
+        # Skip books with no title or ISBN.
+        if book['title'] == "":
+            continue
+
+        if book['isbn'] == "":
+            continue
+
+        # Construct the URL with secrets and the ISBN.
         book_url = "http://imagesa.btol.com/ContentCafe/Jacket.aspx?UserID=%s&Password=%s&Return=T&Type=L&Value=%s" % (
             secrets['BAKER_TAYLOR_USERID'],
             secrets['BAKER_TAYLOR_PASSWORD'],
             book['isbn'])
+
         print book_url
+
+        # Request the image.
         r = requests.get(book_url)
 
+        # Write the image to www using the slug as the filename.
         with open('www/img/cover/%s.jpg' % book['slug'], 'wb') as writefile:
             writefile.write(r.content)
