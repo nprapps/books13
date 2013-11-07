@@ -8,10 +8,12 @@
 
 	   	<h4 class="book-title"><a href="<%= book.amazon_link %>"><%= book.title %></a></h4>
 
-	    <p>Tags: <% _.each(book.tags, function(tag, index, list){ %>
-	        <button class="btn btn-large btn-info"><%= tag %>, </button>
-	    <% }); %>
-	    </p>
+	    <div class="tags">
+		    <p>Tags: <% _.each(book.tags, function(tag, index, list){ %>
+		        <button class="btn btn-large btn-info"><%= tag %>, </button>
+		    <% }); %>
+		    </p>
+		</div>
 
 	</div>
 </div>

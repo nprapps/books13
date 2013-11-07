@@ -9,7 +9,7 @@
 
 // General styles
 body { 
-    font: 16px/1.5em Arial, Helvetica, sans-serif; 
+    font: 18px/1.5em Arial, Helvetica, sans-serif; 
     color: #111; 
     -webkit-font-smoothing: antialiased;
 }
@@ -160,16 +160,27 @@ header {
 h1 + #story-meta { margin-top: -11px; }
 
 .book-outer-wrapper {
+	position: relative;	
 	background-color: #ebebeb;
 	margin-top: 11px;
 	margin-bottom: 11px;
 	padding: 22px 11px 22px 11px;
 	text-align: left;
-	height: 520px;	
+	height: 600px;
 
 	>h4 {
 		text-align: center;
 	}
+
+	.tags {
+		position: absolute;
+		bottom: 0;
+
+		p {
+			font-size: 14px;
+		}
+	}
+	
 }
 
 .book-image-wrapper{
@@ -177,11 +188,11 @@ h1 + #story-meta { margin-top: -11px; }
 
 	#book-image {
 		width: 250px;
-		height: 250px;
+		//height: 250px;
 
 		@media (max-width: @screen-xs-max) {
 			width: 200px;
-			height: 200px;
+			//height: 200px;
 		}
 	}
 }
