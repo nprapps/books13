@@ -2,43 +2,50 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h4 class="modal-title" id="myModalLabel"><%= book.title %></h4>
 </div>
-<div class="modal-body">
-    <% if(book.amazon_link){ %><p><a href="<%= book.amazon_link %>">Buy "<%= book.title %>" on Amazon</a></p><% } %>
 
-    <% if(book.author){ %><p class="author"><%= book.author %></p> <% } %>
-    <% if(book.genre){ %><p class="genre"><%= book.genre %></p> <% } %>
-    <% if(book.reviewer){ %><p class="reviewer"><%= book.reviewer %></p> <% } %>
-    <% if(book.text){ %><p class="text"><%= book.text %></p> <% } %>
-    <% if(book.pages){ %><p class="pages"><%= book.pages %></p> <% } %>
-    <% if(book.tags.length > 0){ %><p class="tags">Related: <% _.each(book.tags, function(tag, index, list){ %>
-        <button
-            class="btn btn-large btn-info tag"
-            data-tag-slug="<%= tag %>"><%= app_config.SLUGS_TO_TAGS[tag] %>
-        </button>
-    <% }); %></p> <% } %>
+<div class="modal-body row">
 
-    <% if (book.book_seamus_id.length > 0){  %>
-    <p class="book_seamus_id"><% _.each(book.book_seamus_id, function(url_id, index, list){ %>
-        <a href="http://npr.org/<%= url_id %>/">Link &rarr;</a>
-    <% }); %></p>
-    <% } %>
+    <div class="modal-book-cover col-lg-6">
+        <img id="book-image" src="img/cover/<%= book.slug %>.jpg" alt="<%= book.title %>"/>
+    </div>
+    
+    <div class="modal-text col-lg-6">
+        <% if(book.amazon_link){ %><p><a href="<%= book.amazon_link %>" target="_blank">Buy this on Amazon</a></p><% } %>
 
-    <% if (book.author_seamus_id.length > 0){  %>
-    <p class="author_seamus_id"><% _.each(book.author_seamus_id, function(url_id, index, list){ %>
-        <a href="http://npr.org/<%= url_id %>/">Link &rarr;</a>
-    <% }); %></p>
-    <% } %>
+        <% if(book.author){ %><p class="author"><%= book.author %></p> <% } %>
+        <% if(book.genre){ %><p class="genre"><%= book.genre %></p> <% } %>
+        <% if(book.reviewer){ %><p class="reviewer"><%= book.reviewer %></p> <% } %>
+        <% if(book.text){ %><p class="text"><%= book.text %></p> <% } %>
+        <% if(book.pages){ %><p class="pages"><%= book.pages %></p> <% } %>
+        <% if(book.tags.length > 0){ %><p class="tags">Related: <% _.each(book.tags, function(tag, index, list){ %>
+            <button
+                class="btn btn-large btn-info tag"
+                data-tag-slug="<%= tag %>"><%= app_config.SLUGS_TO_TAGS[tag] %>
+            </button>
+        <% }); %></p> <% } %>
 
-    <% if (book.review_seamus_id.length > 0){  %>
-    <p class="review_seamus_id"><% _.each(book.review_seamus_id, function(url_id, index, list){ %>
-        <a href="http://npr.org/<%= url_id %>/">Link &rarr;</a>
-    <% }); %></p>
-    <% } %>
+        <% if (book.book_seamus_id.length > 0){  %>
+        <p class="book_seamus_id"><% _.each(book.book_seamus_id, function(url_id, index, list){ %>
+            <a href="http://npr.org/<%= url_id %>/" target="_blank">Link &rarr;</a>
+        <% }); %></p>
+        <% } %>
 
-    <% if (book.other_seamus_id){  %>
-    <p class="other_seamus_id"><% _.each(book.other_seamus_id, function(url_id, index, list){ %>
-        <a href="http://npr.org/<%= url_id %>/">Link &rarr;</a>
-    <% }); %></p>
-    <% } %>
+        <% if (book.author_seamus_id.length > 0){  %>
+        <p class="author_seamus_id"><% _.each(book.author_seamus_id, function(url_id, index, list){ %>
+            <a href="http://npr.org/<%= url_id %>/" target="_blank">Link &rarr;</a>
+        <% }); %></p>
+        <% } %>
 
+        <% if (book.review_seamus_id.length > 0){  %>
+        <p class="review_seamus_id"><% _.each(book.review_seamus_id, function(url_id, index, list){ %>
+            <a href="http://npr.org/<%= url_id %>/" target="_blank">Link &rarr;</a>
+        <% }); %></p>
+        <% } %>
+
+        <% if (book.other_seamus_id){  %>
+        <p class="other_seamus_id"><% _.each(book.other_seamus_id, function(url_id, index, list){ %>
+            <a href="http://npr.org/<%= url_id %>/" target="_blank">Link &rarr;</a>
+        <% }); %></p>
+        <% } %>
+    </div>
 </div>
