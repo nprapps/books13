@@ -2,12 +2,18 @@ var $body;
 var $content;
 var $books_target;
 
+/*
+ * Scroll to a place in the page.
+ */
 var smooth_scroll = function(offset_element, padding) {
     var elementOffset = offset_element.offset().top;
     var distance =  elementOffset - padding;
     $body.animate({ scrollTop: distance + "px" });
 };
 
+/*
+ * Render a set of books into the grid.
+ */
 var load_books = function(book_list) {
     $books_target.empty();
 
@@ -19,11 +25,17 @@ var load_books = function(book_list) {
     });
 };
 
+/*
+ * Filter the list to a certain tag.
+ */
 var on_tag_clicked = function(){
     var tag = $(this).data('tag-slug');
     hasher.setHash(tag);
 };
 
+/*
+ * Respond to url changes.
+ */
 var on_hash_changed = function(new_hash, old_hash){
     var book_list = BOOKS;
 
