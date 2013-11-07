@@ -1,4 +1,4 @@
-<div class="book card col-md-6 col-lg-4">
+<div id="<%= book.slug %>" class="book card col-md-6 col-lg-4 <% _.each(book.tags, function(tag) { %>tag-<%= tag %> <% }) %>">
 
     <div class="book-outer-wrapper">
    		<!-- Book Image -->
@@ -9,8 +9,13 @@
         <h4 class="book-title"><a href="<%= book.amazon_link %>"><%= book.title %></a></h4>
 
         <div class="tags book-card-links">
-	    	<a href="/#top"><p id="read-more">Read More > </p></a>
-		    <a href="/#top"><p id="back-to-top">Back To Top > </p></a>
+	    	<a class="btn btn-small btn-warning read-more" href="#/book/<%= book.slug %>">
+                    Read More &rarr;
+            </a>
+		    <button
+                class="btn btn-small btn-warning back-to-top">
+                    Back To Top &rarr;
+            </button>
 		</div>
 
          <!-- START TAGS -->
