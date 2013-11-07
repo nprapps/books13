@@ -85,6 +85,9 @@ $(function() {
 
     // Event handlers.
     $content.on('click', 'button.tag', on_tag_clicked);
+    $content.on('click', 'button.back-to-top', function(){
+        smooth_scroll($content, 0);
+    });
 
     // Set up the hasher bits to grab the URL hash.
     hasher.changed.add(on_hash_changed);
