@@ -1,6 +1,6 @@
 var $body;
 var $content;
-var $books_target;
+var $books_grid;
 
 /*
  * Scroll to a place in the page.
@@ -15,10 +15,10 @@ var smooth_scroll = function(offset_element, padding) {
  * Render a set of books into the grid.
  */
 var load_books = function(book_list) {
-    $books_target.empty();
+    $books_grid.empty();
 
     _.each(book_list, function(element, index, list){
-        $books_target.append(JST.book_card({
+        $books_grid.append(JST.book_card({
             book: element,
             app_config: APP_CONFIG
         }));
@@ -53,7 +53,7 @@ var on_hash_changed = function(new_hash, old_hash){
 $(function() {
     $body = $('body');
     $content = $('#content');
-    $books_target = $('#books-target');
+    $books_grid = $('#books-grid');
 
     // Event handlers.
     $content.on('click', 'button.tag', on_tag_clicked);
