@@ -22,7 +22,7 @@
         <% if(book.reviewer){ %><p class="reviewer">-- reviewed by <%= book.reviewer %></p> <% } %>
 
         <!-- Tags -->
-        <% if(book.tags.length > 0){ %><p class="tags"><strong>Related: </strong><% _.each(book.tags, function(tag, index, list){ %>
+        <% if(book.tags.length > 0){ %><p class="tags"><strong>More like this: </strong><% _.each(book.tags, function(tag, index, list){ %>
             <button
                 class="btn btn-large btn-info tag"
                 data-tag-slug="<%= tag %>"><%= app_config.SLUGS_TO_TAGS[tag] %>
