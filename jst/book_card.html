@@ -4,10 +4,12 @@
     <div class="book-outer-wrapper">
    		<!-- Book Image -->
         <div class="book-image-wrapper">
-            <img id="book-image" src="img/cover/<%= book.slug %>-thumb.jpg" alt="<%= book.title %>"/>
+            <img class="book-image" src="img/cover/<%= book.slug %>-thumb.jpg" alt="<%= book.title %>"/>
         </div>
 
-        <h4 class="book-title"><a href="#/book/<%= book.slug %>"><%= book.title %></a></h4>
+        <div class="book-title">
+	        <h4><a href="#/book/<%= book.slug %>"><%= book.title %></a></h4>
+	    </div>
     </div>
 	</a>
 

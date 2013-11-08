@@ -17,6 +17,7 @@
         <% if(book.reviewer){ %><p class="reviewer"><%= book.reviewer %></p> <% } %>
         <% if(book.text){ %><p class="text"><%= book.text %></p> <% } %>
         <% if(book.pages){ %><p class="pages"><%= book.pages %></p> <% } %>
+        <% if(book.page_count){ %><p class="page_count"><%= book.page_count %> pages</p> <% } %>
         <% if(book.tags.length > 0){ %><p class="tags">Related: <% _.each(book.tags, function(tag, index, list){ %>
             <button
                 class="btn btn-large btn-info tag"
