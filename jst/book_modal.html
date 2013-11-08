@@ -34,7 +34,11 @@
         
         
 
-        <% if(book.amazon_link){ %><p class="book_amazon_link book-card-links"><a href="<%= book.amazon_link %>" target="_blank">Buy this on Amazon &rarr;</a></p><% } %>
+        <% if(book.amazon_link){ %><p class="book_amazon_link book-card-links"><a href="<%= book.amazon_link %>" target="_blank">
+            <button
+                class="btn btn-large btn-info amazon-link">Purchase
+            </button>
+        </a></p><% } %>
 
         <% if (book.book_seamus_id.length > 0){  %>
         <p class="book_seamus_id book-card-links"><% _.each(book.book_seamus_id, function(url_id, index, list){ %>
