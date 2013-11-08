@@ -1,15 +1,9 @@
-<div id="<%= book.slug %>" class="book card col-md-4 col-lg-3 <% _.each(book.tags, function(tag) { %>tag-<%= tag %> <% }) %>">
+<div id="<%= book.slug %>" class="book card col-md-6 col-lg-4 <% _.each(book.tags, function(tag) { %>tag-<%= tag %> <% }) %>">
 
 	<a href="#/book/<%= book.slug %>">
     <div class="book-outer-wrapper">
    		<!-- Book Image -->
-        <div class="book-image-wrapper">
-            <img class="book-image" src="img/cover/<%= book.slug %>-thumb.jpg" alt="<%= book.title %>"/>
-        </div>
-
-        <div class="book-title">
-	        <h4><a href="#/book/<%= book.slug %>"><%= book.title %></a></h4>
-	    </div>
+        <img src="" data-src="img/cover/<%= book.slug %>-thumb.jpg" alt="<%= book.title %>"/>
     </div>
 	</a>
 

@@ -134,6 +134,8 @@ $(function() {
         book_card: JST.book_card
     }));
 
+    $('img').unveil(200);
+
     // Set up the hasher bits to grab the URL hash.
     hasher.changed.add(on_hash_changed);
     hasher.initialized.add(on_hash_changed);
