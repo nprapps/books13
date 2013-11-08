@@ -187,6 +187,10 @@ h1 + #story-meta { margin-top: -11px; }
 
         img {
             width: 300px;
+
+            @media (max-width: 480px) {
+				width: 200px;
+        }
         }
     }
 }
@@ -372,12 +376,11 @@ footer {
 		.npr { display: block; }
 	}
 	header {
-		padding: 33px 20px;
 		h1 { font-size: 36px; }
 	}
 	footer { border-top: 1px solid #CCC; margin-top: 24px; }
 	.modal-book-cover img{
-		width: 190px;
+		width: 180px;
 	}
 
 	.modal-dialog {
@@ -386,5 +389,9 @@ footer {
 
 	.text {
 		font-size: 14px;
+	}
+
+	.introduction {
+		width: 50%;
 	}
 }
