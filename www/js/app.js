@@ -99,6 +99,8 @@ var on_hash_changed = function(new_hash, old_hash) {
     } else {
         filter_books(null);
     }
+    
+    $('img').unveil(200);
 
     return false;
 };
@@ -133,8 +135,6 @@ $(function() {
         app_config: APP_CONFIG,
         book_card: JST.book_card
     }));
-
-    $('img').unveil(200);
 
     // Set up the hasher bits to grab the URL hash.
     hasher.changed.add(on_hash_changed);
