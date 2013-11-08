@@ -1,6 +1,8 @@
 var $body;
 var $content;
 var $books_grid;
+var $all_books;
+var $clear_tags;
 var $modal;
 var $modal_content;
 
@@ -27,10 +29,12 @@ var back_to_top = function() {
  */
 var filter_books = function(tag) {
     if (tag) {
-        $('.book').hide();
+        $all_books.hide();
         $('.book.tag-' + tag).show();
+        $clear_tags.show();
     } else {
-        $('.book').show();
+        $all_books.show();
+        $clear_tags.hide();
     }
 };
 
@@ -49,7 +53,7 @@ var on_tag_clicked = function() {
  */
 var on_clear_tags_clicked = function() {
     hasher.setHash('_');
-    back_top_top();
+    back_to_top();
 
     return false;
 };
@@ -123,6 +127,7 @@ $(function() {
     $body = $('body');
     $content = $('#content');
     $books_grid = $('#books-grid');
+    $clear_tags = $('.clear-tags');
     $modal = $('#myModal');
     $modal_content = $('#myModal .modal-content');
 
@@ -138,6 +143,8 @@ $(function() {
         app_config: APP_CONFIG,
         book_card: JST.book_card
     }));
+    
+    $all_books = $('.book');
 
     // Set up the hasher bits to grab the URL hash.
     hasher.changed.add(on_hash_changed);

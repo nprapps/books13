@@ -5,8 +5,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>{{ COPY.content.header_title }}</h1>
-                <h2>{{ COPY.content.lorem_ipsum }}</h2>
+                <h1>{{ PROJECT_NAME }}</h1>
+                <h2>by {{ COPY.attribution.byline }}</h2>
+                <h2>{{ COPY.attribution.pubdate }} {{ COPY.attribution.pubtime }}</h2>
             </div>
         </div>
     </div>
@@ -15,20 +16,10 @@
 
 
 {% block content %}
-<h1>{{ PROJECT_NAME }}</h1>
-<div id="story-meta">
-    <p class="byline">by <span>{{ COPY.attribution.byline }}</span></p>
-    <p class="dateblock">
-        <span class="date">{{ COPY.attribution.pubdate }}</span>
-        <span class="time"> {{ COPY.attribution.pubtime }}</span>
-    </p>
-</div>
-
 <div class="wrapper">
     <!-- All Tags List -->
     <div class="row">
         <div class="col-md-12">
-            <h2>All Tags</h2>
             {% for slug, tag in SLUGS_TO_TAGS.items() %}
                 <button
                     class="btn btn-large btn-info tag"
@@ -37,8 +28,6 @@
                 </button>
             {% endfor %}
         
-        </div>
-        <div class="col-md-12">
             <button class="clear-tags">Show all books</button>
         </div>
     </div>
@@ -46,7 +35,6 @@
     <!-- Book Cards Grid -->
     <div class="row">
         <div class="col-md-12">&nbsp;
-            <h2>Books</h2>
             <div id="books-grid" class="row"></div>
         </div>
     </div>
