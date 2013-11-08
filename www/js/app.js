@@ -111,7 +111,7 @@ var on_book_modal_closed = function() {
     // as it would with null/empty string.
     hasher.setHash('_');
 
-    return false;
+    return true;
 };
 
 $(function() {
