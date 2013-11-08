@@ -9,7 +9,7 @@
 
 // General styles
 body { 
-    font: 18px/1.5em Arial, Helvetica, sans-serif; 
+    font: 18px/1.5em "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; 
     color: #111; 
     -webkit-font-smoothing: antialiased;
 }
@@ -185,7 +185,8 @@ h1 + #story-meta { margin-top: -11px; }
 //Button Tag Styling
 .btn {
 	border-radius: 0px;
-	padding: 0px;
+	padding: 8px;
+	margin: 4px 2px 4px 2px;
 }
 
 .btn:hover {
@@ -197,6 +198,8 @@ h1 + #story-meta { margin-top: -11px; }
 	border: none;
 	background-color: #d7dff0;
 	color: #7590c4;
+	font-weight: bold;
+	font-size: 12px;
 }
 
 //Modal
@@ -229,6 +232,11 @@ h1 + #story-meta { margin-top: -11px; }
 .book-card-links {
 	line-height: .5em;
 	font-size: 14px;
+	
+	>a {
+		color: #7590c4;
+		font-weight: bold;
+	}
 }
 
 .modal-header {
