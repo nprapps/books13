@@ -234,11 +234,25 @@ h1 + #story-meta { margin-top: -11px; }
 
 //Modal
 .modal-book-cover img{
-	width: 250px;
+	width: 400px;
+	margin-bottom: 2em;
 }
 
 .modal-text {
 	text-align: left;
+	font-size: 16px;
+
+	.modal-title {
+		font-size: 20px;
+		font-weight: bold;
+		color: #111;
+	}
+
+	.author, .reviewer {
+		color: #999;
+		font-size: 14px;
+		line-height: 1.3em;
+	}
 }
 
 .book-card-links {
@@ -246,6 +260,13 @@ h1 + #story-meta { margin-top: -11px; }
 	font-size: 14px;
 }
 
+.modal-header {
+	border: none;
+}
+
+.modal-dialog {
+	width: 80%;
+}
 
 // Footer
 footer {
@@ -322,6 +343,12 @@ footer {
 		.primary { float: none; }
 		.secondary ul, .secondary p { margin-left: 0; float: left; }
 	}
+	.modal-book-cover img{
+		width: 300px;
+	}
+	.modal-dialog {
+		width: 70%;
+	}
 }
 @media (max-width: 767px) {
 	//nav, header, footer { margin-left: -20px; margin-right: -20px; }
@@ -332,6 +359,9 @@ footer {
 		.secondary ul { float: right; }
 		.secondary li { font-size: 10px; text-transform: none; }
 		.secondary a { color: #bccae5; }
+	}
+	.modal-book-cover img{
+		width: 250px;
 	}
 }
 @media (max-width: 480px) {
@@ -347,4 +377,15 @@ footer {
 		h1 { font-size: 36px; }
 	}
 	footer { border-top: 1px solid #CCC; margin-top: 24px; }
+	.modal-book-cover img{
+		width: 190px;
+	}
+
+	.modal-dialog {
+		width: 80%;
+	}
+
+	.text {
+		font-size: 14px;
+	}
 }
