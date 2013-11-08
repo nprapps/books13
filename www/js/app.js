@@ -52,7 +52,7 @@ var on_clear_tags_clicked = function() {
 };
 
 /*
- * Respond to url changes.
+ * New tag hash url. 
  */
 var on_tag_hash = function(slug) {
     filter_books(slug);
@@ -63,7 +63,6 @@ var on_tag_hash = function(slug) {
  * New book hash url.
  */
 var on_book_hash = function(slug) {
-
     // Ensure book is on the page.
     filter_books(null);
 
@@ -83,7 +82,6 @@ var on_book_hash = function(slug) {
     }));
 
     $modal.modal();
-
 };
 
 /*
@@ -99,8 +97,19 @@ var on_hash_changed = function(new_hash, old_hash) {
     } else if (hash_type == 'book') {
         on_book_hash(hash_slug);
     } else {
-        on_tag_hash('');
+        filter_books(null);
     }
+
+    return false;
+};
+
+/*
+ * Clear the hash when closing a book modal.
+ */
+var on_book_modal_closed = function() {
+    // HACK: Set to underscore so it doesn't scroll to top
+    // as it would with null/empty string.
+    hasher.setHash('_');
 
     return false;
 };
@@ -116,6 +125,7 @@ $(function() {
     $content.on('click', 'button.tag', on_tag_clicked);
     $content.on('click', '.back-to-top', back_to_top);
     $content.on('click', 'button.clear-tags', on_clear_tags_clicked);
+    $modal.on('hidden.bs.modal', on_book_modal_closed);
 
     // Render the book grid
     $books_grid.html(JST.book_grid({
