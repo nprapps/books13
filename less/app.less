@@ -168,8 +168,12 @@ h1 + #story-meta { margin-top: -11px; }
         margin-top: 11px;
         margin-bottom: 11px;
         padding: 22px 11px 22px 11px;
-        height: 490px;
+        height: 505px;
         text-align:center;
+
+        @media (max-width: 992px) {
+				height: auto !important;
+        }
 
         img {
             width: 300px;
@@ -330,6 +334,7 @@ footer {
 	.modal-book-cover img{
 		width: 250px;
 	}
+
 }
 @media (max-width: 480px) {
 	section.the-goods { margin-top: 33px; }
