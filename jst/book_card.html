@@ -1,6 +1,6 @@
 <div id="<%= book.slug %>" class="book card col-md-6 col-lg-4 <% _.each(book.tags, function(tag) { %>tag-<%= tag %> <% }) %>">
 
-	<a href="#/book/<%= book.slug %>" data-keyboard="true">
+	<a href="#/book/<%= book.slug %>">
     <div class="book-outer-wrapper">
    		<!-- Book Image -->
         <img src="" data-src="img/cover/<%= book.slug %>-thumb.jpg" alt="<%= book.title %>"/>
