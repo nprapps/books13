@@ -100,10 +100,12 @@ var on_hash_changed = function(new_hash, old_hash) {
     var hash_slug = bits[1];
 
     if (hash_type == 'tag') {
+        $modal.modal('hide');
         on_tag_hash(hash_slug);
     } else if (hash_type == 'book') {
         on_book_hash(hash_slug);
     } else {
+        $modal.modal('hide');
         filter_books(null);
     }
     
@@ -118,7 +120,9 @@ var on_hash_changed = function(new_hash, old_hash) {
 var on_book_modal_closed = function() {
     // HACK: Set to underscore so it doesn't scroll to top
     // as it would with null/empty string.
-    hasher.setHash('_');
+    if (hasher.getHash().split('/')[0] == 'book') {
+        hasher.setHash('_');
+    }
 
     return true;
 };
@@ -132,7 +136,7 @@ $(function() {
     $modal_content = $('#myModal .modal-content');
 
     // Event handlers.
-    $content.on('click', 'button.tag', on_tag_clicked);
+    $body.on('click', 'button.tag', on_tag_clicked);
     $content.on('click', '.back-to-top', back_to_top);
     $content.on('click', 'button.clear-tags', on_clear_tags_clicked);
     $modal.on('hidden.bs.modal', on_book_modal_closed);
