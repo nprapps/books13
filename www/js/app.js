@@ -48,7 +48,10 @@ var on_tag_clicked = function() {
  * Clear the current tag
  */
 var on_clear_tags_clicked = function() {
-    hasher.setHash(null);
+    hasher.setHash('_');
+    back_top_top();
+
+    return false;
 };
 
 /*
