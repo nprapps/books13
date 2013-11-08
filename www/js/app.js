@@ -103,7 +103,7 @@ var on_hash_changed = function(new_hash, old_hash) {
         filter_books(null);
     }
     
-    $('img').unveil(200);
+    $('img').unveil(1200);
 
     return false;
 };
