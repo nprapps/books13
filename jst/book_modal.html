@@ -1,28 +1,38 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <!-- <h4 class="modal-title" id="myModalLabel"><%= book.title %></h4> -->
 </div>
 
 <div class="modal-body row">
 
     <div class="modal-book-cover col-lg-6">
-        <img id="book-image" src="img/cover/<%= book.slug %>.jpg" alt="<%= book.title %>"/>
+        <center><img id="book-image" src="img/cover/<%= book.slug %>.jpg" alt="<%= book.title %>"/></center>
     </div>
     
     <div class="modal-text col-lg-6">
-
-        <% if(book.author){ %><p class="author">Author: <%= book.author %></p> <% } %>
-        <% if(book.genre){ %><p class="genre">Genre: <%= book.genre %></p> <% } %>
-        <% if(book.reviewer){ %><p class="reviewer">Reviewed by: <%= book.reviewer %></p> <% } %>
-        <% if(book.text){ %><p class="text"><%= book.text %></p> <% } %>
+        <h4 class="modal-title" id="myModalLabel"><%= book.title %></h4>
+        <% if(book.author){ %><p class="author">By <%= book.author %></p> <% } %>
+        <% if(book.genre){ %><p class="genre"><strong>Genre: </strong><%= book.genre %></p> <% } %>
+        <% if(book.page_count){ %><p class="page_count"><strong>Length: </strong><%= book.page_count %> pages</p> <% } %>
         <% if(book.pages){ %><p class="pages"><%= book.pages %></p> <% } %>
-        <% if(book.page_count){ %><p class="page_count">Length: <%= book.page_count %> pages</p> <% } %>
-        <% if(book.tags.length > 0){ %><p class="tags">Related: <% _.each(book.tags, function(tag, index, list){ %>
+
+        <!-- Book Description/Review -->
+        <% if(book.text){ %><p class="text"><%= book.text %></p> <% } %>
+        <p class="text">TEMP PLACEHOLDER TO GET IDEA OF SIZING: Tote bag scenester jean shorts Cosby sweater, swag wolf authentic. Before they sold out fanny pack McSweeney's deep v, polaroid fashion axe hella. Kitsch Echo Park pour-over ethnic, freegan quinoa craft beer vegan art party Blue Bottle narwhal swag leggings. Roof party semiotics XOXO, next level farm-to-table pour-over whatever PBR Intelligentsia chia tote bag before they sold out. Occupy Thundercats American Apparel ugh, deep v literally scenester XOXO iPhone photo booth gastropub High Life try-hard. PBR single-origin coffee Tumblr retro kale chips. Post-ironic retro PBR distillery, pug Austin beard Truffaut salvia hella Blue Bottle meggings twee.</p>
+
+        <% if(book.reviewer){ %><p class="reviewer">-- reviewed by <%= book.reviewer %></p> <% } %>
+
+        <!-- Tags -->
+        <% if(book.tags.length > 0){ %><p class="tags"><strong>Related: </strong><% _.each(book.tags, function(tag, index, list){ %>
             <button
                 class="btn btn-large btn-info tag"
                 data-tag-slug="<%= tag %>"><%= app_config.SLUGS_TO_TAGS[tag] %>
             </button>
         <% }); %></p> <% } %>
+
+
+
+        
+        
 
         <% if(book.amazon_link){ %><p class="book_amazon_link book-card-links"><a href="<%= book.amazon_link %>" target="_blank">Buy this on Amazon &rarr;</a></p><% } %>
 
@@ -40,7 +50,7 @@
 
         <% if (book.review_seamus_id.length > 0){  %>
         <p class="review_seamus_id book-card-links"><% _.each(book.review_seamus_id, function(url_id, index, list){ %>
-            <a href="http://npr.org/<%= url_id %>/" target="_blank">Review NPR's review &rarr;</a>
+            <a href="http://npr.org/<%= url_id %>/" target="_blank">Read NPR's review &rarr;</a>
         <% }); %></p>
         <% } %>
 
