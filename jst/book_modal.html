@@ -1,6 +1,6 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h4 class="modal-title" id="myModalLabel"><%= book.title %></h4>
+    <!-- <h4 class="modal-title" id="myModalLabel"><%= book.title %></h4> -->
 </div>
 
 <div class="modal-body row">
@@ -10,14 +10,13 @@
     </div>
     
     <div class="modal-text col-lg-6">
-        <% if(book.amazon_link){ %><p><a href="<%= book.amazon_link %>" target="_blank">Buy this on Amazon</a></p><% } %>
 
-        <% if(book.author){ %><p class="author"><%= book.author %></p> <% } %>
-        <% if(book.genre){ %><p class="genre"><%= book.genre %></p> <% } %>
-        <% if(book.reviewer){ %><p class="reviewer"><%= book.reviewer %></p> <% } %>
+        <% if(book.author){ %><p class="author">Author: <%= book.author %></p> <% } %>
+        <% if(book.genre){ %><p class="genre">Genre: <%= book.genre %></p> <% } %>
+        <% if(book.reviewer){ %><p class="reviewer">Reviewed by: <%= book.reviewer %></p> <% } %>
         <% if(book.text){ %><p class="text"><%= book.text %></p> <% } %>
         <% if(book.pages){ %><p class="pages"><%= book.pages %></p> <% } %>
-        <% if(book.page_count){ %><p class="page_count"><%= book.page_count %> pages</p> <% } %>
+        <% if(book.page_count){ %><p class="page_count">Length: <%= book.page_count %> pages</p> <% } %>
         <% if(book.tags.length > 0){ %><p class="tags">Related: <% _.each(book.tags, function(tag, index, list){ %>
             <button
                 class="btn btn-large btn-info tag"
@@ -25,27 +24,29 @@
             </button>
         <% }); %></p> <% } %>
 
+        <% if(book.amazon_link){ %><p class="book_amazon_link book-card-links"><a href="<%= book.amazon_link %>" target="_blank">Buy this on Amazon &rarr;</a></p><% } %>
+
         <% if (book.book_seamus_id.length > 0){  %>
-        <p class="book_seamus_id"><% _.each(book.book_seamus_id, function(url_id, index, list){ %>
-            <a href="http://npr.org/<%= url_id %>/" target="_blank">Link &rarr;</a>
+        <p class="book_seamus_id book-card-links"><% _.each(book.book_seamus_id, function(url_id, index, list){ %>
+            <a href="http://npr.org/<%= url_id %>/" target="_blank">About this book &rarr;</a>
         <% }); %></p>
         <% } %>
 
         <% if (book.author_seamus_id.length > 0){  %>
-        <p class="author_seamus_id"><% _.each(book.author_seamus_id, function(url_id, index, list){ %>
-            <a href="http://npr.org/<%= url_id %>/" target="_blank">Link &rarr;</a>
+        <p class="author_seamus_id book-card-links"><% _.each(book.author_seamus_id, function(url_id, index, list){ %>
+            <a href="http://npr.org/<%= url_id %>/" target="_blank">About this author &rarr;</a>
         <% }); %></p>
         <% } %>
 
         <% if (book.review_seamus_id.length > 0){  %>
-        <p class="review_seamus_id"><% _.each(book.review_seamus_id, function(url_id, index, list){ %>
-            <a href="http://npr.org/<%= url_id %>/" target="_blank">Link &rarr;</a>
+        <p class="review_seamus_id book-card-links"><% _.each(book.review_seamus_id, function(url_id, index, list){ %>
+            <a href="http://npr.org/<%= url_id %>/" target="_blank">Review NPR's review &rarr;</a>
         <% }); %></p>
         <% } %>
 
         <% if (book.other_seamus_id){  %>
-        <p class="other_seamus_id"><% _.each(book.other_seamus_id, function(url_id, index, list){ %>
-            <a href="http://npr.org/<%= url_id %>/" target="_blank">Link &rarr;</a>
+        <p class="other_seamus_id book-card-links"><% _.each(book.other_seamus_id, function(url_id, index, list){ %>
+            <a href="http://npr.org/<%= url_id %>/" target="_blank">Other &rarr;</a>
         <% }); %></p>
         <% } %>
     </div>
