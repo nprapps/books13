@@ -159,59 +159,27 @@ header {
 }
 h1 + #story-meta { margin-top: -11px; }
 
-.book-outer-wrapper {
-	position: relative;	
-	background-color: #ebebeb;
-	margin-top: 11px;
-	margin-bottom: 11px;
-	padding: 22px 11px 22px 11px;
-	text-align: center;
-	height: 490px;
+.book {
+    // Hidden until shown in JS
+    display: none;
 
-    .book {
-        // Hidden until shown in JS
-        display: none;
+    .book-outer-wrapper {
+        position: relative;	
+        margin-top: 11px;
+        margin-bottom: 11px;
+        padding: 22px 11px 22px 11px;
+        height: 490px;
+        text-align:center;
+
+        img {
+            width: 300px;
+
+            @media (max-width: @screen-xs-max) {
+                width: 300px;
+                height: auto;
+            }
+        }
     }
-
-    .book-image-wrapper{
-		text-align: center;
-
-		.book-image {
-			width: 200px;
-
-			@media (max-width: @screen-xs-max) {
-				width: 200px;
-				height: auto;
-			}
-		}
-	}
-    .book-title {
-		color: #4774cc;
-		margin-top: 1.5em;
-	}
-
-	.book-title:hover {
-		color: #fff;
-	}
-	.tags {
-		position: absolute;
-		bottom: 0;
-		width: 90%;
-
-		p {
-			font-size: 14px;
-			line-height: 1.3em;
-		}
-	}
-
-	#back-to-top, #read-more {
-		font-size: 12px;
-		margin-bottom: 0;
-		line-height: 1.3em;
-		text-align: right;
-	}
-
-	
 }
 
 
