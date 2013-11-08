@@ -1,14 +1,14 @@
 {% extends '_base.html' %}
 
 {% block header_content %}
+
 <header id="top">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>{{ PROJECT_NAME }}</h1>
-                <h2>by {{ COPY.attribution.byline }}</h2>
-                <h2>{{ COPY.attribution.pubdate }} {{ COPY.attribution.pubtime }}</h2>
-            </div>
+        <div class="introduction">
+            <a href="/"><h1>{{ PROJECT_NAME }}</h1></a>
+            <h2>by {{ COPY.attribution.byline }}</h2>
+            <h2>{{ COPY.attribution.pubdate }} {{ COPY.attribution.pubtime }}</h2>
+
         </div>
     </div>
 </header>
