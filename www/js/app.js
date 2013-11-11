@@ -1,3 +1,5 @@
+var SMALL_MOBILE = Modernizr.touch && Modernizr.mq('only all and (max-width: 480px)');
+
 var $body;
 var $content;
 var $books_grid;
@@ -96,7 +98,7 @@ var on_book_hash = function(slug) {
 
     $modal_content.append(JST.book_modal({
         book: book,
-        app_config: APP_CONFIG
+        SMALL_MOBILE: SMALL_MOBILE
     }));
 
     $modal.modal();
@@ -120,7 +122,11 @@ var on_hash_changed = function(new_hash, old_hash) {
         filter_books(null);
     }
     
-    $('img').unveil(1200);
+    $books_grid.find('img').unveil(1200, function() {
+        $(this).load(function() {
+            $(this).removeClass('veiled');
+        });
+    });
 
     return false;
 };
@@ -158,7 +164,6 @@ $(function() {
     // Render the book grid
     $books_grid.html(JST.book_grid({
         books: BOOKS,
-        app_config: APP_CONFIG,
         book_card: JST.book_card
     }));
     

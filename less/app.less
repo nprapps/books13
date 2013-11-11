@@ -191,12 +191,24 @@ h1 + #story-meta { margin-top: -11px; }
         text-align:center;
 
         @media (max-width: 992px) {
-				height: auto !important;
+            height: 450px;
         }
 
         img {
         	width: 100%;
             max-width: 300px;
+        }
+
+        img.veiled {
+            margin-top: 247px;
+            margin-left: 142px;
+            width: 16px;
+            height: 16px;
+
+            @media (max-width: 480px) {
+                margin-top: 150px;
+                margin-left: 0px;
+            }
         }
     }
 }
@@ -246,8 +258,9 @@ h1 + #story-meta { margin-top: -11px; }
 .modal-book-cover {
 	margin-left: auto;
 	margin-right: auto;
+    text-align: center;
 }
-.modal-book-cover img{
+.modal-book-cover img {
 	width: 400px;
 	margin-bottom: 2em;
 }
