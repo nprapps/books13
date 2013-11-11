@@ -115,7 +115,11 @@ var on_hash_changed = function(new_hash, old_hash) {
         filter_books(null);
     }
     
-    $('img').unveil(1200);
+    $books_grid.find('img').unveil(1200, function() {
+        $(this).load(function() {
+            $(this).removeClass('veiled');
+        });
+    });
 
     return false;
 };
