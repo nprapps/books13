@@ -1,6 +1,7 @@
 var $body;
 var $content;
 var $books_grid;
+var $all_tags;
 var $all_books;
 var $clear_tags;
 var $modal;
@@ -25,9 +26,15 @@ var back_to_top = function() {
  * Show/hide books in the grid.
  */
 var filter_books = function(tag) {
+    $all_tags.removeClass('selected');
+
     if (tag) {
+        var $tag = $('.tags .tag[data-tag-slug="' + tag + '"]');
+        var $books_with_tag = $('.book.tag-' + tag);
+
         $all_books.hide();
-        $('.book.tag-' + tag).show();
+        $books_with_tag.show();
+        $tag.addClass('selected');
         $clear_tags.show();
     } else {
         $all_books.show();
@@ -128,6 +135,7 @@ $(function() {
     $body = $('body');
     $content = $('#content');
     $books_grid = $('#books-grid');
+    $all_tags = $('.tags .tag');
     $clear_tags = $('.clear-tags');
     $modal = $('#myModal');
     $modal_content = $('#myModal .modal-content');
