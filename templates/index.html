@@ -19,11 +19,11 @@
     <!-- All Tags List -->
     <div class="row">
         <div class="col-md-12">
-            {% for slug, tag in SLUGS_TO_TAGS.items() %}
+            {% for row in COPY.tags %}
                 <button
                     class="btn btn-large btn-info tag"
-                    data-tag-slug="{{ slug }}">
-                    {{ tag }}
+                    data-tag-slug="{{ row.key }}">
+                    {{ row.value }}
                 </button>
             {% endfor %}
         

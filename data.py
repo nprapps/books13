@@ -6,8 +6,13 @@ import re
 from bs4 import BeautifulSoup
 from PIL import Image
 import requests
+import xlrd
 
 import app_config
+import copytext
+
+TAGS_TO_SLUGS = {}
+SLUGS_TO_TAGS = {}
 
 class Book(object):
     """
@@ -79,7 +84,7 @@ class Book(object):
                             item = item.strip()
 
                             # Look up from our map.
-                            tag_slug = app_config.TAGS_TO_SLUGS.get(item, None)
+                            tag_slug = TAGS_TO_SLUGS.get(item, None)
 
                             # Append if the tag exists.
                             if tag_slug:
@@ -148,12 +153,28 @@ def get_books_csv():
     with open('data/books.csv', 'wb') as writefile:
         writefile.write(r.content)
 
+def get_tags():
+    """
+    Extract tags from COPY doc.
+    """
+    print 'Extracting tags from COPY'
+
+    book = xlrd.open_workbook(copytext.COPY_XLS)
+    
+    sheet = book.sheet_by_name('tags')
+
+    for i in range(1, sheet.nrows):
+        slug, tag = sheet.row_values(i)
+
+        SLUGS_TO_TAGS[slug] = tag
+        TAGS_TO_SLUGS[tag] = slug
 
 def parse_books_csv():
     """
     Parses the books CSV to JSON.
     Creates book objects which are cleaned and then serialized to JSON.
     """
+    get_tags() 
 
     # Open the CSV.
     with open('data/books.csv', 'rb') as readfile:
@@ -185,7 +206,6 @@ def parse_books_csv():
         writefile.write(json.dumps(book_list))
 
     print "End."
-
 
 def load_images():
     """

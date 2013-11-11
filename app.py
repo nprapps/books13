@@ -19,7 +19,6 @@ def index():
     """
     The index page.
     """
-
     # Set up standard page context.
     context = make_context()
 
