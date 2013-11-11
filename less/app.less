@@ -172,7 +172,11 @@ h1 + #story-meta { margin-top: -11px; }
 .book {
     // Hidden until shown in JS
     // display: none;
-    width: 33.33333%;
+    width: 25%;
+    
+    @media screen and (max-width: @screen-md-max){
+    	width: 33.33333%;
+    }
 
     @media screen and (max-width: @screen-sm-max){
     	width: 50%;
@@ -182,11 +186,21 @@ h1 + #story-meta { margin-top: -11px; }
     	width: 100%;
     }
 
+    .book-info {
+    	max-width: 300px;
+    	margin: 0 auto;
+    	// background: #f9f9f9;
+    	padding: 10px 0 0;
+
+    	.tag.selected {
+    		display: none;
+    	}
+    }
+
     .book-outer-wrapper {
         position: relative;	
         margin-top: 11px;
-        margin-bottom: 11px;
-        padding: 22px 11px 22px 11px;
+        padding: 22px 11px 0 11px;
         // min-height: 300px;
         text-align:center;
 
@@ -223,7 +237,7 @@ h1 + #story-meta { margin-top: -11px; }
 
 .btn-info {
 	border: none;
-	background-color: #d7dff0;
+	background-color: lighten(#d7dff0, 7%);
 	color: #7590c4;
 	font-weight: bold;
 	font-size: 12px;
