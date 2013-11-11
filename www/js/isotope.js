@@ -63,6 +63,8 @@ $(function() {
         // smash the array together to get a big selector which will filter all elements with the filter classes
         var selector = filters_to_use.join('');
 
+        $(selector).find('img').trigger("unveil");
+
         // run the filter on the isotope element
         $books_grid_class.isotope({ filter: selector });
     }
