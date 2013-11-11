@@ -16,7 +16,7 @@ var scroll = function($el) {
  * Jump back to the top of the page.
  */
 var back_to_top = function() {
-    scroll($content, 0);
+    scroll($books_grid, 0);
 
     return false;
 };
@@ -134,6 +134,8 @@ $(function() {
 
     // Event handlers.
     $body.on('click', 'button.tag', on_tag_clicked);
+    $books_grid.on('click', '.back-to-top', back_to_top);
+    $books_grid.on('click', 'button.clear-tags', on_clear_tags_clicked);
     $content.on('click', '.back-to-top', back_to_top);
     $content.on('click', 'button.clear-tags', on_clear_tags_clicked);
     $modal.on('hidden.bs.modal', on_book_modal_closed);
