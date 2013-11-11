@@ -29,16 +29,17 @@
             </button>
         <% }); %></p> <% } %>
 
-
-
-        
-        
-
-        <% if(book.amazon_link){ %><p class="book_amazon_link book-card-links"><a href="<%= book.amazon_link %>" target="_blank">
-            <button
-                class="btn btn-large btn-info amazon-link"><%= COPY.content.purchase %>
-            </button>
-        </a></p><% } %>
+        <p class="book-card-links">
+            <a href="http://www.amazon.com/dp/<%= book.isbn %>?tag=npr-5-20" target="_blank">
+                <button class="btn btn-large btn-info amazon-link">Amazon &raquo;</button>
+            </a>
+            <a href="https://itunes.apple.com/us/book/isbn<%= book.isbn %>?mt=11&uo=4" target="_blank">
+                <button class="btn btn-large btn-info amazon-link">iBookstore &raquo;</button>
+            </a>
+            <a href="http://www.indiebound.org/book/<%= book.isbn %>?aff=NPR" target="_blank">
+                <button class="btn btn-large btn-info amazon-link">Independent Booksellers &raquo;</button>
+            </a>
+        </p>
 
         <% if (book.book_seamus_id.length > 0){  %>
         <p class="book_seamus_id book-card-links"><% _.each(book.book_seamus_id, function(url_id, index, list){ %>

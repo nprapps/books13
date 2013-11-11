@@ -32,7 +32,6 @@ class Book(object):
     author_seamus_id = None
     review_seamus_id = None
     other_seamus_id = None
-    amazon_link = None
 
     def __unicode__(self):
         """
@@ -117,9 +116,6 @@ class Book(object):
         slug = re.sub(r"[^\w\s]", '', slug)
         slug = re.sub(r"\s+", '-', slug)
         setattr(self, "slug", slug[:254])
-
-        # Amazon link.
-        setattr(self, "amazon_link", "http://www.amazon.com/dp/%s" % self.isbn)
 
         # Page count.
         data = {}
