@@ -16,7 +16,7 @@
 {% block content %}
 <div class="wrapper">
     <!-- All Tags List -->
-    <div class="row">
+<!--     <div class="row">
         <div class="col-md-12 tags">
             {% for row in COPY.tags %}
                 <button
@@ -28,12 +28,25 @@
         
             <button class="clear-tags">Show all books</button>
         </div>
-    </div>
+    </div> -->
+
+
+    <ul class="filter tags option-set list-unstyled" data-filter-group="category">
+      <!-- <li><button data-filter-value=".tag-comics-and-graphic-novels">show all</button></li> -->
+      {% for row in COPY.tags %}
+           <li> 
+               <button
+               class="btn btn-large btn-info tag"
+               data-filter-value=".tag-{{ row.key }}" data-tag-slug="{{ row.key }}">{{ row.value }}</button>
+           </li>
+        {% endfor %}
+        <li><button class="btn btn-large btn-info tag" data-filter="*">Show All</button></li>
+    </ul>
 
     <!-- Book Cards Grid -->
     <div class="row">
         <div class="col-md-12">&nbsp;
-            <div id="books-grid" class="row"></div>
+            <div id="books-grid"></div>
         </div>
     </div>
 </div>

@@ -66,8 +66,15 @@ var on_clear_tags_clicked = function() {
  * New tag hash url. 
  */
 var on_tag_hash = function(slug) {
-    filter_books(slug);
-    back_to_top();
+    // filter_books(slug);
+    // debugger;
+    if(slug === 'undefined'){
+        $('#books-grid').isotope({ filter: '*' });
+    } else {
+        $('#books-grid').isotope({ filter: '.tag-' + slug });
+    }
+    $('button[data-tag-slug="' + slug + '"]').addClass('selected');
+    // back_to_top();
 };
 
 /*
@@ -145,7 +152,7 @@ $(function() {
     $books_grid.on('click', '.back-to-top', back_to_top);
     $books_grid.on('click', 'button.clear-tags', on_clear_tags_clicked);
     $content.on('click', '.back-to-top', back_to_top);
-    $content.on('click', 'button.clear-tags', on_clear_tags_clicked);
+    // $content.on('click', 'button.clear-tags', on_clear_tags_clicked);
     $modal.on('hidden.bs.modal', on_book_modal_closed);
 
     // Render the book grid
