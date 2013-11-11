@@ -11,7 +11,7 @@
     <div class="modal-text col-lg-6">
         <h4 class="modal-title" id="myModalLabel"><%= book.title %></h4>
         <% if(book.author){ %><p class="author">By <%= book.author %></p> <% } %>
-        <% if(book.genre){ %><p class="genre"><strong>Genre: </strong><%= book.genre %></p> <% } %>
+        <% if(book.genre){ %><p class="genre"><strong><%= COPY.content.genre %> </strong><%= book.genre %></p> <% } %>
         <% if(book.page_count){ %><p class="page_count"><strong>Length: </strong><%= book.page_count %> pages</p> <% } %>
         <% if(book.pages){ %><p class="pages"><%= book.pages %></p> <% } %>
 
@@ -19,10 +19,10 @@
         <% if(book.text){ %><p class="text"><%= book.text %></p> <% } %>
         <p class="text">TEMP PLACEHOLDER TO GET IDEA OF SIZING: Tote bag scenester jean shorts Cosby sweater, swag wolf authentic. Before they sold out fanny pack McSweeney's deep v, polaroid fashion axe hella. Kitsch Echo Park pour-over ethnic, freegan quinoa craft beer vegan art party Blue Bottle narwhal swag leggings. Roof party semiotics XOXO, next level farm-to-table pour-over whatever PBR Intelligentsia chia tote bag before they sold out. Occupy Thundercats American Apparel ugh, deep v literally scenester XOXO iPhone photo booth gastropub High Life try-hard. PBR single-origin coffee Tumblr retro kale chips. Post-ironic retro PBR distillery, pug Austin beard Truffaut salvia hella Blue Bottle meggings twee.</p>
 
-        <% if(book.reviewer){ %><p class="reviewer">-- reviewed by <%= book.reviewer %></p> <% } %>
+        <% if(book.reviewer){ %><p class="reviewer">&mdash; <%= COPY.content.reviewed_by %> <%= book.reviewer %></p> <% } %>
 
         <!-- Tags -->
-        <% if(book.tags.length > 0){ %><p class="tags"><strong>More like this: </strong><% _.each(book.tags, function(tag, index, list){ %>
+        <% if(book.tags.length > 0) { %><p class="tags"><strong><%= COPY.content.tag_list %> </strong><% _.each(book.tags, function(tag, index, list){ %>
             <button
                 class="btn btn-large btn-info tag"
                 data-tag-slug="<%= tag %>"><%= app_config.SLUGS_TO_TAGS[tag] %>
@@ -36,31 +36,31 @@
 
         <% if(book.amazon_link){ %><p class="book_amazon_link book-card-links"><a href="<%= book.amazon_link %>" target="_blank">
             <button
-                class="btn btn-large btn-info amazon-link">Purchase
+                class="btn btn-large btn-info amazon-link"><%= COPY.content.purchase %>
             </button>
         </a></p><% } %>
 
         <% if (book.book_seamus_id.length > 0){  %>
         <p class="book_seamus_id book-card-links"><% _.each(book.book_seamus_id, function(url_id, index, list){ %>
-            <a href="http://npr.org/<%= url_id %>" target="_blank">About this book &rarr;</a>
+            <a href="http://npr.org/<%= url_id %>" target="_blank"><%= COPY.content.npr_book_link %> &rarr;</a>
         <% }); %></p>
         <% } %>
 
         <% if (book.author_seamus_id.length > 0){  %>
         <p class="author_seamus_id book-card-links"><% _.each(book.author_seamus_id, function(url_id, index, list){ %>
-            <a href="http://npr.org/<%= url_id %>" target="_blank">About this author &rarr;</a>
+            <a href="http://npr.org/<%= url_id %>" target="_blank"><%= COPY.content.npr_author_link %> &rarr;</a>
         <% }); %></p>
         <% } %>
 
         <% if (book.review_seamus_id.length > 0){  %>
         <p class="review_seamus_id book-card-links"><% _.each(book.review_seamus_id, function(url_id, index, list){ %>
-            <a href="http://npr.org/<%= url_id %>" target="_blank">Read NPR's review &rarr;</a>
+            <a href="http://npr.org/<%= url_id %>" target="_blank"><%= COPY.content.npr_review_link %> &rarr;</a>
         <% }); %></p>
         <% } %>
 
         <% if (book.other_seamus_id){  %>
         <p class="other_seamus_id book-card-links"><% _.each(book.other_seamus_id, function(url_id, index, list){ %>
-            <a href="http://npr.org/<%= url_id %>" target="_blank">Other &rarr;</a>
+            <a href="http://npr.org/<%= url_id %>" target="_blank"><%= COPY.content.other_link %> &rarr;</a>
         <% }); %></p>
         <% } %>
     </div>
