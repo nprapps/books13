@@ -6,20 +6,17 @@ var $clear_tags;
 var $modal;
 var $modal_content;
 
-/*
- * Scroll to a place in the page.
- */
-var smooth_scroll = function(offset_element, padding) {
-    var elementOffset = offset_element.offset().top;
-    var distance =  elementOffset - padding;
-    $body.animate({ scrollTop: distance + "px" });
+var scroll = function($el) {
+    var top = $el.offset().top;
+
+    $body.scrollTop(top);
 };
 
 /*
  * Jump back to the top of the page.
  */
 var back_to_top = function() {
-    smooth_scroll($content, 0);
+    scroll($content, 0);
 
     return false;
 };
@@ -75,7 +72,7 @@ var on_book_hash = function(slug) {
 
     var $el = $('#' + slug);
 
-    smooth_scroll($el, 0);
+    scroll($el, 0);
 
     $modal_content.empty();
 

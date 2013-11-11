@@ -1,11 +1,10 @@
 {% extends '_base.html' %}
 
 {% block header_content %}
-
 <header id="top">
     <div class="container">
         <div class="introduction">
-            <a href="/"><h1>{{ PROJECT_NAME }}</h1></a>
+            <a href="/"><h1>{{ COPY.content.header_title }}</h1></a>
             <h2>by {{ COPY.attribution.byline }}</h2>
             <h2>{{ COPY.attribution.pubdate }} {{ COPY.attribution.pubtime }}</h2>
 
@@ -14,17 +13,16 @@
 </header>
 {% endblock %}
 
-
 {% block content %}
 <div class="wrapper">
     <!-- All Tags List -->
     <div class="row">
         <div class="col-md-12">
-            {% for slug, tag in SLUGS_TO_TAGS.items() %}
+            {% for row in COPY.tags %}
                 <button
                     class="btn btn-large btn-info tag"
-                    data-tag-slug="{{ slug }}">
-                    {{ tag }}
+                    data-tag-slug="{{ row.key }}">
+                    {{ row.value }}
                 </button>
             {% endfor %}
         

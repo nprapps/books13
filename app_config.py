@@ -77,7 +77,7 @@ DEBUG = True
 """
 COPY EDITING
 """
-COPY_GOOGLE_DOC_KEY = '0AlXMOHKxzQVRdHZuX1UycXplRlBfLVB0UVNldHJYZmc'
+COPY_GOOGLE_DOC_KEY = '0AlXMOHKxzQVRdDU5OUlEZEJsdXRtaE8wbmhZY19Kamc'
 DATA_GOOGLE_DOC_KEY = '0AlPD88PpyGPUdExyUWV1Z2ZleVl6cGpJa0tOQkMzZnc'
 
 """
@@ -119,38 +119,6 @@ NPR_DFP = {
 SERVICES
 """
 GOOGLE_ANALYTICS_ID = 'UA-5828686-4'
-
-"""
-App-Specific
-"""
-TAGS_TO_SLUGS = {
-    "Around The World": "around-the-world",
-    "Books For Kids": "books-for-kids",
-    "Books To Brag About": "books-to-brag-about",
-    "Comics And Graphic Novels": "comics-and-graphic-novels",
-    "Cookbooks And Food": "cookbooks-and-food",
-    "Dark": "dark",
-    "Exquisitely Written": "exquisitely-written",
-    "Eye-Openers": "eye-openers",
-    "From The Past": "from-the-past",
-    "Good For A Laugh": "good-for-a-laugh",
-    "History Science And Society": "history-science-and-society",
-    "Lives": "lives",
-    "Love Stories": "love-stories",
-    "Mysteries And Thrillers": "mysteries-and-thrillers",
-    "Nerdy": "nerdy",
-    "One-Day Reads": "one-day-reads",
-    "Poetry And Short Stories": "poetry",
-    "Realistic Fiction": "realistic-fiction",
-    "Science Fiction And Fantasy" : "science-fiction-and-fantasy",
-    "Staff Picks": "staff-picks",
-    "Tomes": "tomes",
-    "Up Your Adrenaline": "up-your-adrenaline",
-    "You Sexy Thang": "you-sexy-thang",
-    "Young Adult": "young-adult",
-}
-
-SLUGS_TO_TAGS = dict((v,k) for k,v in TAGS_TO_SLUGS.iteritems())
 
 """
 Utilities
