@@ -169,9 +169,8 @@ header {
 }
 h1 + #story-meta { margin-top: -11px; }
 
+//Book cards
 .book {
-    // Hidden until shown in JS
-    // display: none;
     width: 25%;
     
     @media screen and (max-width: @screen-md-max){
@@ -228,7 +227,7 @@ h1 + #story-meta { margin-top: -11px; }
 }
 
 
-//Button Tag Styling
+//Button/Tag Styling
 .btn {
 	border-radius: 0px;
 	padding: 8px;
@@ -259,32 +258,6 @@ h1 + #story-meta { margin-top: -11px; }
 	}
 }
 
-.book-card-links {
-
-	>a {
-		line-height: .5em;
-		color: #7590c4;
-		font-weight: bold;
-		font-size: 14px;
-
-	}
-
-	.purchase-link {
-		font-size: 11px;
-		color: #999;
-		background-color: #ebebeb;
-		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAICAYAAAAvOAWIAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAG11AABzoAAA97wAAIT6AAB5yAAA7p8AADFuAAAPXaV5P1wAAAB/SURBVHjafM6xCUJBEITh7x1WYA/mmtiSuZGI+NIXGRrYgRVoERYiiBe9yORMVjkOdGH4l2F22G57vBVkzII/J6HDGU+Uf0pxtMMDCwxR0NIkwhk9LrhjimVDqXrpFMGMFa4Nv82wxzz2EtzUrJvXwTF+/GgM/1WHDw1bf3gPAMfKIptJWVXJAAAAAElFTkSuQmCC');
-		background-repeat: no-repeat;
-		background-position:  8px center;
-		padding: 8px 8px 8px 25px;
-		text-align: right;
-		margin: 4px 2px 4px 2px;
-	}
-
-	>a:hover {
-		color: #bccae5;
-	}
-}
 
 
 //Modal
@@ -321,6 +294,34 @@ h1 + #story-meta { margin-top: -11px; }
 
 .modal-dialog {
 	width: 80%;
+}
+
+//Styling for tags and links inside modal
+.book-modal-links {
+
+	>a {
+		line-height: .5em;
+		color: #7590c4;
+		font-weight: bold;
+		font-size: 14px;
+
+	}
+
+	.purchase-link {
+		font-size: 11px;
+		color: #999;
+		background-color: #ebebeb;
+		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAICAYAAAAvOAWIAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAG11AABzoAAA97wAAIT6AAB5yAAA7p8AADFuAAAPXaV5P1wAAAB/SURBVHjafM6xCUJBEITh7x1WYA/mmtiSuZGI+NIXGRrYgRVoERYiiBe9yORMVjkOdGH4l2F22G57vBVkzII/J6HDGU+Uf0pxtMMDCwxR0NIkwhk9LrhjimVDqXrpFMGMFa4Nv82wxzz2EtzUrJvXwTF+/GgM/1WHDw1bf3gPAMfKIptJWVXJAAAAAElFTkSuQmCC');
+		background-repeat: no-repeat;
+		background-position:  8px center;
+		padding: 8px 8px 8px 25px;
+		text-align: right;
+		margin: 4px 2px 4px 2px;
+	}
+
+	>a:hover {
+		color: #bccae5;
+	}
 }
 
 // Footer
