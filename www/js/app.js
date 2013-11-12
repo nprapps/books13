@@ -4,7 +4,6 @@ var $body;
 var $content;
 var $books_grid;
 var $all_tags;
-var $all_books;
 var $clear_tags;
 var $current_tag;
 var $modal;
@@ -154,8 +153,6 @@ $(function() {
         book_card: JST.book_card
     }));
     
-    $all_books = $('.book');
-
     // Set up the hasher bits to grab the URL hash.
     hasher.changed.add(on_hash_changed);
     hasher.initialized.add(on_hash_changed);
