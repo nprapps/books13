@@ -15,12 +15,6 @@
         <% if(book.page_count) { %><p class="page_count"><strong>Length: </strong><%= book.page_count %> pages</p> <% } %>
         <% if(book.pages) { %><p class="pages"><%= book.pages %></p> <% } %>
 
-        <!-- Book Description/Review -->
-        <% if(book.text) { %><p class="text"><%= book.text %></p> <% } %>
-        <p class="text">TEMP PLACEHOLDER TO GET IDEA OF SIZING: Tote bag scenester jean shorts Cosby sweater, swag wolf authentic. Before they sold out fanny pack McSweeney's deep v, polaroid fashion axe hella. Kitsch Echo Park pour-over ethnic, freegan quinoa craft beer vegan art party Blue Bottle narwhal swag leggings. Roof party semiotics XOXO, next level farm-to-table pour-over whatever PBR Intelligentsia chia tote bag before they sold out. Occupy Thundercats American Apparel ugh, deep v literally scenester XOXO iPhone photo booth gastropub High Life try-hard. PBR single-origin coffee Tumblr retro kale chips. Post-ironic retro PBR distillery, pug Austin beard Truffaut salvia hella Blue Bottle meggings twee.</p>
-
-        <% if(book.reviewer) { %><p class="reviewer">&mdash; <%= COPY.content.reviewed_by %> <%= book.reviewer %></p> <% } %>
-
         <!-- Tags -->
         <% if(book.tags.length > 0) { %><p class="tags"><strong><%= COPY.content.tag_list %> </strong><% _.each(book.tags, function(tag, index, list){ %>
             <button
@@ -28,6 +22,14 @@
                 data-tag-slug="<%= tag %>"><%= COPY.tags[tag] %>
             </button>
         <% }); %></p> <% } %>
+        
+        <!-- Book Description/Review -->
+        <% if(book.text) { %><p class="text"><%= book.text %></p> <% } %>
+        <p class="text">TEMP PLACEHOLDER TO GET IDEA OF SIZING: Tote bag scenester jean shorts Cosby sweater, swag wolf authentic. Before they sold out fanny pack McSweeney's deep v, polaroid fashion axe hella. Kitsch Echo Park pour-over ethnic, freegan quinoa craft beer vegan art party Blue Bottle narwhal swag leggings. Roof party semiotics XOXO, next level farm-to-table pour-over whatever PBR Intelligentsia chia tote bag before they sold out. Occupy Thundercats American Apparel ugh, deep v literally scenester XOXO iPhone photo booth gastropub High Life try-hard. PBR single-origin coffee Tumblr retro kale chips. Post-ironic retro PBR distillery, pug Austin beard Truffaut salvia hella Blue Bottle meggings twee.</p>
+
+        <% if(book.reviewer) { %><p class="reviewer">&mdash; <%= COPY.content.reviewed_by %> <%= book.reviewer %></p> <% } %>
+
+        <!-- Purchase/Related Links -->
 
         <p class="book-modal-links">
             <a href="http://www.amazon.com/dp/<%= book.isbn %>?tag=npr-5-20" target="_blank" class="purchase-link">Amazon</a>
