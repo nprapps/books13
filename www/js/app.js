@@ -32,14 +32,12 @@ var filter_books = function(tag) {
 
     if (tag) {
         var $tag = $('.tags .tag[data-tag-slug="' + tag + '"]');
-        var $books_with_tag = $('.book.tag-' + tag);
 
-        $all_books.hide();
-        $books_with_tag.show();
+        $('#books-grid').isotope({ filter: '.tag-' + tag });
         $tag.addClass('selected');
         $clear_tags.show();
     } else {
-        $all_books.show();
+        $('#books-grid').isotope({ filter: '*' });
         $clear_tags.hide();
     }
 };
@@ -68,15 +66,8 @@ var on_clear_tags_clicked = function() {
  * New tag hash url. 
  */
 var on_tag_hash = function(slug) {
-    // filter_books(slug);
-    // debugger;
-    if(slug === 'undefined'){
-        $('#books-grid').isotope({ filter: '*' });
-    } else {
-        $('#books-grid').isotope({ filter: '.tag-' + slug });
-    }
-    $('button[data-tag-slug="' + slug + '"]').addClass('selected');
-    // back_to_top();
+    filter_books(slug);
+    back_to_top();
 };
 
 /*
