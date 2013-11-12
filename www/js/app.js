@@ -6,6 +6,7 @@ var $books_grid;
 var $all_tags;
 var $all_books;
 var $clear_tags;
+var $current_tag;
 var $modal;
 var $modal_content;
 
@@ -19,7 +20,7 @@ var scroll = function($el) {
  * Jump back to the top of the page.
  */
 var back_to_top = function() {
-    scroll($books_grid, 0);
+    scroll($books_grid.parent(), 0);
 
     return false;
 };
@@ -36,9 +37,12 @@ var filter_books = function(tag) {
         $('#books-grid').isotope({ filter: '.tag-' + tag });
         $tag.addClass('selected');
         $clear_tags.show();
+        $current_tag.find('span').text(COPY.tags[tag]);
+        $current_tag.show();
     } else {
         $('#books-grid').isotope({ filter: '*' });
         $clear_tags.hide();
+        $current_tag.hide();
     }
 };
 
@@ -74,13 +78,6 @@ var on_tag_hash = function(slug) {
  * New book hash url.
  */
 var on_book_hash = function(slug) {
-    // Ensure book is on the page.
-    filter_books(null);
-
-    var $el = $('#' + slug);
-
-    scroll($el, 0);
-
     $modal_content.empty();
 
     book = _.find(BOOKS, function(book){
@@ -141,6 +138,7 @@ $(function() {
     $books_grid = $('#books-grid');
     $all_tags = $('.tags .tag');
     $clear_tags = $('.clear-tags');
+    $current_tag = $('#current-tag');
     $modal = $('#myModal');
     $modal_content = $('#myModal .modal-content');
 
