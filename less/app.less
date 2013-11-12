@@ -259,14 +259,33 @@ h1 + #story-meta { margin-top: -11px; }
 	}
 }
 
-.amazon-link {
-	background-color: #ebebeb;
-	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAICAYAAAAvOAWIAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAG11AABzoAAA97wAAIT6AAB5yAAA7p8AADFuAAAPXaV5P1wAAAB/SURBVHjafM6xCUJBEITh7x1WYA/mmtiSuZGI+NIXGRrYgRVoERYiiBe9yORMVjkOdGH4l2F22G57vBVkzII/J6HDGU+Uf0pxtMMDCwxR0NIkwhk9LrhjimVDqXrpFMGMFa4Nv82wxzz2EtzUrJvXwTF+/GgM/1WHDw1bf3gPAMfKIptJWVXJAAAAAElFTkSuQmCC');
-	background-repeat: no-repeat;
-	background-position:  8px center;
-	width: 90px;
-	text-align: right;
+.book-card-links {
+
+	>a {
+		line-height: .5em;
+		color: #7590c4;
+		font-weight: bold;
+		font-size: 14px;
+
+	}
+
+	.purchase-link {
+		font-size: 11px;
+		color: #999;
+		background-color: #ebebeb;
+		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAICAYAAAAvOAWIAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAG11AABzoAAA97wAAIT6AAB5yAAA7p8AADFuAAAPXaV5P1wAAAB/SURBVHjafM6xCUJBEITh7x1WYA/mmtiSuZGI+NIXGRrYgRVoERYiiBe9yORMVjkOdGH4l2F22G57vBVkzII/J6HDGU+Uf0pxtMMDCwxR0NIkwhk9LrhjimVDqXrpFMGMFa4Nv82wxzz2EtzUrJvXwTF+/GgM/1WHDw1bf3gPAMfKIptJWVXJAAAAAElFTkSuQmCC');
+		background-repeat: no-repeat;
+		background-position:  8px center;
+		padding: 8px 8px 8px 25px;
+		text-align: right;
+		margin: 4px;
+	}
+
+	>a:hover {
+		color: #bccae5;
+	}
 }
+
 
 //Modal
 .modal-book-cover {
@@ -293,16 +312,6 @@ h1 + #story-meta { margin-top: -11px; }
 		color: #999;
 		font-size: 14px;
 		line-height: 1.3em;
-	}
-}
-
-.book-card-links {
-	line-height: .5em;
-	font-size: 14px;
-	
-	>a {
-		color: #7590c4;
-		font-weight: bold;
 	}
 }
 
