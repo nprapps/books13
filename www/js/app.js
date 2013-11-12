@@ -74,9 +74,6 @@ var on_tag_hash = function(slug) {
  * New book hash url.
  */
 var on_book_hash = function(slug) {
-    // Ensure book is on the page.
-    filter_books(null);
-
     var $el = $('#' + slug);
 
     scroll($el, 0);
