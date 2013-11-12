@@ -12,8 +12,6 @@
         <h4 class="modal-title" id="myModalLabel"><%= book.title %></h4>
         <% if(book.author) { %><p class="author">By <%= book.author %></p> <% } %>
         <% if(book.genre) { %><p class="genre"><strong><%= COPY.content.genre %> </strong><%= book.genre %></p> <% } %>
-        <% if(book.page_count) { %><p class="page_count"><strong>Length: </strong><%= book.page_count %> pages</p> <% } %>
-        <% if(book.pages) { %><p class="pages"><%= book.pages %></p> <% } %>
 
         <!-- Tags -->
         <% if(book.tags.length > 0) { %><p class="tags"><strong><%= COPY.content.tag_list %> </strong><% _.each(book.tags, function(tag, index, list){ %>
