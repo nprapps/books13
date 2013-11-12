@@ -2,7 +2,7 @@
 
 {% block header_content %}
 <header id="top">
-    <div class="container">
+    <div class="container header-wrapper">
         <div class="introduction">
             <a href="#/_"><h1>{{ COPY.content.header_title }}</h1></a>
             <h2>by {{ COPY.attribution.byline }}</h2>
@@ -14,22 +14,8 @@
 {% endblock %}
 
 {% block content %}
-<div class="wrapper">
+<div class="tags-wrapper">
     
-<!--     <div class="row">
-        <div class="col-md-12 tags">
-            {% for row in COPY.tags %}
-                <button
-                    class="btn btn-large btn-info tag"
-                    data-tag-slug="{{ row.key }}">
-                    {{ row.value }}
-                </button>
-            {% endfor %}
-        
-            <button class="clear-tags">Show all books</button>
-        </div>
-    </div> -->
-
     <!-- All Tags List -->
     <ul class="filter tags option-set list-unstyled" data-filter-group="category">
       {% for row in COPY.tags %}
@@ -39,17 +25,19 @@
                data-filter-value=".tag-{{ row.key }}" data-tag-slug="{{ row.key }}">{{ row.value }}</button>
            </li>
         {% endfor %}
-        <li><button class="btn btn-large btn-info tag" data-filter-value="*">Show All</button></li>
-    </ul>
 
-    <!-- Book Cards Grid -->
-    <div class="row">
-        <div class="col-md-12">&nbsp;
-            <div id="books-grid"></div>
-        </div>
-    </div>
-    
+        <li><button class="btn btn-large btn-info tag clear-tags" data-filter="*">Show All</button></li>
+
+    </ul>
 </div>
+    <!-- Book Cards Grid -->
+<div class="row">
+    <div class="col-lg-12">
+        <div id="books-grid"></div>
+    </div>
+</div>
+    
+
 
 {% endblock %}
 

@@ -64,7 +64,6 @@ a.btn.btn-blue {
 	}
 }
 
-
 // Navbar
 nav {
 	background-color: #e0e0e0;
@@ -104,6 +103,33 @@ nav {
     }
 }
 
+//Wrappers
+.container {
+	width: 100%;
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 0;
+	padding-right: 0;
+
+	@media (min-width: 1200px) {
+		max-width: 100%;
+	}
+
+	@media (min-width: 992px) {
+		max-width: 100%;
+	}
+
+	@media (min-width: 768px) {
+		max-width: 100%;
+	}
+}
+
+.header-wrapper, .tags-wrapper {
+	margin-right: auto;
+	margin-left: auto;
+	width: 90%
+
+}
 
 // Header
 header {
@@ -119,11 +145,13 @@ header {
 	h2 { font-size: 15px; color: #fff; margin: 0; }
 }
 
+
 .introduction {
 	width: 45%;
 	height: 448px;
 	background-color: rgba(1,1,1,0.2);
 	padding: 50px 30px 30px 30px;
+
 }
 
 
@@ -149,13 +177,9 @@ header {
 }
 
 
-// Content
-.wrapper {
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
-}
+//Content
 #content { margin-top: 44px; }
+
 #story-meta {
 	margin-bottom: 22px;
 	
@@ -171,13 +195,23 @@ h1 + #story-meta { margin-top: -11px; }
 
 //Book cards
 .book {
-    width: 25%;
+	width: 16.66666666666667%;
+    	
+
+
+    @media screen and (max-width: 1400px){
+	    width: 20%;
+    }
     
     @media screen and (max-width: @screen-md-max){
-    	width: 33.33333%;
+    	width: 25%;
     }
 
     @media screen and (max-width: @screen-sm-max){
+    	width: 33.33333%;
+    }
+
+    @media screen and (max-width: 480px){
     	width: 50%;
     }
 
@@ -258,7 +292,9 @@ h1 + #story-meta { margin-top: -11px; }
 	}
 }
 
-
+.clear-tags {
+    display: none;
+}
 
 //Modal
 .modal-book-cover {
