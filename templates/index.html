@@ -4,7 +4,7 @@
 <header id="top">
     <div class="container">
         <div class="introduction">
-            <a href="/"><h1>{{ COPY.content.header_title }}</h1></a>
+            <a href="#/_"><h1>{{ COPY.content.header_title }}</h1></a>
             <h2>by {{ COPY.attribution.byline }}</h2>
             <h2>{{ COPY.attribution.pubdate }} {{ COPY.attribution.pubtime }}</h2>
 
@@ -15,7 +15,7 @@
 
 {% block content %}
 <div class="wrapper">
-    <!-- All Tags List -->
+    
 <!--     <div class="row">
         <div class="col-md-12 tags">
             {% for row in COPY.tags %}
@@ -30,9 +30,8 @@
         </div>
     </div> -->
 
-
+    <!-- All Tags List -->
     <ul class="filter tags option-set list-unstyled" data-filter-group="category">
-      <!-- <li><button data-filter-value=".tag-comics-and-graphic-novels">show all</button></li> -->
       {% for row in COPY.tags %}
            <li> 
                <button
@@ -49,6 +48,7 @@
             <div id="books-grid"></div>
         </div>
     </div>
+    
 </div>
 
 {% endblock %}
