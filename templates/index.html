@@ -16,20 +16,6 @@
 {% block content %}
 <div class="wrapper">
     
-<!--     <div class="row">
-        <div class="col-md-12 tags">
-            {% for row in COPY.tags %}
-                <button
-                    class="btn btn-large btn-info tag"
-                    data-tag-slug="{{ row.key }}">
-                    {{ row.value }}
-                </button>
-            {% endfor %}
-        
-            <button class="clear-tags">Show all books</button>
-        </div>
-    </div> -->
-
     <!-- All Tags List -->
     <ul class="filter tags option-set list-unstyled" data-filter-group="category">
       {% for row in COPY.tags %}
@@ -39,7 +25,7 @@
                data-filter-value=".tag-{{ row.key }}" data-tag-slug="{{ row.key }}">{{ row.value }}</button>
            </li>
         {% endfor %}
-        <li><button class="btn btn-large btn-info tag" data-filter="*">Show All</button></li>
+        <li><button class="btn btn-large btn-info tag clear-tags" data-filter="*">Show All</button></li>
     </ul>
 
     <!-- Book Cards Grid -->
