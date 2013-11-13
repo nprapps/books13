@@ -9,7 +9,6 @@
 
 // General styles
 body { 
-    font: 18px/1.5em "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; 
     color: #111; 
     -webkit-font-smoothing: antialiased;
 }
@@ -139,7 +138,7 @@ header {
 	margin: 0;
 	border-bottom: 2px solid #fff;
 	
-	h1 { font-size: 48px; font-family: Arial, Helvetica, sans-serif; color: #fff; margin-bottom: 11px; }
+	h1 { font-size: 48px; font-family: @font-family-sans-serif; color: #fff; margin-bottom: 11px; }
 	h2 { font-size: 15px; color: #fff; margin: 0; }
 }
 
@@ -270,7 +269,7 @@ h1 + #story-meta { margin-top: -11px; }
 	border: none;
 	background-color: lighten(#d7dff0, 7%);
 	color: #7590c4;
-	font-weight: bold;
+	font-weight: normal;
 	font-size: 12px;
 }
 
@@ -284,7 +283,7 @@ h1 + #story-meta { margin-top: -11px; }
     color: #fff;
 }
 
-.tags {
+.option-set.tags {
 	li {
 		display: inline-block;
 	}
@@ -549,3 +548,13 @@ footer {
        -o-transition-duration: 0s;
           transition-duration: 0s;
 }
+
+// .isotope .isotope-item {
+//   -webkit-transition-property: top, left, opacity;
+//      -moz-transition-property: top, left, opacity;
+//       -ms-transition-property: top, left, opacity;
+//        -o-transition-property: top, left, opacity;
+//           transition-property: top, left, opacity;
+
+//           -webkit-transform: none !important;
+// }
