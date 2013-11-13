@@ -29,20 +29,28 @@
     });
 
     function unveil() {
-      var inview = images.filter(function() {
-        var $e = $(this);
-        if ($e.is(":hidden")) return;
+        /*
+         * CEG: Hacked to delay checking image location for a half-second
+         * so that images don't get unveiled while isotope is rearranging.
+         */
+        function not_so_fast() {
+          var inview = images.filter(function() {
+            var $e = $(this);
+            if ($e.is(":hidden")) return;
 
-        var wt = $w.scrollTop(),
-            wb = wt + $w.height(),
-            et = $e.offset().top,
-            eb = et + $e.height();
+            var wt = $w.scrollTop(),
+                wb = wt + $w.height(),
+                et = $e.offset().top,
+                eb = et + $e.height();
 
-        return eb >= wt - th && et <= wb + th;
-      });
+            return eb >= wt - th && et <= wb + th;
+          });
 
-      loaded = inview.trigger("unveil");
-      images = images.not(loaded);
+          loaded = inview.trigger("unveil");
+          images = images.not(loaded);
+        }
+
+        _.delay(not_so_fast, 500);
     }
 
     $w.scroll(unveil);
