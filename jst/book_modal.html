@@ -61,12 +61,11 @@
     </div>
 </div>
 
-<button type="button" class="btn btn-default previous-book">BACK</button>
-
-<button type="button" class="btn btn-default" id="next-book">NEXT</button>
-
-
 <div class="modal-footer">
+
+    <button type="button" class="btn btn-default" id="previous-book" data-slug="<%= book.slug %>">BACK</button>
+
+    <button type="button" class="btn btn-default" id="next-book" data-slug="<%= book.slug %>">NEXT</button>
 
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 

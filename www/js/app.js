@@ -83,7 +83,6 @@ var on_book_hash = function(slug) {
     book = _.find(BOOKS, function(book){
         return book['slug'] == slug;
     });
-
     $modal_content.append(JST.book_modal({
         book: book,
         SMALL_MOBILE: (SMALL && MOBILE)
@@ -132,6 +131,16 @@ var on_book_modal_closed = function() {
     return true;
 };
 
+var on_next_book_clicked = function() {
+
+    var slug = $(this).data('slug');
+    var grid_item = $('#' + slug);
+    console.log(grid_item);
+
+    var next = grid_item.nextAll(':visible').first();
+    hasher.setHash('book/' + next.attr('id'));
+};
+
 
 $(function() {
     $body = $('body');
@@ -148,6 +157,7 @@ $(function() {
     $content.on('click', '.back-to-top', back_to_top);
     $content.on('click', 'button.clear-tags', on_clear_tags_clicked);
     $modal.on('hidden.bs.modal', on_book_modal_closed);
+    $modal.on('click', '#next-book', on_next_book_clicked);
     
 
     // Render the book grid
