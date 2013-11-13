@@ -131,13 +131,13 @@ var on_hash_changed = function(new_hash, old_hash) {
         filter_books(null);
     }
 
-    var relayout_func = _.debounce(function() {
+    var relayout = _.throttle(function() {
         $books_grid.isotope('reLayout');
-    }, 250);
+    }, 500, { leading: false });
     
     $books_grid.find('img').unveil(1200, function() {
         $(this).load(function() {
-            relayout_func(); 
+            relayout(); 
             $(this).removeClass('veiled');
         });
     });
