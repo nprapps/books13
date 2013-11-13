@@ -12,8 +12,6 @@
         <h4 class="modal-title" id="myModalLabel"><%= book.title %></h4>
         <% if(book.author) { %><p class="author">By <%= book.author %></p> <% } %>
         <% if(book.genre) { %><p class="genre"><strong><%= COPY.content.genre %> </strong><%= book.genre %></p> <% } %>
-        <% if(book.page_count) { %><p class="page_count"><strong>Length: </strong><%= book.page_count %> pages</p> <% } %>
-        <% if(book.pages) { %><p class="pages"><%= book.pages %></p> <% } %>
 
         <!-- Tags -->
         <% if(book.tags.length > 0) { %><p class="tags"><strong><%= COPY.content.tag_list %> </strong><% _.each(book.tags, function(tag, index, list){ %>
@@ -33,7 +31,7 @@
 
         <p class="book-modal-links">
             <a href="http://www.amazon.com/dp/<%= book.isbn %>?tag=npr-5-20" target="_blank" class="purchase-link">Amazon</a>
-            <a href="https://itunes.apple.com/us/book/isbn<%= book.isbn %>?mt=11&uo=4" target="_blank" class="purchase-link">iBookstore</a>
+            <a href="https://itunes.apple.com/us/book/isbn<%= book.isbn %>?&at=11l79Y" target="_blank" class="purchase-link">iBookstore</a>
             <a href="http://www.indiebound.org/book/<%= book.isbn %>?aff=NPR" target="_blank" class="purchase-link">Independent Booksellers</a>
         </p>
 

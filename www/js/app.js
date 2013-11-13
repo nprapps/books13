@@ -1,10 +1,10 @@
-var SMALL_MOBILE = Modernizr.touch && Modernizr.mq('only all and (max-width: 480px)');
+var MOBILE = Modernizr.touch;
+var SMALL = Modernizr.mq('only all and (max-width: 480px)');
 
 var $body;
 var $content;
 var $books_grid;
 var $all_tags;
-var $all_books;
 var $clear_tags;
 var $current_tag;
 var $modal;
@@ -34,13 +34,13 @@ var filter_books = function(tag) {
     if (tag) {
         var $tag = $('.tags .tag[data-tag-slug="' + tag + '"]');
 
-        $('#books-grid').isotope({ filter: '.tag-' + tag });
+        $('#books-grid').isotope({ filter: '.tag-' + tag, transformsEnabled: !MOBILE });
         $tag.addClass('selected');
         $clear_tags.show();
         $current_tag.find('span').text(COPY.tags[tag]);
         $current_tag.show();
     } else {
-        $('#books-grid').isotope({ filter: '*' });
+        $('#books-grid').isotope({ filter: '*', transformsEnabled: !MOBILE });
         $clear_tags.hide();
         $current_tag.hide();
     }
@@ -86,7 +86,7 @@ var on_book_hash = function(slug) {
 
     $modal_content.append(JST.book_modal({
         book: book,
-        SMALL_MOBILE: SMALL_MOBILE
+        SMALL_MOBILE: (SMALL && MOBILE)
     }));
 
     $modal.modal();
@@ -156,8 +156,6 @@ $(function() {
         book_card: JST.book_card
     }));
     
-    $all_books = $('.book');
-
     // Set up the hasher bits to grab the URL hash.
     hasher.changed.add(on_hash_changed);
     hasher.initialized.add(on_hash_changed);
