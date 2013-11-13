@@ -187,10 +187,9 @@ $(function() {
     
     $books_grid.find('img').unveil(1200, function() {
         //console.log('unveiling: ' + $(this).parent().parent().parent().attr('id'));
-        console.log('unveil');
+        //console.log('unveil');
 
         $(this).load(function() {
-            $(this).removeClass('veiled');
             relayout(); 
         });
     });
