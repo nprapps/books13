@@ -63,9 +63,13 @@
 
 <div class="modal-footer">
 
-    <button type="button" class="btn btn-default" id="previous-book" data-slug="<%= book.slug %>">BACK</button>
+    <% if (previous != null){  %>
+    <a href="#/book/<%= previous %>" class="btn btn-default" id="previous-book">BACK</a>
+    <% } %>
 
-    <button type="button" class="btn btn-default" id="next-book" data-slug="<%= book.slug %>">NEXT</button>
+    <% if (next != null){  %>
+    <a href="#/book/<%= next %>" class="btn btn-default" id="next-book">NEXT</a>
+    <% } %>
 
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 

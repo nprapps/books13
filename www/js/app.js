@@ -83,8 +83,28 @@ var on_book_hash = function(slug) {
     book = _.find(BOOKS, function(book){
         return book['slug'] == slug;
     });
+
+    var grid_item = $('#' + book.slug);
+    var next = grid_item.nextAll(':not(.isotope-hidden)').first();
+    
+    if (next.length == 0) {
+        next = null;
+    } else {
+        next = next.attr('id');
+    }
+
+    var previous = grid_item.prevAll(':not(.isotope-hidden)').first();
+
+    if (previous.length == 0) {
+        previous = null;
+    } else {
+        previous = previous.attr('id');
+    }
+
     $modal_content.append(JST.book_modal({
         book: book,
+        next: next,
+        previous: previous,
         SMALL_MOBILE: (SMALL && MOBILE)
     }));
 
@@ -133,11 +153,6 @@ var on_book_modal_closed = function() {
 
 var on_next_book_clicked = function() {
 
-    var slug = $(this).data('slug');
-    var grid_item = $('#' + slug);
-    console.log(grid_item);
-
-    var next = grid_item.nextAll(':visible').first();
     hasher.setHash('book/' + next.attr('id'));
 };
 
