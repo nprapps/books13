@@ -9,6 +9,8 @@ var $clear_tags;
 var $current_tag;
 var $modal;
 var $modal_content;
+var next;
+var previous;
 
 var scroll = function($el) {
     var top = $el.offset().top;
@@ -75,7 +77,7 @@ var on_tag_hash = function(slug) {
 };
 
 /*
- * New book hash url.
+ * New book hash url and previous/next buttons.
  */
 var on_book_hash = function(slug) {
     $modal_content.empty();
@@ -85,15 +87,15 @@ var on_book_hash = function(slug) {
     });
 
     var grid_item = $('#' + book.slug);
-    var next = grid_item.nextAll(':not(.isotope-hidden)').first();
-    
+    next = grid_item.nextAll(':not(.isotope-hidden)').first();
+
     if (next.length == 0) {
         next = null;
     } else {
         next = next.attr('id');
     }
 
-    var previous = grid_item.prevAll(':not(.isotope-hidden)').first();
+    previous = grid_item.prevAll(':not(.isotope-hidden)').first();
 
     if (previous.length == 0) {
         previous = null;
@@ -106,7 +108,7 @@ var on_book_hash = function(slug) {
         next: next,
         previous: previous,
         SMALL_MOBILE: (SMALL && MOBILE)
-    }));
+    }));   
 
     $modal.modal();
 };
@@ -156,12 +158,6 @@ var on_book_modal_closed = function() {
     return true;
 };
 
-var on_next_book_clicked = function() {
-
-    hasher.setHash('book/' + next.attr('id'));
-};
-
-
 $(function() {
     $body = $('body');
     $content = $('#content');
@@ -170,16 +166,23 @@ $(function() {
     $clear_tags = $('.clear-tags');
     $current_tag = $('#current-tag');
     $modal = $('#myModal');
-    $modal_content = $('#myModal .modal-content');
+    $modal_content = $('#myModal .modal-content');    
   
     // Event handlers.
     $body.on('click', 'button.tag', on_tag_clicked);
     $content.on('click', '.back-to-top', back_to_top);
     $content.on('click', 'button.clear-tags', on_clear_tags_clicked);
     $modal.on('hidden.bs.modal', on_book_modal_closed);
-    $modal.on('click', '#next-book', on_next_book_clicked);
+    $modal.keyup(function (e) {
+        if ($('#myModal:visible').length > 0){
+           if (e.which === 37 && previous !== null) {
+            hasher.setHash('book/' + previous);
+            } else if (e.which === 39 && next !== null) { 
+                hasher.setHash('book/' + next);
+            } 
+        }
+    });
     
-
     // Render the book grid
     $books_grid.html(JST.book_grid({
         books: BOOKS,
