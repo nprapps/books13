@@ -1,0 +1,27 @@
+nav {
+    display: none;
+}
+
+.sr-only {
+    display: none;
+}
+
+header {
+    display: none;
+}
+
+.tags {
+    display: none;
+}
+
+.books-grid-wrapper {
+    display: none;
+}
+
+#bigbox {
+    display: none;
+}
+
+footer {
+    display: none;
+}
