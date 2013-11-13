@@ -26,7 +26,6 @@ class Book(object):
     reviewer = None
     text = None
     slug = None
-    page_count = None
     tags = None
     book_seamus_id = None
     author_seamus_id = None
@@ -116,27 +115,6 @@ class Book(object):
         slug = re.sub(r"[^\w\s]", '', slug)
         slug = re.sub(r"\s+", '-', slug)
         setattr(self, "slug", slug[:254])
-
-        # Page count.
-        data = {}
-        data['userID'] = secrets['BAKER_TAYLOR_API_USERID']
-        data['password'] = secrets['BAKER_TAYLOR_API_PASSWORD']
-        data['key'] = self.isbn
-        data['content'] = "ProductDetail"
-
-        r = requests.post("http://contentcafe2.btol.com/contentcafe/contentcafe.asmx/Single", data=data)
-
-        soup = BeautifulSoup(r.content, "xml")
-
-        try:
-            pagination = soup.find_all('Pagination')[0].text.split(' ')
-            for possible_page_count in pagination:
-                try:
-                    setattr(self, "page_count", int(possible_page_count))
-                except ValueError:
-                    pass
-        except IndexError:
-            pass
 
 def get_books_csv():
     """

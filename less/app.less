@@ -63,7 +63,6 @@ a.btn.btn-blue {
 	}
 }
 
-
 // Navbar
 nav {
 	background-color: #e0e0e0;
@@ -103,6 +102,31 @@ nav {
     }
 }
 
+//Wrappers
+.container {
+	width: 100%;
+	margin-left: 0;
+	margin-right: 0;
+
+	@media (min-width: 1200px) {
+		max-width: 100%;
+	}
+
+	@media (min-width: 992px) {
+		max-width: 100%;
+	}
+
+	@media (min-width: 768px) {
+		max-width: 100%;
+	}
+}
+
+.header-wrapper, .tags-wrapper {
+	margin-right: auto;
+	margin-left: auto;
+	width: 90%
+
+}
 
 // Header
 header {
@@ -118,11 +142,13 @@ header {
 	h2 { font-size: 15px; color: #fff; margin: 0; }
 }
 
+
 .introduction {
 	width: 45%;
 	height: 448px;
 	background-color: rgba(1,1,1,0.2);
 	padding: 50px 30px 30px 30px;
+
 }
 
 
@@ -148,13 +174,9 @@ header {
 }
 
 
-// Content
-.wrapper {
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
-}
+//Content
 #content { margin-top: 44px; }
+
 #story-meta {
 	margin-bottom: 22px;
 	
@@ -168,12 +190,25 @@ header {
 }
 h1 + #story-meta { margin-top: -11px; }
 
+//Book cards
 .book {
-    // Hidden until shown in JS
-    // display: none;
-    width: 33.33333%;
+	width: 16.66666666666667%;
+    	
+
+
+    @media screen and (max-width: 1400px){
+	    width: 20%;
+    }
+    
+    @media screen and (max-width: @screen-md-max){
+    	width: 25%;
+    }
 
     @media screen and (max-width: @screen-sm-max){
+    	width: 33.33333%;
+    }
+
+    @media screen and (max-width: 480px){
     	width: 50%;
     }
 
@@ -181,11 +216,21 @@ h1 + #story-meta { margin-top: -11px; }
     	width: 100%;
     }
 
+    .book-info {
+    	max-width: 300px;
+    	margin: 0 auto;
+    	// background: #f9f9f9;
+    	padding: 10px 0 0;
+
+    	.tag.selected {
+    		display: none;
+    	}
+    }
+
     .book-outer-wrapper {
         position: relative;	
         margin-top: 11px;
-        margin-bottom: 11px;
-        padding: 22px 11px 22px 11px;
+        padding: 22px 11px 0 11px;
         // min-height: 300px;
         text-align:center;
 
@@ -213,7 +258,7 @@ h1 + #story-meta { margin-top: -11px; }
 }
 
 
-//Button Tag Styling
+//Button/Tag Styling
 .btn {
 	border-radius: 0px;
 	padding: 8px;
@@ -222,7 +267,7 @@ h1 + #story-meta { margin-top: -11px; }
 
 .btn-info {
 	border: none;
-	background-color: #d7dff0;
+	background-color: lighten(#d7dff0, 7%);
 	color: #7590c4;
 	font-weight: normal;
 	font-size: 12px;
@@ -244,13 +289,16 @@ h1 + #story-meta { margin-top: -11px; }
 	}
 }
 
-.amazon-link {
-	background-color: #ebebeb;
-	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAICAYAAAAvOAWIAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAG11AABzoAAA97wAAIT6AAB5yAAA7p8AADFuAAAPXaV5P1wAAAB/SURBVHjafM6xCUJBEITh7x1WYA/mmtiSuZGI+NIXGRrYgRVoERYiiBe9yORMVjkOdGH4l2F22G57vBVkzII/J6HDGU+Uf0pxtMMDCwxR0NIkwhk9LrhjimVDqXrpFMGMFa4Nv82wxzz2EtzUrJvXwTF+/GgM/1WHDw1bf3gPAMfKIptJWVXJAAAAAElFTkSuQmCC');
-	background-repeat: no-repeat;
-	background-position:  8px center;
-	width: 90px;
-	text-align: right;
+.clear-tags {
+    display: none;
+}
+
+#current-tag {
+    display: none;
+
+    span {
+        font-style: italic; 
+    }
 }
 
 //Modal
@@ -281,22 +329,40 @@ h1 + #story-meta { margin-top: -11px; }
 	}
 }
 
-.book-card-links {
-	line-height: .5em;
-	font-size: 14px;
-	
-	>a {
-		color: #7590c4;
-		font-weight: bold;
-	}
-}
-
 .modal-header {
 	border: none;
 }
 
 .modal-dialog {
 	width: 80%;
+}
+
+//Styling for tags and links inside modal
+.book-modal-links {
+
+	>a {
+		line-height: .5em;
+		color: #7590c4;
+		font-weight: bold;
+		font-size: 14px;
+
+	}
+
+	.purchase-link {
+		font-size: 11px;
+		color: #999;
+		background-color: #ebebeb;
+		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAICAYAAAAvOAWIAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAG11AABzoAAA97wAAIT6AAB5yAAA7p8AADFuAAAPXaV5P1wAAAB/SURBVHjafM6xCUJBEITh7x1WYA/mmtiSuZGI+NIXGRrYgRVoERYiiBe9yORMVjkOdGH4l2F22G57vBVkzII/J6HDGU+Uf0pxtMMDCwxR0NIkwhk9LrhjimVDqXrpFMGMFa4Nv82wxzz2EtzUrJvXwTF+/GgM/1WHDw1bf3gPAMfKIptJWVXJAAAAAElFTkSuQmCC');
+		background-repeat: no-repeat;
+		background-position:  8px center;
+		padding: 8px 8px 8px 25px;
+		text-align: right;
+		margin: 4px 2px 4px 2px;
+	}
+
+	>a:hover {
+		color: #bccae5;
+	}
 }
 
 // Footer
@@ -365,7 +431,9 @@ footer {
 	}
 }
 
-
+.print-friendly {
+    display: none;
+}
 
 // Media queries
 @media (max-width: 979px) {

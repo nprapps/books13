@@ -2,9 +2,9 @@
 
 {% block header_content %}
 <header id="top">
-    <div class="container">
+    <div class="container header-wrapper">
         <div class="introduction">
-            <a href="/"><h1>{{ COPY.content.header_title }}</h1></a>
+            <a href="#/_"><h1>{{ COPY.content.header_title }}</h1></a>
             <h2>by {{ COPY.attribution.byline }}</h2>
             <h2>{{ COPY.attribution.pubdate }} {{ COPY.attribution.pubtime }}</h2>
 
@@ -14,25 +14,11 @@
 {% endblock %}
 
 {% block content %}
-<div class="wrapper">
+<div class="tags-wrapper">
+    
     <!-- All Tags List -->
-<!--     <div class="row">
-        <div class="col-md-12 tags">
-            {% for row in COPY.tags %}
-                <button
-                    class="btn btn-large btn-info tag"
-                    data-tag-slug="{{ row.key }}">
-                    {{ row.value }}
-                </button>
-            {% endfor %}
-        
-            <button class="clear-tags">Show all books</button>
-        </div>
-    </div> -->
 
-
-    <ul class="filter tags option-set list-unstyled col-md-12" data-filter-group="category">
-      <!-- <li><button data-filter-value=".tag-comics-and-graphic-novels">show all</button></li> -->
+    <ul class="filter tags option-set list-unstyled" data-filter-group="category">
       {% for row in COPY.tags %}
            <li> 
                <button
@@ -40,16 +26,33 @@
                data-filter-value=".tag-{{ row.key }}" data-tag-slug="{{ row.key }}">{{ row.value }}</button>
            </li>
         {% endfor %}
-        <li><button class="btn btn-large btn-info tag" data-filter="*">Show All</button></li>
-    </ul>
 
+        <li><button class="btn btn-large btn-info tag clear-tags" data-filter="*">Show All</button></li>
+
+    </ul>
+</div>
     <!-- Book Cards Grid -->
-    <div class="row">
+
+    <div class="row books-grid-wrapper">
         <div class="col-md-12">&nbsp;
+            <h3 id="current-tag">Showing books tagged <span></span></h3>
             <div id="books-grid"></div>
         </div>
+
     </div>
-</div>
+
+    <!-- Print-friendly list -->
+
+    <div class="print-friendly">
+        <h1>{{ COPY.content.header_title }}</h1>
+        <ul>
+            {% for book in books %}
+            <li>
+                <span class="title">{{ book.title }}</span> by <span class="author">{{ book.author }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 
 {% endblock %}
 
@@ -58,13 +61,13 @@
 
 {% block extra_foot %}
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="true">
   <div class="modal-dialog">
     <div class="modal-content">
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
     <script type="text/javascript">
-        window.BOOKS = {{ books|safe }}
+        window.BOOKS = {{ books_js|safe }}
     </script>
 {% endblock %}

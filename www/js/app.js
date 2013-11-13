@@ -1,11 +1,12 @@
-var SMALL_MOBILE = Modernizr.touch && Modernizr.mq('only all and (max-width: 480px)');
+var MOBILE = Modernizr.touch;
+var SMALL = Modernizr.mq('only all and (max-width: 480px)');
 
 var $body;
 var $content;
 var $books_grid;
 var $all_tags;
-var $all_books;
 var $clear_tags;
+var $current_tag;
 var $modal;
 var $modal_content;
 
@@ -19,7 +20,7 @@ var scroll = function($el) {
  * Jump back to the top of the page.
  */
 var back_to_top = function() {
-    scroll($books_grid, 0);
+    scroll($books_grid.parent(), 0);
 
     return false;
 };
@@ -32,15 +33,16 @@ var filter_books = function(tag) {
 
     if (tag) {
         var $tag = $('.tags .tag[data-tag-slug="' + tag + '"]');
-        var $books_with_tag = $('.book.tag-' + tag);
 
-        $all_books.hide();
-        $books_with_tag.show();
+        $('#books-grid').isotope({ filter: '.tag-' + tag, transformsEnabled: !MOBILE });
         $tag.addClass('selected');
         $clear_tags.show();
+        $current_tag.find('span').text(COPY.tags[tag]);
+        $current_tag.show();
     } else {
-        $all_books.show();
+        $('#books-grid').isotope({ filter: '*', transformsEnabled: !MOBILE });
         $clear_tags.hide();
+        $current_tag.hide();
     }
 };
 
@@ -68,37 +70,42 @@ var on_clear_tags_clicked = function() {
  * New tag hash url. 
  */
 var on_tag_hash = function(slug) {
-    // filter_books(slug);
-    // debugger;
-    if(slug === 'undefined'){
-        $('#books-grid').isotope({ filter: '*' });
-    } else {
-        $('#books-grid').isotope({ filter: '.tag-' + slug });
-    }
-    $('button[data-tag-slug="' + slug + '"]').addClass('selected');
-    // back_to_top();
+    filter_books(slug);
+    back_to_top();
 };
 
 /*
  * New book hash url.
  */
 var on_book_hash = function(slug) {
-    // Ensure book is on the page.
-    filter_books(null);
-
-    var $el = $('#' + slug);
-
-    scroll($el, 0);
-
     $modal_content.empty();
 
     book = _.find(BOOKS, function(book){
         return book['slug'] == slug;
     });
 
+    var grid_item = $('#' + book.slug);
+    var next = grid_item.nextAll(':not(.isotope-hidden)').first();
+    
+    if (next.length == 0) {
+        next = null;
+    } else {
+        next = next.attr('id');
+    }
+
+    var previous = grid_item.prevAll(':not(.isotope-hidden)').first();
+
+    if (previous.length == 0) {
+        previous = null;
+    } else {
+        previous = previous.attr('id');
+    }
+
     $modal_content.append(JST.book_modal({
         book: book,
-        SMALL_MOBILE: SMALL_MOBILE
+        next: next,
+        previous: previous,
+        SMALL_MOBILE: (SMALL && MOBILE)
     }));
 
     $modal.modal();
@@ -144,22 +151,29 @@ var on_book_modal_closed = function() {
     return true;
 };
 
+var on_next_book_clicked = function() {
+
+    hasher.setHash('book/' + next.attr('id'));
+};
+
+
 $(function() {
     $body = $('body');
     $content = $('#content');
     $books_grid = $('#books-grid');
     $all_tags = $('.tags .tag');
     $clear_tags = $('.clear-tags');
+    $current_tag = $('#current-tag');
     $modal = $('#myModal');
     $modal_content = $('#myModal .modal-content');
-
+  
     // Event handlers.
     $body.on('click', 'button.tag', on_tag_clicked);
-    $books_grid.on('click', '.back-to-top', back_to_top);
-    $books_grid.on('click', 'button.clear-tags', on_clear_tags_clicked);
     $content.on('click', '.back-to-top', back_to_top);
-    // $content.on('click', 'button.clear-tags', on_clear_tags_clicked);
+    $content.on('click', 'button.clear-tags', on_clear_tags_clicked);
     $modal.on('hidden.bs.modal', on_book_modal_closed);
+    $modal.on('click', '#next-book', on_next_book_clicked);
+    
 
     // Render the book grid
     $books_grid.html(JST.book_grid({
@@ -167,8 +181,6 @@ $(function() {
         book_card: JST.book_card
     }));
     
-    $all_books = $('.book');
-
     // Set up the hasher bits to grab the URL hash.
     hasher.changed.add(on_hash_changed);
     hasher.initialized.add(on_hash_changed);

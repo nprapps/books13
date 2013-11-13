@@ -487,8 +487,9 @@ def bootstrap():
     First, loads books data from Google docs.
     Next, loads images from Baker & Taylor's API.
     """
-    local('rm -rf www/img/cover/*.jpg')
+    update_copy()
     load_books()
+    local('rm -rf www/img/cover/*.jpg')
     load_images()
 
 

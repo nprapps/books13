@@ -24,7 +24,8 @@ def index():
 
     # Read the books JSON into the page.
     with open('www/static-data/books.json', 'rb') as readfile:
-        context['books'] = readfile.read()
+        context['books_js'] = readfile.read()
+        context['books'] = json.loads(context['books_js'])
 
     return render_template('index.html', **context)
 

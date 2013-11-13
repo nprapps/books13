@@ -12,14 +12,6 @@
         <h4 class="modal-title" id="myModalLabel"><%= book.title %></h4>
         <% if(book.author) { %><p class="author">By <%= book.author %></p> <% } %>
         <% if(book.genre) { %><p class="genre"><strong><%= COPY.content.genre %> </strong><%= book.genre %></p> <% } %>
-        <% if(book.page_count) { %><p class="page_count"><strong>Length: </strong><%= book.page_count %> pages</p> <% } %>
-        <% if(book.pages) { %><p class="pages"><%= book.pages %></p> <% } %>
-
-        <!-- Book Description/Review -->
-        <% if(book.text) { %><p class="text"><%= book.text %></p> <% } %>
-        <p class="text">TEMP PLACEHOLDER TO GET IDEA OF SIZING: Tote bag scenester jean shorts Cosby sweater, swag wolf authentic. Before they sold out fanny pack McSweeney's deep v, polaroid fashion axe hella. Kitsch Echo Park pour-over ethnic, freegan quinoa craft beer vegan art party Blue Bottle narwhal swag leggings. Roof party semiotics XOXO, next level farm-to-table pour-over whatever PBR Intelligentsia chia tote bag before they sold out. Occupy Thundercats American Apparel ugh, deep v literally scenester XOXO iPhone photo booth gastropub High Life try-hard. PBR single-origin coffee Tumblr retro kale chips. Post-ironic retro PBR distillery, pug Austin beard Truffaut salvia hella Blue Bottle meggings twee.</p>
-
-        <% if(book.reviewer) { %><p class="reviewer">&mdash; <%= COPY.content.reviewed_by %> <%= book.reviewer %></p> <% } %>
 
         <!-- Tags -->
         <% if(book.tags.length > 0) { %><p class="tags"><strong><%= COPY.content.tag_list %> </strong><% _.each(book.tags, function(tag, index, list){ %>
@@ -29,38 +21,38 @@
             </button>
         <% }); %></p> <% } %>
 
-        <p class="book-card-links">
-            <a href="http://www.amazon.com/dp/<%= book.isbn %>?tag=npr-5-20" target="_blank">
-                <button class="btn btn-large btn-info amazon-link">Amazon &raquo;</button>
-            </a>
-            <a href="https://itunes.apple.com/us/book/isbn<%= book.isbn %>?mt=11&uo=4" target="_blank">
-                <button class="btn btn-large btn-info amazon-link">iBookstore &raquo;</button>
-            </a>
-            <a href="http://www.indiebound.org/book/<%= book.isbn %>?aff=NPR" target="_blank">
-                <button class="btn btn-large btn-info amazon-link">Independent Booksellers &raquo;</button>
-            </a>
+        <!-- Book Description/Review -->
+        <% if(book.text) { %><p class="text"><%= book.text %></p> <% } %>
+        <% if(book.reviewer) { %><p class="reviewer">&mdash; <%= COPY.content.recommended_by %> <%= book.reviewer %></p> <% } %>
+
+        <!-- Purchase/Related Links -->
+
+        <p class="book-modal-links">
+            <a href="http://www.amazon.com/dp/<%= book.isbn %>?tag=npr-5-20" target="_blank" class="purchase-link">Amazon</a>
+            <a href="https://itunes.apple.com/us/book/isbn<%= book.isbn %>?&at=11l79Y" target="_blank" class="purchase-link">iBookstore</a>
+            <a href="http://www.indiebound.org/book/<%= book.isbn %>?aff=NPR" target="_blank" class="purchase-link">Independent Booksellers</a>
         </p>
 
         <% if (book.book_seamus_id.length > 0){  %>
-        <p class="book_seamus_id book-card-links"><% _.each(book.book_seamus_id, function(url_id, index, list){ %>
+        <p class="book_seamus_id book-modal-links"><% _.each(book.book_seamus_id, function(url_id, index, list){ %>
             <a href="http://npr.org/<%= url_id %>" target="_blank"><%= COPY.content.npr_book_link %> &rarr;</a>
         <% }); %></p>
         <% } %>
 
         <% if (book.author_seamus_id.length > 0){  %>
-        <p class="author_seamus_id book-card-links"><% _.each(book.author_seamus_id, function(url_id, index, list){ %>
+        <p class="author_seamus_id book-modal-links"><% _.each(book.author_seamus_id, function(url_id, index, list){ %>
             <a href="http://npr.org/<%= url_id %>" target="_blank"><%= COPY.content.npr_author_link %> &rarr;</a>
         <% }); %></p>
         <% } %>
 
         <% if (book.review_seamus_id.length > 0){  %>
-        <p class="review_seamus_id book-card-links"><% _.each(book.review_seamus_id, function(url_id, index, list){ %>
+        <p class="review_seamus_id book-modal-links"><% _.each(book.review_seamus_id, function(url_id, index, list){ %>
             <a href="http://npr.org/<%= url_id %>" target="_blank"><%= COPY.content.npr_review_link %> &rarr;</a>
         <% }); %></p>
         <% } %>
 
         <% if (book.other_seamus_id){  %>
-        <p class="other_seamus_id book-card-links"><% _.each(book.other_seamus_id, function(url_id, index, list){ %>
+        <p class="other_seamus_id book-modal-links"><% _.each(book.other_seamus_id, function(url_id, index, list){ %>
             <a href="http://npr.org/<%= url_id %>" target="_blank"><%= COPY.content.other_link %> &rarr;</a>
         <% }); %></p>
         <% } %>
@@ -68,5 +60,15 @@
 </div>
 
 <div class="modal-footer">
+
+    <% if (previous != null){  %>
+    <a href="#/book/<%= previous %>" class="btn btn-default" id="previous-book">BACK</a>
+    <% } %>
+
+    <% if (next != null){  %>
+    <a href="#/book/<%= next %>" class="btn btn-default" id="next-book">NEXT</a>
+    <% } %>
+
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
 </div>
