@@ -3,12 +3,9 @@
 {% block header_content %}
 <header id="top">
     <div class="container header-wrapper">
-        <div class="introduction">
-            <a href="#/_"><h1>{{ COPY.content.header_title }}</h1></a>
-            <h2>by {{ COPY.attribution.byline }}</h2>
-            <h2>{{ COPY.attribution.pubdate }} {{ COPY.attribution.pubtime }}</h2>
-
-        </div>
+        <a href="#/_"><h1>{{ COPY.content.header_title }}</h1></a>
+        <h2>by {{ COPY.attribution.byline }}</h2>
+        <h2>{{ COPY.attribution.pubdate }} {{ COPY.attribution.pubtime }}</h2>
     </div>
 </header>
 {% endblock %}
