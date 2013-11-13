@@ -18,6 +18,19 @@ header {
     display: none;
 }
 
+.print-friendly ul {
+    line-height: 1.4em;
+    list-style: none;
+    padding-left: 0;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.author {
+}
+
 #bigbox {
     display: none;
 }

@@ -43,11 +43,14 @@
     <!-- Print-friendly list -->
 
     <div class="print-friendly">
-        {% for book in books %}
-        <div class="book">
-            {{ book.title }}
-        </div>
-        {% endfor %}
+        <h1>{{ COPY.content.header_title }}</h1>
+        <ul>
+            {% for book in books %}
+            <li>
+                <span class="title">{{ book.title }}</span> by <span class="author">{{ book.author }}</span>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 
 {% endblock %}
