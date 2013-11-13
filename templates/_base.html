@@ -13,10 +13,19 @@
     <!-- CHARTBEAT -->
     <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
 
+    <!-- WEBFONTS -->
+    {{ JS.push('js/lib/webfont.js') }}
+    {{ JS.push('js/fonts.js') }}
+    {{ JS.render('js/webfonts.min.js') }}
+    <script>
+
+    </script>
+
     <!-- CSS -->
     {{ CSS.push('less/app.less') }}
     {% block extra_css %}{% endblock extra_css %}
     {{ CSS.render('css/app.min.css') }}
+
 
     <!-- AD CODE -->
     <script>
