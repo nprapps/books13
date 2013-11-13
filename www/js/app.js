@@ -36,13 +36,13 @@ var filter_books = function(tag) {
     if (tag) {
         var $tag = $('.tags .tag[data-tag-slug="' + tag + '"]');
 
-        $('#books-grid').isotope({ filter: '.tag-' + tag, transformsEnabled: !MOBILE });
+        $books_grid.isotope({ filter: '.tag-' + tag, transformsEnabled: !MOBILE });
         $tag.addClass('selected');
         $clear_tags.show();
         $current_tag.find('span').text(COPY.tags[tag]);
         $current_tag.show();
     } else {
-        $('#books-grid').isotope({ filter: '*', transformsEnabled: !MOBILE });
+        $books_grid.isotope({ filter: '*', transformsEnabled: !MOBILE });
         $clear_tags.hide();
         $current_tag.hide();
     }
@@ -131,17 +131,6 @@ var on_hash_changed = function(new_hash, old_hash) {
         filter_books(null);
     }
 
-    var relayout = _.throttle(function() {
-        $books_grid.isotope('reLayout');
-    }, 500, { leading: false });
-    
-    $books_grid.find('img').unveil(1200, function() {
-        $(this).load(function() {
-            relayout(); 
-            $(this).removeClass('veiled');
-        });
-    });
-
     return false;
 };
 
@@ -188,6 +177,23 @@ $(function() {
         books: BOOKS,
         book_card: JST.book_card
     }));
+
+    // Never relayout the grid more than twice a second
+    // And never the first time its called since it won't be
+    // loaded anyway
+    var relayout = _.throttle(function() {
+        $books_grid.isotope('reLayout');
+    }, 500, { leading: false });
+    
+    $books_grid.find('img').unveil(1200, function() {
+        //console.log('unveiling: ' + $(this).parent().parent().parent().attr('id'));
+        console.log('unveil');
+
+        $(this).load(function() {
+            $(this).removeClass('veiled');
+            relayout(); 
+        });
+    });
     
     // Set up the hasher bits to grab the URL hash.
     hasher.changed.add(on_hash_changed);
