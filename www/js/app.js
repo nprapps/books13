@@ -34,9 +34,9 @@ var back_to_top = function() {
  * Show/hide books in the grid.
  */
 var filter_books = function() {
-    $all_tags.removeClass('selected');
+    $all_tags.removeClass('selected unavailable');
 
-    if (selected_tags) {
+    if (selected_tags.length > 0) {
         var filter = '';
         var label = [];
 
@@ -51,12 +51,22 @@ var filter_books = function() {
 
         label = label.join(', ');
 
-        console.log(filter);
-        
         $books_grid.isotope({ filter: filter, transformsEnabled: !MOBILE });
         $clear_tags.show();
         $current_tag.find('span').text(label);
         $current_tag.show();
+
+        // Hide tags with no books left in them
+        for (slug in COPY.tags) {
+            if (selected_tags.indexOf(slug) >= 0) {
+                continue;
+            }
+
+            if ($('.book.tag-' + slug + ':visible').length == 0) {
+                var $tag = $('.tags .tag[data-tag-slug="' + slug + '"]');
+                $tag.addClass('unavailable');
+            }
+        }
     } else {
         $books_grid.isotope({ filter: '*', transformsEnabled: !MOBILE });
         $clear_tags.hide();
@@ -157,6 +167,7 @@ var on_hash_changed = function(new_hash, old_hash) {
         on_book_hash(hash_slug);
     } else {
         $modal.modal('hide');
+        selected_tags = [];
         filter_books();
     }
 
