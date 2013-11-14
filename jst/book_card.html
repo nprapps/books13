@@ -8,13 +8,15 @@
 	</a>
 
 	<div class="book-info">
-<!-- 		<h4><%= book.title %></h4>
-        <% if(book.author) { %><p class="author">By <%= book.author %></p> <% } %> -->
-	<% if(book.tags.length > 0) { %><p class="tags"><strong>Also tagged:</strong> <% _.each(book.tags, function(tag, index, list){ %>
-        <button
-            class="btn btn-large btn-info tag"
-            data-tag-slug="<%= tag %>"><%= COPY.tags[tag] %>
-        </button>
-    <% }); %></p> <% } %>
+		<% if(book.tags.length > 0) { %>
+		<p class="tags"><strong>Also tagged:</strong> <% _.each(book.tags, function(tag, index, list){ %>
+	        <button
+	            class="btn btn-large btn-info tag"
+	            data-tag-slug="<%= tag %>"><%= COPY.tags[tag] %>
+	        </button>
+	    <% }); %>
+	    </p> 
+	    <% } %>
     </div>
+    
 </div>

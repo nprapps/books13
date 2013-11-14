@@ -163,9 +163,7 @@ h1 + #story-meta { margin-top: -11px; }
 .book {
 	width: 16.66666666666667%;
 	padding-bottom: @line-height-computed;
-    	
-
-
+  
     @media screen and (max-width: 1400px){
 	    width: 20%;
     }
@@ -187,6 +185,7 @@ h1 + #story-meta { margin-top: -11px; }
     }
 
     .book-info {
+    	width: 100%;
     	max-width: 300px;
     	margin: 0 auto;
     	// background: #f9f9f9;
@@ -204,7 +203,6 @@ h1 + #story-meta { margin-top: -11px; }
 
     	.tags {    		
     		strong {
-    			// text-transform: uppercase;
     			color: @gray;
     			font-size: 14px;
     			font-weight: normal;
@@ -213,6 +211,11 @@ h1 + #story-meta { margin-top: -11px; }
 
     		.tag {
     			-webkit-font-smoothing: subpixel-antialiased;
+
+    			@media (max-width: 480px) {
+    				font-size: 10px;
+    				max-width: 170px;
+    			}
     		}
     	}
     }
@@ -222,10 +225,6 @@ h1 + #story-meta { margin-top: -11px; }
         padding: 0 11px;
         // min-height: 300px;
         text-align: center;
-
-        @media (max-width: 992px) {
-            height: 450px;
-        }
 
         img {
         	width: 100%;
