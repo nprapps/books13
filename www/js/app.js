@@ -12,6 +12,8 @@ var $modal_content;
 var next;
 var previous;
 
+var selected_tags = [];
+
 var scroll = function($el) {
     var top = $el.offset().top;
 
@@ -30,16 +32,29 @@ var back_to_top = function() {
 /*
  * Show/hide books in the grid.
  */
-var filter_books = function(tag) {
+var filter_books = function() {
     $all_tags.removeClass('selected');
 
-    if (tag) {
-        var $tag = $('.tags .tag[data-tag-slug="' + tag + '"]');
+    if (selected_tags) {
+        var filter = '';
+        var label = [];
 
-        $books_grid.isotope({ filter: '.tag-' + tag, transformsEnabled: !MOBILE });
-        $tag.addClass('selected');
+        for (i in selected_tags) {
+            var slug = selected_tags[i];
+            var $tag = $('.tags .tag[data-tag-slug="' + slug + '"]');
+        
+            $tag.addClass('selected');
+            filter += '.tag-' + slug;
+            label.push(COPY.tags[slug]);
+        }
+
+        label = label.join(', ');
+
+        console.log(filter);
+        
+        $books_grid.isotope({ filter: filter, transformsEnabled: !MOBILE });
         $clear_tags.show();
-        $current_tag.find('span').text(COPY.tags[tag]);
+        $current_tag.find('span').text(label);
         $current_tag.show();
     } else {
         $books_grid.isotope({ filter: '*', transformsEnabled: !MOBILE });
@@ -52,8 +67,20 @@ var filter_books = function(tag) {
  * Filter the list to a certain tag.
  */
 var on_tag_clicked = function() {
-    var tag = $(this).data('tag-slug');
-    hasher.setHash('tag/' + tag);
+    var slug = $(this).data('tag-slug');
+    var already_selected = selected_tags.indexOf(slug);
+
+    if (already_selected >= 0) {
+        selected_tags.splice(already_selected, 1);
+    } else {
+        selected_tags.push(slug);
+    }
+
+    if (selected_tags.length > 0) {
+        hasher.setHash('tag/' + selected_tags.join(','));
+    } else {
+        hasher.setHash('');
+    }
 
     return false;
 };
@@ -71,8 +98,9 @@ var on_clear_tags_clicked = function() {
 /*
  * New tag hash url. 
  */
-var on_tag_hash = function(slug) {
-    filter_books(slug);
+var on_tag_hash = function(tags) {
+    selected_tags = tags.split(',');
+    filter_books();
     back_to_top();
 };
 
@@ -128,7 +156,7 @@ var on_hash_changed = function(new_hash, old_hash) {
         on_book_hash(hash_slug);
     } else {
         $modal.modal('hide');
-        filter_books(null);
+        filter_books();
     }
 
     return false;
