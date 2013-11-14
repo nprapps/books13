@@ -228,7 +228,12 @@ var on_book_modal_closed = function() {
     if (selected_tags.length > 0) {
         hasher.setHash('tag', selected_tags.join(','));
     } else {
-        hasher.setHash();
+        /*
+         * CEG: Don't set to empty string or it will turn into '#' which
+         * will cause a scroll to top of page that we don't want when
+         * closing the modal.
+         */
+        hasher.setHash('_');
     }
 
     return true;
