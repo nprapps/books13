@@ -56,7 +56,10 @@ var filter_books = function() {
 
         label = label.join(', ');
 
-        $books_grid.isotope({ filter: filter, transformsEnabled: !MOBILE });
+        $books_grid
+            .addClass('filter-active')
+            .removeClass('filter-inactive')
+            .isotope({ filter: filter, transformsEnabled: !MOBILE });
         $clear_tags.show();
         $current_tag.find('span').text(label);
         $current_tag.show();
@@ -75,8 +78,10 @@ var filter_books = function() {
 
         filter_print_books(filter);
     } else {
-        console.log(2);
-        $books_grid.isotope({ filter: '*', transformsEnabled: !MOBILE });
+        $books_grid
+            .removeClass('filter-active')
+            .addClass('filter-inactive')
+            .isotope({ filter: '*', transformsEnabled: !MOBILE });
         $clear_tags.hide();
         $current_tag.hide();
         filter_print_books(null);

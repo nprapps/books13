@@ -62,13 +62,12 @@
 <div class="modal-footer">
 
     <% if (previous != null){  %>
-    <a href="#/book/<%= previous %>" class="btn btn-default" id="previous-book">BACK</a>
+    <a href="#/book/<%= previous %>" class="btn btn-default modal-nav-buttons" id="previous-book">PREVIOUS BOOK</a>
     <% } %>
 
     <% if (next != null){  %>
-    <a href="#/book/<%= next %>" class="btn btn-default" id="next-book">NEXT</a>
+    <a href="#/book/<%= next %>" class="btn btn-default modal-nav-buttons" id="next-book">NEXT BOOK</a>
     <% } %>
-
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-default" id="modal-close-btn" data-dismiss="modal">Close</button>
 
 </div>
