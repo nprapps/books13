@@ -15,6 +15,7 @@ var $print_books;
 var next;
 var previous;
 var selected_tags = [];
+var skip_scroll = false;
 
 /*
  * Scroll to a given element.
@@ -74,6 +75,7 @@ var filter_books = function() {
 
         filter_print_books(filter);
     } else {
+        console.log(2);
         $books_grid.isotope({ filter: '*', transformsEnabled: !MOBILE });
         $clear_tags.hide();
         $current_tag.hide();
@@ -95,8 +97,6 @@ var filter_print_books = function(filter) {
             filter += '.tag-' + slug;
         }
 
-        console.log(filter);
-
         $print_books.find(filter).addClass('visible');
     } else {
         $print_books.find('.print-book').addClass('visible');
@@ -117,9 +117,9 @@ var on_tag_clicked = function() {
     }
 
     if (selected_tags.length > 0) {
-        hasher.setHash('tag/' + selected_tags.join(','));
+        hasher.setHash('tag', selected_tags.join(','));
     } else {
-        hasher.setHash('');
+        hasher.setHash();
     }
 
     return false;
@@ -129,8 +129,7 @@ var on_tag_clicked = function() {
  * Clear the current tag
  */
 var on_clear_tags_clicked = function() {
-    hasher.setHash('_');
-    back_to_top();
+    hasher.setHash();
 
     return false;
 };
@@ -141,7 +140,6 @@ var on_clear_tags_clicked = function() {
 var on_tag_hash = function(tags) {
     selected_tags = tags.split(',');
     filter_books();
-    back_to_top();
 };
 
 /*
@@ -192,12 +190,25 @@ var on_hash_changed = function(new_hash, old_hash) {
     if (hash_type == 'tag') {
         $modal.modal('hide');
         on_tag_hash(hash_slug);
+
+        if (!skip_scroll) {
+            back_to_top();
+        }
+        
+        skip_scroll = false;
     } else if (hash_type == 'book') {
         on_book_hash(hash_slug);
     } else {
         $modal.modal('hide');
         selected_tags = [];
-        filter_books();
+
+        console.log(skip_scroll);
+
+        if (!skip_scroll) {
+            filter_books();
+        }
+
+        skip_scroll = false;
     }
 
     return false;
@@ -207,10 +218,12 @@ var on_hash_changed = function(new_hash, old_hash) {
  * Clear the hash when closing a book modal.
  */
 var on_book_modal_closed = function() {
-    // HACK: Set to underscore so it doesn't scroll to top
-    // as it would with null/empty string.
-    if (hasher.getHash().split('/')[0] == 'book') {
-        hasher.setHash('_');
+    skip_scroll = true;
+
+    if (selected_tags.length > 0) {
+        hasher.setHash('tag', selected_tags.join(','));
+    } else {
+        hasher.setHash();
     }
 
     return true;
@@ -235,9 +248,9 @@ $(function() {
     $modal.keyup(function (e) {
         if ($('#myModal:visible').length > 0){
            if (e.which === 37 && previous !== null) {
-            hasher.setHash('book/' + previous);
+            hasher.setHash('book', previous);
             } else if (e.which === 39 && next !== null) { 
-                hasher.setHash('book/' + next);
+                hasher.setHash('book', next);
             } 
         }
     });
