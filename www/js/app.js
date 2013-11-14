@@ -225,7 +225,7 @@ $(function() {
     // loaded anyway
     var relayout = _.throttle(function() {
         $books_grid.isotope('reLayout');
-    }, 500, { leading: false });
+    }, 500);
     
     $books_grid.find('img').unveil(1200, function() {
         //console.log('unveiling: ' + $(this).parent().parent().parent().attr('id'));
