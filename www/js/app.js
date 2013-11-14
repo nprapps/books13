@@ -4,6 +4,7 @@ var SMALL = Modernizr.mq('only all and (max-width: 480px)');
 var $body;
 var $content;
 var $books_grid;
+var $tags;
 var $all_tags;
 var $clear_tags;
 var $current_tag;
@@ -24,7 +25,7 @@ var scroll = function($el) {
  * Jump back to the top of the page.
  */
 var back_to_top = function() {
-    scroll($books_grid.parent(), 0);
+    scroll($tags, 0);
 
     return false;
 };
@@ -178,6 +179,7 @@ var on_book_modal_closed = function() {
 $(function() {
     $body = $('body');
     $content = $('#content');
+    $tags = $('.tags');
     $books_grid = $('#books-grid');
     $all_tags = $('.tags .tag');
     $clear_tags = $('.clear-tags');
