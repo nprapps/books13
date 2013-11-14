@@ -17,6 +17,7 @@ var next;
 var previous;
 var selected_tags = [];
 var skip_scroll = false;
+var first_hash = true;
 
 /*
  * Scroll to a given element.
@@ -204,11 +205,16 @@ var on_hash_changed = function(new_hash, old_hash) {
         skip_scroll = false;
     } else if (hash_type == 'book') {
         on_book_hash(hash_slug);
+
+        // On first load, we need to load in the books. #142
+        if (first_hash) {
+            filter_books();
+
+            first_hash = false;
+        }
     } else {
         $modal.modal('hide');
         selected_tags = [];
-
-        console.log(skip_scroll);
 
         if (!skip_scroll) {
             filter_books();
