@@ -11,32 +11,32 @@
 {% endblock %}
 
 {% block content %}
-<div class="tags-wrapper">
+    <div class="book-container">
+
+      <div class="tags-wrapper">
+            
+            <!-- All Tags List -->
     
-    <!-- All Tags List -->
-
-    <ul class="filter tags option-set list-unstyled" data-filter-group="category">
-      {% for row in COPY.tags %}
-           <li> 
-               <button
-               class="btn btn-large btn-info tag"
-               data-filter-value=".tag-{{ row.key }}" data-tag-slug="{{ row.key }}">{{ row.value }}</button>
-           </li>
-        {% endfor %}
-
-        <li><button class="btn btn-large btn-info tag clear-tags" data-filter="*">Show All</button></li>
-
-    </ul>
-</div>
-    <!-- Book Cards Grid -->
-
-    <div class="row books-grid-wrapper">
-        <div class="col-md-12">&nbsp;
-            <h3 id="current-tag">Showing books tagged <span></span></h3>
-            <div id="books-grid"></div>
+            <ul class="filter tags option-set list-unstyled" data-filter-group="category">
+              {% for row in COPY.tags %}
+                   <li> 
+                       <button
+                       class="btn btn-large btn-info tag"
+                       data-filter-value=".tag-{{ row.key }}" data-tag-slug="{{ row.key }}">{{ row.value }}</button>
+                   </li>
+                {% endfor %}
+    
+                <li><button class="btn btn-large btn-info tag clear-tags" data-filter="*">Show All</button></li>
+    
+            </ul>
         </div>
-
-    </div>
+        <!-- Book Cards Grid -->
+    
+        <div class=" books-grid-wrapper">
+                <h3 id="current-tag">Showing books tagged <span></span></h3>
+                <div id="books-grid"></div>
+        </div>
+      </div>
 
     <!-- Print-friendly list -->
 

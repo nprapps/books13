@@ -170,6 +170,7 @@ h1 + #story-meta { margin-top: -11px; }
 //Book cards
 .book {
 	width: 16.66666666666667%;
+	padding-bottom: @line-height-computed;
     	
 
 
@@ -197,13 +198,12 @@ h1 + #story-meta { margin-top: -11px; }
     	max-width: 300px;
     	margin: 0 auto;
     	// background: #f9f9f9;
-    	padding: 10px 0 0;
+    	padding: 10px 9px 0;
     }
 
     .book-outer-wrapper {
         position: relative;	
-        margin-top: 11px;
-        padding: 22px 11px 0 11px;
+        padding: 0 11px;
         // min-height: 300px;
         text-align: center;
 
@@ -239,9 +239,66 @@ h1 + #story-meta { margin-top: -11px; }
 	color: #fff;
 }
 
-.tag.selected {
-    background-color: #46619c;
-    color: #fff;
+.tag {
+	&.unavailable {
+		display: none;
+	}
+
+	&:hover {
+		color: #7590c4;
+		text-decoration: underline;
+	}
+
+	&:active,
+	&:focus {
+		box-shadow: none;
+		border-radius: none;
+		outline: none;
+		color: #7590c4;
+		background-color: lighten(#d7dff0, 7%);
+
+		&.selected {
+			color: #fff;
+		}
+	}
+
+	&.selected {
+		background: #7590c4;
+		color: #fff;
+
+		.tags-wrapper & {
+			width: 100%;
+		}
+
+		&:hover {
+			color: #fff;
+		}
+	}
+
+	@media screen and (min-width: @screen-sm){
+		.tags-wrapper & {
+			background: none;
+			padding: 5px;
+			margin: 0;
+			white-space: normal;
+			font-size: 13px;
+			text-align: right;
+			-webkit-font-smoothing: subpixel-antialiased;
+			display: block;
+			width: 100%;
+			border-top: 1px solid @gray-lighter;
+		}
+
+		&:focus {
+			background: none;
+		}
+
+		&.selected {
+			display: block;
+			text-align: right;
+			background: #7590c4;
+		}
+	}
 }
 
 .tag.unavailable {
@@ -401,6 +458,46 @@ footer {
 }
 
 // Media queries
+@media (min-width: @screen-sm){
+
+	.header-wrapper {
+		padding: 0 30px;
+	}
+
+	.book-container {
+		display: table;
+		width: 100%;
+
+		.tags-wrapper,
+		.books-grid-wrapper {
+			display: table-cell;
+			vertical-align: top;
+		}
+
+		.tags-wrapper {
+			width: 150px;
+			padding-left: 15px;
+
+			.tags {
+
+				&.affix {
+					width: 150px;
+					top: 10px;
+				}
+
+				li {
+					display: block;
+					text-align: right;
+				}
+			}
+		}
+
+		.books-grid-wrapper {
+			padding-left: @grid-gutter-width;
+		}
+	}
+}
+
 @media (max-width: 979px) {
 	nav .site-links-2 { display: none; }
 	footer {
@@ -492,7 +589,8 @@ footer {
           transition-property: height, width;
 }
 
-.isotope .isotope-item {
+.isotope .isotope-item,
+.tags .tag {
   -webkit-transition-property: -webkit-transform, opacity;
      -moz-transition-property:    -moz-transform, opacity;
       -ms-transition-property:     -ms-transform, opacity;

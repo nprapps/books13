@@ -198,7 +198,7 @@ $(function() {
     $modal_content = $('#myModal .modal-content');    
   
     // Event handlers.
-    $body.on('click', 'button.tag', on_tag_clicked);
+    $body.on('click', '.tag', on_tag_clicked);
     $content.on('click', '.back-to-top', back_to_top);
     $content.on('click', 'button.clear-tags', on_clear_tags_clicked);
     $modal.on('hidden.bs.modal', on_book_modal_closed);
