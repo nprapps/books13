@@ -29,7 +29,7 @@ var scroll = function($el) {
  * Jump back to the top of the page.
  */
 var back_to_top = function() {
-    scroll($tags, 0);
+    scroll($body, 0);
 
     return false;
 };
