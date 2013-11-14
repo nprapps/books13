@@ -49,7 +49,7 @@ class Includer(object):
 
         return relative_path
 
-    def render(self, path):
+    def render(self, path, **kwargs):
         if getattr(g, 'compile_includes', False):
             out_filename = 'www/%s' % path
 
@@ -62,13 +62,18 @@ class Includer(object):
             # See "fab render"
             g.compiled_includes.append(out_filename)
 
-            markup = Markup(self.tag_string % self._relativize_path(path))
-        else:
-            response = ','.join(self.includes)
+            kwargs['path'] = self._relativize_path(path)
 
-            response = '\n'.join([
-                self.tag_string % self._relativize_path(src) for src in self.includes
-            ])
+            markup = Markup(self.tag_string % kwargs)
+        else:
+            response = []
+
+            for src in self.includes:
+                kwargs['path'] = self._relativize_path(src)
+
+                response.append(self.tag_string % kwargs)
+
+            response = '\n'.join(response)
 
             markup = Markup(response)
 
@@ -83,7 +88,7 @@ class JavascriptIncluder(Includer):
     def __init__(self):
         Includer.__init__(self)
 
-        self.tag_string = '<script type="text/javascript" src="%s"></script>'
+        self.tag_string = '<script type="text/javascript" src="%(path)s"></script>'
 
     def _compress(self):
         output = []
@@ -111,7 +116,7 @@ class CSSIncluder(Includer):
     def __init__(self):
         Includer.__init__(self)
 
-        self.tag_string = '<link rel="stylesheet" type="text/css" href="%s" media="screen" />'
+        self.tag_string = '<link rel="stylesheet" type="text/css" href="%(path)s" media="%(media)s" />'
 
     def _compress(self):
         output = []
@@ -139,6 +144,9 @@ class CSSIncluder(Includer):
 
 
         return '\n'.join(output)
+
+    def set_media(media):
+        self.media = media
 
 def flatten_app_config():
     """
