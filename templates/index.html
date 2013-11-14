@@ -32,7 +32,7 @@
 
     <div class="row books-grid-wrapper">
         <div class="col-md-12">&nbsp;
-            <h3 id="current-tag">Showing books tagged <span></span></h3>
+            <h3 class="current-tag">Showing books tagged <span></span></h3>
             <div id="books-grid"></div>
         </div>
 
@@ -42,9 +42,10 @@
 
     <div class="print-friendly">
         <h1>{{ COPY.content.header_title }}</h1>
+        <h3 class="current-tag">Books tagged <span></span></h3>
         <ul>
             {% for book in books %}
-            <li>
+            <li class="print-book visible {% for tag in book.tags %}tag-{{ tag }} {% endfor %}">
                 <span class="title">{{ book.title }}</span> by <span class="author">{{ book.author }}</span>
             </li>
             {% endfor %}
