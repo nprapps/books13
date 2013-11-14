@@ -191,6 +191,30 @@ h1 + #story-meta { margin-top: -11px; }
     	margin: 0 auto;
     	// background: #f9f9f9;
     	padding: 10px 9px 0;
+
+    	.selected {
+    		display: none;
+    	}
+
+    	.filter-inactive & {
+    		.tags {
+    			display: none;
+    		}
+    	}
+
+    	.tags {    		
+    		strong {
+    			// text-transform: uppercase;
+    			color: @gray;
+    			font-size: 14px;
+    			font-weight: normal;
+    			display: block;
+    		}
+
+    		.tag {
+    			-webkit-font-smoothing: subpixel-antialiased;
+    		}
+    	}
     }
 
     .book-outer-wrapper {
@@ -584,8 +608,7 @@ footer {
           transition-property: height, width;
 }
 
-.isotope .isotope-item,
-.tags .tag {
+.isotope .isotope-item {
   -webkit-transition-property: -webkit-transform, opacity;
      -moz-transition-property:    -moz-transform, opacity;
       -ms-transition-property:     -ms-transform, opacity;
