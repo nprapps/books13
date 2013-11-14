@@ -10,11 +10,15 @@ var $clear_tags;
 var $current_tag;
 var $modal;
 var $modal_content;
+var $print_books;
+
 var next;
 var previous;
-
 var selected_tags = [];
 
+/*
+ * Scroll to a given element.
+ */
 var scroll = function($el) {
     var top = $el.offset().top;
 
@@ -67,12 +71,37 @@ var filter_books = function() {
                 $tag.addClass('unavailable');
             }
         }
+
+        filter_print_books(filter);
     } else {
         $books_grid.isotope({ filter: '*', transformsEnabled: !MOBILE });
         $clear_tags.hide();
         $current_tag.hide();
+        filter_print_books(null);
     }
 };
+
+/*
+ * Filter the print-friendly book list.
+ */
+var filter_print_books = function(filter) {
+    if (filter) {
+        $print_books.find('.print-book').removeClass('visible');
+
+        var filter = '';
+
+        for (var i in selected_tags) {
+            var slug = selected_tags[i];
+            filter += '.tag-' + slug;
+        }
+
+        console.log(filter);
+
+        $print_books.find(filter).addClass('visible');
+    } else {
+        $print_books.find('.print-book').addClass('visible');
+    }
+}
 
 /*
  * Filter the list to a certain tag.
@@ -193,9 +222,10 @@ $(function() {
     $tags = $('.tags');
     $books_grid = $('#books-grid');
     $clear_tags = $('.clear-tags');
-    $current_tag = $('#current-tag');
+    $current_tag = $('.current-tag');
     $modal = $('#myModal');
     $modal_content = $('#myModal .modal-content');    
+    $print_books = $('.print-friendly ul');
   
     // Event handlers.
     $body.on('click', '.tag', on_tag_clicked);

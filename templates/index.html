@@ -12,13 +12,10 @@
 
 {% block content %}
     <div class="book-container">
-
-      <div class="tags-wrapper">
-            
+        <div class="tags-wrapper">
             <!-- All Tags List -->
-    
             <ul class="filter tags option-set list-unstyled" data-filter-group="category">
-              {% for row in COPY.tags %}
+                {% for row in COPY.tags %}
                    <li> 
                        <button
                        class="btn btn-large btn-info tag"
@@ -27,24 +24,24 @@
                 {% endfor %}
     
                 <li><button class="btn btn-large btn-info tag clear-tags" data-filter="*">Show All</button></li>
-    
             </ul>
         </div>
         <!-- Book Cards Grid -->
     
         <div class=" books-grid-wrapper">
-                <h3 id="current-tag">Showing books tagged <span></span></h3>
-                <div id="books-grid"></div>
+            <h3 id="current-tag">Showing books tagged <span></span></h3>
+            <div id="books-grid"></div>
         </div>
-      </div>
+    </div>
 
     <!-- Print-friendly list -->
 
     <div class="print-friendly">
         <h1>{{ COPY.content.header_title }}</h1>
+        <h3 class="current-tag">Books tagged <span></span></h3>
         <ul>
             {% for book in books %}
-            <li>
+            <li class="print-book visible {% for tag in book.tags %}tag-{{ tag }} {% endfor %}">
                 <span class="title">{{ book.title }}</span> by <span class="author">{{ book.author }}</span>
             </li>
             {% endfor %}
