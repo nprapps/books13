@@ -192,7 +192,6 @@ $(function() {
     $content = $('#content');
     $tags = $('.tags');
     $books_grid = $('#books-grid');
-    $all_tags = $('.tags .tag');
     $clear_tags = $('.clear-tags');
     $current_tag = $('#current-tag');
     $modal = $('#myModal');
@@ -218,6 +217,8 @@ $(function() {
         books: BOOKS,
         book_card: JST.book_card
     }));
+    
+    $all_tags = $('.tags .tag');
 
     // Never relayout the grid more than twice a second
     // And never the first time its called since it won't be
