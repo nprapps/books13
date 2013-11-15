@@ -11,11 +11,13 @@ var $current_tag;
 var $modal;
 var $modal_content;
 var $print_books;
+var $back_to_top;
 
 var next;
 var previous;
 var selected_tags = [];
 var skip_scroll = false;
+var first_hash = true;
 
 /*
  * Scroll to a given element.
@@ -203,11 +205,16 @@ var on_hash_changed = function(new_hash, old_hash) {
         skip_scroll = false;
     } else if (hash_type == 'book') {
         on_book_hash(hash_slug);
+
+        // On first load, we need to load in the books. #142
+        if (first_hash) {
+            filter_books();
+
+            first_hash = false;
+        }
     } else {
         $modal.modal('hide');
         selected_tags = [];
-
-        console.log(skip_scroll);
 
         if (!skip_scroll) {
             filter_books();
@@ -249,6 +256,7 @@ $(function() {
     $modal = $('#myModal');
     $modal_content = $('#myModal .modal-content');    
     $print_books = $('.print-friendly ul');
+    $back_to_top = $('#back-to-top');
   
     // Event handlers.
     $body.on('click', '.tag', on_tag_clicked);
@@ -264,7 +272,23 @@ $(function() {
             } 
         }
     });
-    
+    $back_to_top.on('click', back_to_top);
+    $back_to_top.hide();
+    $(window).on('scroll', function() {
+        var y_scroll_pos = window.pageYOffset;
+        var scroll_pos_test = 500;             // set to whatever you want it to be
+
+        if(y_scroll_pos > scroll_pos_test && $modal.is(':hidden')) {
+            $back_to_top.show();
+            // $back_to_top.animate({bottom:"0px"});
+        }
+
+        else if(y_scroll_pos < scroll_pos_test && $modal.is(':hidden')) {
+            $back_to_top.hide();
+            // $back_to_top.animate({bottom:"-50px"});
+        }
+    });
+
     // Render the book grid
     $books_grid.html(JST.book_grid({
         books: BOOKS,

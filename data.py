@@ -3,7 +3,6 @@ import json
 import os
 import re
 
-from bs4 import BeautifulSoup
 from PIL import Image
 import requests
 import xlrd
@@ -44,69 +43,48 @@ class Book(object):
         Removes non-integer junk from the cells.
         Serializes based on commas.
         """
-        secrets = app_config.get_secrets()
-
         for key, value in kwargs.items():
 
             # Handle wacky characters.
             value = unicode(value.decode('utf-8')).strip()
 
+            if key in ['isbn', 'book_seamus_id', 'author_seamus_id', 'review_seamus_id'] and value:
+                try:
+                    int(value)
+                except ValueError:
+                    print '#%s Invalid %s: "%s"' % (kwargs['#'], key, value)
+                    continue
+
             if key == 'isbn':
                 value = value.zfill(10)
 
-            # List of keys that need special treatment and serialization.
-            if key in [u'tags', u'book_seamus_id', u'author_seamus_id', u'review_seamus_id', u'other_seamus_id']:
-
-                # Strip junk.
-                value = value\
-                        .replace('(no build)', '')\
-                        .replace(' and ', ',')\
-                        .replace('coming', '')\
-                        .replace('has a review, but no book page', '')
-
+            if key == 'tags':
                 # Build the empty list, since each can have more than one.
                 item_list = []
 
                 # Split on commas.
                 for item in value.split(','):
 
-                    # Tags get special treatment.
-                    if key == "tags":
+                    # If it's not blank, add to the list.
+                    # Returning an empty list is better than a blank
+                    # string inside the list.
+                    if item != u"":
 
-                        # If it's not blank, add to the list.
-                        # Returning an empty list is better than a blank
-                        # string inside the list.
-                        if item != u"":
+                        # Clean.
+                        item = item.strip()
 
-                            # Clean.
-                            item = item.strip()
+                        # Look up from our map.
+                        tag_slug = TAGS_TO_SLUGS.get(item, None)
 
-                            # Look up from our map.
-                            tag_slug = TAGS_TO_SLUGS.get(item, None)
-
-                            # Append if the tag exists.
-                            if tag_slug:
-                                item_list.append(tag_slug)
-
-                            else:
-                                print "Unknown tag: '%s'" % item
-
-                    try:
-
-                        # Try and turn this into an integer.
-                        item = int(item.strip())
-
-                        # Add to the list.
-                        item_list.append(item)
-
-                    except ValueError:
-                        pass
+                        # Append if the tag exists.
+                        if tag_slug:
+                            item_list.append(tag_slug)
+                        else:
+                            print "#%s Unknown tag: '%s'" % (kwargs['#'], item)
 
                 # Set the attribute with the corrected value, which is a list.
                 setattr(self, key, item_list)
-
             else:
-
                 # Don't modify the value for stuff that isn't in the list above.
                 setattr(self, key, value)
 
