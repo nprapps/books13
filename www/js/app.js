@@ -38,6 +38,22 @@ var back_to_top = function() {
 };
 
 /*
+ * Enable or reapply isotope to the grid.
+ */
+var isotope_grid = function(filter) {
+    $books_grid.isotope({
+        filter: filter,
+        transformsEnabled: !MOBILE,
+        getSortData: {
+            'id': function($el) {
+                return parseInt($el.data('sort'));
+            }
+        },
+        sortBy: 'id'
+    });
+}
+
+/*
  * Show/hide books in the grid.
  */
 var filter_books = function() {
@@ -58,10 +74,7 @@ var filter_books = function() {
 
         label = label.join(', ');
 
-        $books_grid
-            .addClass('filter-active')
-            .removeClass('filter-inactive')
-            .isotope({ filter: filter, transformsEnabled: !MOBILE });
+        isotope_grid(filter);
         $clear_tags.show();
         $current_tag.find('span').text(label);
         $current_tag.show();
@@ -80,10 +93,7 @@ var filter_books = function() {
 
         filter_print_books(filter);
     } else {
-        $books_grid
-            .removeClass('filter-active')
-            .addClass('filter-inactive')
-            .isotope({ filter: '*', transformsEnabled: !MOBILE });
+        isotope_grid('*');
         $clear_tags.hide();
         $current_tag.hide();
         filter_print_books(null);
@@ -315,6 +325,10 @@ $(function() {
     $books_grid.html(JST.book_grid({
         books: BOOKS,
         book_card: JST.book_card
+    }));
+
+    $books_grid.append(JST.grid_ad({
+        sort: '3'  
     }));
     
     $all_tags = $('.tags .tag');
