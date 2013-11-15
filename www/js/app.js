@@ -14,6 +14,7 @@ var $print_books;
 var $back_to_top;
 var $adwrapper;
 
+
 var next;
 var previous;
 var selected_tags = [];
@@ -214,6 +215,7 @@ var on_book_hash = function(slug) {
     }));   
 
     $modal.modal();
+    $back_to_top.hide();
 };
 
 /*
@@ -313,17 +315,14 @@ $(function() {
     $back_to_top.hide();
     $(window).on('scroll', function() {
         var y_scroll_pos = window.pageYOffset;
-        var scroll_pos_test = 500;             // set to whatever you want it to be
+        var scroll_pos_test = 500;
 
-        if(y_scroll_pos > scroll_pos_test && $modal.is(':hidden')) {
+        if(y_scroll_pos > scroll_pos_test && $('#myModal:visible').length === 0) {
             $back_to_top.show();
-            // $back_to_top.animate({bottom:"0px"});
-        }
-
-        else if(y_scroll_pos < scroll_pos_test && $modal.is(':hidden')) {
+        } else {
             $back_to_top.hide();
-            // $back_to_top.animate({bottom:"-50px"});
-        }
+        } 
+
     });
 
     for (var i = 0; i < BOOKS.length; i++) {
