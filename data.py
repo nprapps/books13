@@ -181,7 +181,7 @@ def load_images():
         if book['title'] == "":
             continue
 
-        if book['isbn'] == "":
+        if 'isbn' not in book or book['isbn'] == "":
             continue
 
         # Construct the URL with secrets and the ISBN.
