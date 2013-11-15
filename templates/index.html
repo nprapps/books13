@@ -43,7 +43,7 @@
         <h3 class="current-tag">Books tagged <span></span></h3>
         <ul>
             {% for book in books %}
-            <li class="print-book visible {% for tag in book.tags %}tag-{{ tag }} {% endfor %}">
+            <li class="print-book visible {% for tag in book.tags %}tag-{{ tag }} {% endfor %}" data-sort="{{ loop.index }}">
                 <span class="title">{{ book.title }}</span> by <span class="author">{{ book.author }}</span>
             </li>
             {% endfor %}

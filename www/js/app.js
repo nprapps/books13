@@ -12,12 +12,14 @@ var $modal;
 var $modal_content;
 var $print_books;
 var $back_to_top;
+var $adwrapper;
 
 var next;
 var previous;
 var selected_tags = [];
 var skip_scroll = false;
 var first_hash = true;
+var isotope_loaded = false;
 
 /*
  * Scroll to a given element.
@@ -41,6 +43,23 @@ var back_to_top = function() {
  * Enable or reapply isotope to the grid.
  */
 var isotope_grid = function(filter) {
+    // A bit of a hack, we use the visible printer-friendly books
+    // to determine where to put the ad in the grid
+    var $visible_books = $print_books.find('.print-book.visible');
+    var i = Math.min($visible_books.length - 1, 2);
+    var $that_book = $visible_books.eq(i);
+    var ad_sort = parseInt($that_book.data('sort')) + 1; 
+
+    $adwrapper.data('sort', ad_sort);
+
+    // NB: Trying to do this before isotope renders the first time is an error
+    if (isotope_loaded) {
+        $books_grid.isotope('updateSortData', $books_grid.find('.isotope-item'));
+    }
+
+    // Never filter out ad
+    filter += ',.adwrapper';
+
     $books_grid.isotope({
         filter: filter,
         transformsEnabled: !MOBILE,
@@ -51,6 +70,8 @@ var isotope_grid = function(filter) {
         },
         sortBy: 'id'
     });
+
+    isotope_loaded = true;
 }
 
 /*
@@ -74,6 +95,7 @@ var filter_books = function() {
 
         label = label.join(', ');
 
+        filter_print_books(filter);
         isotope_grid(filter);
         $clear_tags.show();
         $current_tag.find('span').text(label);
@@ -90,13 +112,11 @@ var filter_books = function() {
                 $tag.addClass('unavailable');
             }
         }
-
-        filter_print_books(filter);
     } else {
+        filter_print_books(null);
         isotope_grid('*');
         $clear_tags.hide();
         $current_tag.hide();
-        filter_print_books(null);
     }
 };
 
@@ -331,6 +351,7 @@ $(function() {
         sort: '3'  
     }));
     
+    $adwrapper = $('.adwrapper');
     $all_tags = $('.tags .tag');
 
     // Never relayout the grid more than twice a second
