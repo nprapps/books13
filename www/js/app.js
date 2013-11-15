@@ -14,7 +14,6 @@ var $print_books;
 var $back_to_top;
 var $adwrapper;
 
-
 var next;
 var previous;
 var selected_tags = [];
