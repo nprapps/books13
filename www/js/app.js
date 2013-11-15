@@ -16,7 +16,6 @@ var $back_to_top;
 var next;
 var previous;
 var selected_tags = [];
-var skip_scroll = false;
 var first_hash = true;
 
 /*
@@ -207,30 +206,20 @@ var on_hash_changed = function(new_hash, old_hash) {
     if (hash_type == 'tag') {
         $modal.modal('hide');
         on_tag_hash(hash_slug);
-
-        if (!skip_scroll) {
-            back_to_top();
-        }
-        
-        skip_scroll = false;
     } else if (hash_type == 'book') {
         on_book_hash(hash_slug);
 
         // On first load, we need to load in the books. #142
         if (first_hash) {
             filter_books();
-
-            first_hash = false;
         }
     } else {
         $modal.modal('hide');
         selected_tags = [];
 
-        if (!skip_scroll) {
+        if (first_hash) {
             filter_books();
         }
-
-        skip_scroll = false;
     }
 
     // Track _ the same as root
@@ -239,6 +228,8 @@ var on_hash_changed = function(new_hash, old_hash) {
     }
 
     _gaq.push(['_trackPageview', location.pathname + '#' + new_hash]);
+            
+    first_hash = false;
 
     return false;
 };
@@ -247,8 +238,6 @@ var on_hash_changed = function(new_hash, old_hash) {
  * Clear the hash when closing a book modal.
  */
 var on_book_modal_closed = function() {
-    skip_scroll = true;
-
     if (selected_tags.length > 0) {
         hasher.setHash('tag', selected_tags.join(','));
     } else {
