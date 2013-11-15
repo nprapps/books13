@@ -296,9 +296,9 @@ $(function() {
         var scroll_pos_test = 500;
 
         if(y_scroll_pos > scroll_pos_test && $('#myModal:visible').length === 0) {
-            $back_to_top.show();
+            $back_to_top.fadeIn(1000);
         } else {
-            $back_to_top.hide();
+            $back_to_top.fadeOut(1000);
         } 
 
     });
