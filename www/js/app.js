@@ -296,6 +296,21 @@ $(function() {
         }
     });
 
+    for (var i = 0; i < BOOKS.length; i++) {
+        if (BOOKS[i].text.length == 0) {
+            BOOKS[i].teaser = '';
+            continue;
+        }
+
+        var j = 200;
+
+        while (BOOKS[i].text[j] != ' ') {
+            j--;
+        }
+
+        BOOKS[i].teaser = '"' + BOOKS[i].text.substring(0, j) + '..."';
+    }
+
     // Render the book grid
     $books_grid.html(JST.book_grid({
         books: BOOKS,
