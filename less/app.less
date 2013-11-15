@@ -249,10 +249,10 @@ h1 + #story-meta { margin-top: -11px; }
 .tag {
 	border: none;
 	background-color: lighten(@yellow-light, 30%);
-	color: @yellow-dark;
+	color: darken(@yellow-dark, 10%);
 	font-weight: normal;
 	font-size: 12px;
-	
+
 	&.unavailable {
 		display: none;
 	}
@@ -268,7 +268,7 @@ h1 + #story-meta { margin-top: -11px; }
 		border-radius: none;
 		outline: none;
 		color: @yellow-dark;
-		background-color: lighten(@yellow-light, 30%);
+		background-color: lighten(@yellow-light, 20%);
 
 		&.selected {
 			color: #fff;
@@ -280,6 +280,17 @@ h1 + #story-meta { margin-top: -11px; }
 	&.selected:focus {
 		background: @yellow-dark;
 		color: #fff;
+		position: relative;
+
+		&:before {
+			font-family: FontAwesome;
+			font-size: 18px;
+			content: "\f057";
+			position: absolute;
+			left: 5px;
+			top: 2px;
+			color: lighten(@yellow-light, 30%);
+		}
 
 		.tags-wrapper & {
 			width: 100%;
@@ -293,8 +304,8 @@ h1 + #story-meta { margin-top: -11px; }
 	@media screen and (min-width: @screen-sm){
 		.tags-wrapper & {
 			background: none;
-			color: @yellow-dark;
-			padding: 5px;
+			color: darken(@yellow-dark, 10%);
+			padding: 5px 5px 5px 25px;
 			margin: 0;
 			white-space: normal;
 			font-size: 13px;
