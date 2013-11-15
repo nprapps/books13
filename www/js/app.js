@@ -223,6 +223,13 @@ var on_hash_changed = function(new_hash, old_hash) {
         skip_scroll = false;
     }
 
+    // Track _ the same as root
+    if (new_hash == '_') {
+        new_hash = '';
+    }
+
+    _gaq.push(['_trackPageview', location.pathname + '#' + new_hash]);
+
     return false;
 };
 

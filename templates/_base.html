@@ -254,7 +254,8 @@
     <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', '{{ GOOGLE_ANALYTICS_ID }}']);
-        _gaq.push(['_trackPageview']);
+        // NB: Analytics tracked in hash event. See app.js:on_hash_changed()
+        //_gaq.push(['_trackPageview', location.pathname + location.hash]);
         (function() {
             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
