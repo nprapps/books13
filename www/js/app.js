@@ -216,10 +216,7 @@ var on_hash_changed = function(new_hash, old_hash) {
     } else {
         $modal.modal('hide');
         selected_tags = [];
-
-        if (first_hash) {
-            filter_books();
-        }
+        filter_books();
     }
 
     // Track _ the same as root
