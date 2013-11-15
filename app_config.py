@@ -110,9 +110,9 @@ GOOGLE = {
 
 NPR_DFP = {
     'STORY_ID': '203618536',
-    'TARGET': 'News_NPR_News_Investigations',
-    'ENVIRONMENT': 'NPRTEST',
-    'TESTSERVER': 'true'
+    'TARGET': 'Arts___Life_Books',
+    'ENVIRONMENT': 'NPR',
+    'TESTSERVER': 'false'
 }
 
 """
