@@ -223,6 +223,13 @@ var on_hash_changed = function(new_hash, old_hash) {
         skip_scroll = false;
     }
 
+    // Track _ the same as root
+    if (new_hash == '_') {
+        new_hash = '';
+    }
+
+    _gaq.push(['_trackPageview', location.pathname + '#' + new_hash]);
+
     return false;
 };
 
@@ -288,6 +295,21 @@ $(function() {
             // $back_to_top.animate({bottom:"-50px"});
         }
     });
+
+    for (var i = 0; i < BOOKS.length; i++) {
+        if (BOOKS[i].text.length == 0) {
+            BOOKS[i].teaser = '';
+            continue;
+        }
+
+        var j = 200;
+
+        while (BOOKS[i].text[j] != ' ') {
+            j--;
+        }
+
+        BOOKS[i].teaser = '"' + BOOKS[i].text.substring(0, j) + '..."';
+    }
 
     // Render the book grid
     $books_grid.html(JST.book_grid({
