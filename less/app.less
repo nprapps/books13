@@ -15,11 +15,11 @@
 
 // General styles
 a, a:link, a:visited { 
-    color: @yellow-dark; 
+    color: @red; 
     text-decoration: none;
 }
 a:hover, a:active { 
-    color: darken(@yellow-dark, 20%); 
+    color: lighten(@red, 20%); 
     text-decoration: none; 
 }
 .btn.btn-blue, 
@@ -266,8 +266,8 @@ h1 + #story-meta { margin-top: -11px; }
 
 .tag {
 	border: none;
-	background-color: lighten(@yellow-light, 30%);
-	color: darken(@yellow-dark, 10%);
+	background-color: lighten(@red, 40%);
+	color: @red;
 	font-weight: normal;
 	font-size: 12px;
 
@@ -277,7 +277,7 @@ h1 + #story-meta { margin-top: -11px; }
 
 	&:hover {
 		color: #fff;
-		background: @yellow-dark;
+		background: @red;
 	}
 
 	&:active,
@@ -285,17 +285,17 @@ h1 + #story-meta { margin-top: -11px; }
 		box-shadow: none;
 		border-radius: none;
 		outline: none;
-		color: @yellow-dark;
-		background-color: lighten(@yellow-light, 20%);
+		color: @red;
+		background-color: lighten(@red, 40%);
 	}
 
 	&.selected,
 	&.selected:active,
 	&.selected:focus {
-		background: @yellow-dark;
-		color: #fff;
+		background: @red;
+		color: @cream;
 		position: relative;
-		padding: 5px 5px 5px 25px;
+		padding: 8px 8px 8px 25px;
 
 		&:before {
 			font-family: FontAwesome;
@@ -303,8 +303,8 @@ h1 + #story-meta { margin-top: -11px; }
 			content: "\f057";
 			position: absolute;
 			left: 5px;
-			top: 2px;
-			color: lighten(@yellow-light, 30%);
+			top: 3px;
+			color: lighten(@red, 30%);
 		}
 
 		.tags-wrapper & {
@@ -312,14 +312,26 @@ h1 + #story-meta { margin-top: -11px; }
 		}
 
 		&:hover {
-			color: #fff;
+			color: @cream;
+		}
+	}
+
+	.book & {
+		&.selected,
+		&.selected:active,
+		&.selected:focus {
+			&:before {
+				display: none;
+				background: lighten(@red, 30%);
+				color: @red;
+			}
 		}
 	}
 
 	@media screen and (min-width: @screen-sm){
 		.tags-wrapper & {
 			background: none;
-			color: darken(@yellow-dark, 10%);
+			color: @red;
 			padding: 5px 5px 5px 25px;
 			margin: 0;
 			white-space: normal;
@@ -331,8 +343,9 @@ h1 + #story-meta { margin-top: -11px; }
 			border-top: 1px solid @gray-lighter;
 
 			&.selected {
-				background: @yellow-dark;
-				color: #fff;
+				background: @red;
+				padding: 5px 5px 5px 25px;
+				color: @cream;
 				display: block;
 				text-align: right;
 			}
@@ -422,7 +435,7 @@ h1 + #story-meta { margin-top: -11px; }
 
 	>a {
 		line-height: .5em;
-		color: @yellow-dark;
+		color: @red;
 		font-weight: bold;
 		font-size: 14px;
 
@@ -441,7 +454,7 @@ h1 + #story-meta { margin-top: -11px; }
 	}
 
 	>a:hover {
-		color: lighten(@yellow-dark, 20%);
+		color: lighten(@red, 20%);
 	}
 }
 
@@ -534,7 +547,36 @@ footer {
 
 		.tags-wrapper {
 			width: 150px;
-			padding-left: 15px;
+			padding-left: 16px;
+			text-align: right;
+
+			h4 {
+				font-size: 15px;
+				line-height: 1.2;
+				margin-top: 0;
+				color: @cream;
+				background: @red;
+				padding: 15px 7px 7px;
+				position: relative;
+				text-align: center;
+				margin-bottom: 40px;
+				font-weight: bold;
+				-webkit-font-smoothing: antialiased;
+
+				&:after {
+					display: block;
+					content: ' ';
+					position: absolute;
+					bottom: -25px;
+					left: 0;
+					width: 0; 
+					height: 0; 
+					border-left: 67px solid transparent;
+					border-right: 67px solid transparent;
+					
+					border-top: 25px solid @red;
+				}
+			}
 
 			.tags {
 
