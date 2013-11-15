@@ -15,11 +15,11 @@
 
 // General styles
 a, a:link, a:visited { 
-    color: #4774cc; 
+    color: @yellow-dark; 
     text-decoration: none;
 }
 a:hover, a:active { 
-    color: #bccae5; 
+    color: darken(@yellow-dark, 20%); 
     text-decoration: none; 
 }
 .btn.btn-blue, 
@@ -269,10 +269,6 @@ h1 + #story-meta { margin-top: -11px; }
 		outline: none;
 		color: @yellow-dark;
 		background-color: lighten(@yellow-light, 20%);
-
-		&.selected {
-			color: #fff;
-		}
 	}
 
 	&.selected,
@@ -281,6 +277,7 @@ h1 + #story-meta { margin-top: -11px; }
 		background: @yellow-dark;
 		color: #fff;
 		position: relative;
+		padding: 5px 5px 5px 25px;
 
 		&:before {
 			font-family: FontAwesome;
@@ -318,16 +315,9 @@ h1 + #story-meta { margin-top: -11px; }
 			&.selected {
 				background: @yellow-dark;
 				color: #fff;
+				display: block;
+				text-align: right;
 			}
-		}
-
-		&:focus {
-			background: none;
-		}
-
-		&.selected {
-			display: block;
-			text-align: right;
 		}
 	}
 }
@@ -414,7 +404,7 @@ h1 + #story-meta { margin-top: -11px; }
 
 	>a {
 		line-height: .5em;
-		color: #7590c4;
+		color: @yellow-dark;
 		font-weight: bold;
 		font-size: 14px;
 
@@ -433,7 +423,7 @@ h1 + #story-meta { margin-top: -11px; }
 	}
 
 	>a:hover {
-		color: #bccae5;
+		color: lighten(@yellow-dark, 20%);
 	}
 }
 
