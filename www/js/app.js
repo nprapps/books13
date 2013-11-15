@@ -14,7 +14,6 @@ var $print_books;
 var $back_to_top;
 var $adwrapper;
 
-
 var next;
 var previous;
 var selected_tags = [];
@@ -44,22 +43,24 @@ var back_to_top = function() {
  * Enable or reapply isotope to the grid.
  */
 var isotope_grid = function(filter) {
-    // A bit of a hack, we use the visible printer-friendly books
-    // to determine where to put the ad in the grid
-    var $visible_books = $print_books.find('.print-book.visible');
-    var i = Math.min($visible_books.length - 1, 2);
-    var $that_book = $visible_books.eq(i);
-    var ad_sort = parseInt($that_book.data('sort')) + 1; 
+    if ($adwrapper) {
+        // A bit of a hack, we use the visible printer-friendly books
+        // to determine where to put the ad in the grid
+        var $visible_books = $print_books.find('.print-book.visible');
+        var i = Math.min($visible_books.length - 1, 2);
+        var $that_book = $visible_books.eq(i);
+        var ad_sort = parseInt($that_book.data('sort')) + 1; 
 
-    $adwrapper.data('sort', ad_sort);
+        $adwrapper.data('sort', ad_sort);
 
-    // NB: Trying to do this before isotope renders the first time is an error
-    if (isotope_loaded) {
-        $books_grid.isotope('updateSortData', $books_grid.find('.isotope-item'));
+        // NB: Trying to do this before isotope renders the first time is an error
+        if (isotope_loaded) {
+            $books_grid.isotope('updateSortData', $books_grid.find('.isotope-item'));
+        }
+
+        // Never filter out ad
+        filter += ',.adwrapper';
     }
-
-    // Never filter out ad
-    filter += ',.adwrapper';
 
     $books_grid.isotope({
         filter: filter,
@@ -346,11 +347,14 @@ $(function() {
         book_card: JST.book_card
     }));
 
-    $books_grid.append(JST.grid_ad({
-        sort: '3'  
-    }));
+    if (!SMALL) {
+        $books_grid.append(JST.grid_ad({
+            sort: '3'  
+        }));
     
-    $adwrapper = $('.adwrapper');
+        $adwrapper = $('.adwrapper');
+    }
+    
     $all_tags = $('.tags .tag');
 
     // Never relayout the grid more than twice a second

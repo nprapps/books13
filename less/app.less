@@ -110,7 +110,7 @@ nav {
 // Header
 header {
 	padding: 30px 0 0;
-	
+
 	h1 { 
 		font-size: 48px; 
 		font-weight: bold;
@@ -126,6 +126,7 @@ header {
 
 	@media screen and (min-width: @screen-sm){
 		padding-left: 176px;
+		padding-right: 50px + @grid-gutter-width;
 	}
 }
 
@@ -136,10 +137,15 @@ header {
     margin: 11px;
     border: 1px solid @gray-light;
 
+    .inner-wrapper {
+        padding: 0px 10px 25px 10px;
+        border: 1px solid gray;
+    }
+
     .sponsor300 {
         overflow: hidden;
         width: 300px;
-        margin: 0 auto;
+        margin: 10px auto 0 auto;
     }
     p { 
         margin: 6px 0 0 0; 
@@ -219,7 +225,7 @@ h1 + #story-meta { margin-top: -11px; }
             text-indent: -0.5em;
         }
 
-        .review:hover {
+        .no-touch .review:hover {
             opacity: 1;
         }
 
@@ -283,7 +289,7 @@ h1 + #story-meta { margin-top: -11px; }
 
 }
 
-#back-to-top:hover {
+.no-touch #back-to-top:hover {
 	background-color: #db9e36;
 }
 
@@ -464,6 +470,10 @@ h1 + #story-meta { margin-top: -11px; }
 	margin: 0;
 	color: #333 !important;
 
+	@media (max-width: 480px) {
+		font-size: 10px;
+	}
+
 }
 
 #modal-close-btn {
@@ -497,6 +507,7 @@ h1 + #story-meta { margin-top: -11px; }
 		padding: 8px 8px 8px 25px;
 		text-align: right;
 		margin: 4px 2px 4px 2px;
+		line-height: 5em;
 	}
 
 	>a:hover {
