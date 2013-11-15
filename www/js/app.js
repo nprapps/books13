@@ -308,7 +308,7 @@ $(function() {
             j--;
         }
 
-        BOOKS[i].teaser = '"' + BOOKS[i].text.substring(0, j) + '..."';
+        BOOKS[i].teaser = '&#8220;' + BOOKS[i].text.substring(0, j) + '...&#8221;';
     }
 
     // Render the book grid
