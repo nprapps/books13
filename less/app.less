@@ -11,10 +11,6 @@
 @yellow-light: #FFD34E;
 @yellow-dark: #DB9E36; 
 
-body {
-	// background: desaturate(lighten(papayawhip, 3%), 40%);
-}
-
 body.modal-open {
 	margin-right: 0;
 }
@@ -55,7 +51,7 @@ a.btn.btn-blue {
 
 // Navbar
 nav {
-	background: #fff;
+	background: #e0e0e0;
 	height: 46px;
 	overflow: hidden;
 	border-bottom: 2px solid #fff;
@@ -113,20 +109,18 @@ nav {
 
 // Header
 header {
-	padding: 30px 0;
-	border-bottom: 2px solid #fff;
-	background: @red;
+	padding: 30px 0 0;
 	
 	h1 { 
 		font-size: 48px; 
 		font-weight: bold;
 		font-family: @font-family-sans-serif; 
 		margin-bottom: 11px; 
-		color: @cream;
+		color: @red;
 	}
 	h2 { 
 		font-size: 15px; 
-		color: lighten(@red, 30%); 
+		color: #555; 
 		margin: 0; 
 	}
 
@@ -138,7 +132,9 @@ header {
 // Cube ad
 .adwrapper { 
     zoom: 1; 
-    padding: 0 11px @line-height-computed;
+    padding: 11px;
+    margin: 11px;
+    border: 1px solid @gray-light;
 
     .sponsor300 {
         overflow: hidden;
