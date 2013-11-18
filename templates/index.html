@@ -6,6 +6,8 @@
         <a href="#/_"><h1>{{ COPY.content.header_title }}</h1></a>
         <h2>by {{ COPY.attribution.byline }}</h2>
         <div class="chatter">{{ COPY.content.chatter }}</div>
+
+        <button id="mobile-filters" class="visible-xs btn btn-primary btn-block">Filter by genre</button>
     </div>
 
     <div class="adwrapper">
@@ -18,8 +20,8 @@
             // -->
             </script>
         </div>
-        <p class="left">NPR thanks our sponsors</p>
-        <p class="right"><a href="http://www.npr.org/about/place/corpsupport/">Become an NPR sponsor</a></p>
+        <p class="left hidden-xs">NPR thanks our sponsors</p>
+        <p class="right hidden-xs"><a href="http://www.npr.org/about/place/corpsupport/">Become an NPR sponsor</a></p>
     </div>
 </header>
 {% endblock %}
@@ -28,10 +30,9 @@
     <div class="book-container">
         <div class="tags-wrapper">
             <h4 class="hidden-xs">What would you like to&nbsp;read?</h4>
-            <button id="mobile-filters" class="visible-xs btn btn-primary btn-block">What would you like to&nbsp;read?</button>
             <!-- All Tags List -->
             <ul class="filter tags option-set list-unstyled hidden-xs" data-filter-group="category">
-                    <li class="visible-xs close"><span class="close" aria-hidden="true">&times;</span></li>
+                    <li class="visible-xs close-modal"><span class="close" aria-hidden="true">&times;</span></li>
                     <li class="visible-xs mobile-label">Filter by:</li>
                 {% for row in COPY.tags %}
                    <li> 
@@ -43,6 +44,9 @@
     
                     <li>
                         <button class="btn btn-large btn-info tag clear-tags" data-filter-value="*">Show All</button>
+                    </li>
+                    <li class="visible-xs close-modal">
+                        <button class="btn btn-primary btn-block">Done</button>
                     </li>
             </ul>
         </div>
