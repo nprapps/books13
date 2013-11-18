@@ -96,6 +96,12 @@ var filter_books = function() {
         $clear_tags.hide();
         $current_tag.hide();
     }
+
+    // NB: Force scroll event so that unveils will happen auto-magically
+    // We wait a moment first so the grid has animated in
+    _.delay(function() {
+        $(window).trigger('scroll');
+    }, 1000);
 };
 
 /*
@@ -249,6 +255,26 @@ var on_book_modal_closed = function() {
     return true;
 };
 
+// Never relayout the grid more than twice a second
+var relayout = _.throttle(function() {
+    $books_grid.isotope('reLayout');
+}, 500);
+
+
+/*
+ * Begin unveiling visible books in the grid.
+ */
+var unveil_grid = function() {
+    $books_grid.find('img').unveil(800, function() {
+        //console.log('unveiling: ' + $(this).parent().parent().parent().attr('id'));
+        console.log('unveil');
+
+        $(this).load(function() {
+            relayout(); 
+        });
+    });
+}
+
 $(function() {
     $body = $('body');
     $content = $('#content');
@@ -312,24 +338,10 @@ $(function() {
 
     $all_tags = $('.tags .tag');
 
-    // Never relayout the grid more than twice a second
-    // And never the first time its called since it won't be
-    // loaded anyway
-    var relayout = _.throttle(function() {
-        $books_grid.isotope('reLayout');
-    }, 500);
-    
-    $books_grid.find('img').unveil(1200, function() {
-        //console.log('unveiling: ' + $(this).parent().parent().parent().attr('id'));
-        //console.log('unveil');
-
-        $(this).load(function() {
-            relayout(); 
-        });
-    });
-    
     // Set up the hasher bits to grab the URL hash.
     hasher.changed.add(on_hash_changed);
     hasher.initialized.add(on_hash_changed);
     hasher.init();
+    
+    _.delay(unveil_grid, 1000);
 });
