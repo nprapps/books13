@@ -128,6 +128,7 @@ var filter_print_books = function(filter) {
  * Filter the list to a certain tag.
  */
 var on_tag_clicked = function() {
+    console.log(1);
     var slug = $(this).data('tag-slug');
     var already_selected = selected_tags.indexOf(slug);
 
@@ -288,7 +289,7 @@ $(function() {
     $back_to_top = $('#back-to-top');
   
     // Event handlers.
-    $body.on('click', '.tag', on_tag_clicked);
+    $body.on('click', '.filter .tag', on_tag_clicked);
     $content.on('click', '.back-to-top', back_to_top);
     $content.on('click', 'button.clear-tags', on_clear_tags_clicked);
     $modal.on('hidden.bs.modal', on_book_modal_closed);
