@@ -31,7 +31,7 @@ var scroll = function($el) {
  * Jump back to the top of the page.
  */
 var back_to_top = function() {
-    scroll($body, 0);
+    scroll($content, 0);
 
     return false;
 };
@@ -146,6 +146,11 @@ var on_tag_clicked = function() {
 
     return false;
 };
+
+var on_modal_tag_clicked = function() {
+    back_to_top();
+    return true;
+}
 
 /*
  * Clear the current tag
@@ -293,6 +298,7 @@ $(function() {
     $content.on('click', '.back-to-top', back_to_top);
     $content.on('click', 'button.clear-tags', on_clear_tags_clicked);
     $modal.on('hidden.bs.modal', on_book_modal_closed);
+    $modal.on('click', '.tag', on_modal_tag_clicked);
     $modal.keyup(function (e) {
         if ($('#myModal:visible').length > 0){
            if (e.which === 37 && previous !== null) {
