@@ -59,7 +59,6 @@ var isotope_grid = function(filter) {
  */
 var filter_books = function() {
     $all_tags.removeClass('selected unavailable');
-    $all_tags.parent().removeClass('selected unavailable');
 
     if (selected_tags.length > 0) {
         var filter = '';
@@ -88,10 +87,9 @@ var filter_books = function() {
                 continue;
             }
 
-            if ($books_grid.find('.book.tag-' + slug + ':visible').length == 0) {
+            if ($books_grid.find('.tag-' + slug + ':not(.isotope-hidden)').length == 0) {
                 var $tag = $all_tags.filter('.tag[data-tag-slug="' + slug + '"]');
                 $tag.addClass('unavailable');
-                $tag.parent().addClass('unavailable');
             }
         }
     } else {
@@ -307,7 +305,7 @@ $(function() {
     $modal = $('#myModal');
     $modal_content = $('#myModal .modal-content');    
     $print_books = $('.print-friendly ul');
-    $back_to_top = $('#back-to-top');
+    $back_to_top = $('#back-to-top')
     $mobile_filters_btn = $('#mobile-filters');
     $filter = $('.filter.tags');
   
