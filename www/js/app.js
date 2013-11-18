@@ -67,7 +67,7 @@ var filter_books = function() {
 
         for (i in selected_tags) {
             var slug = selected_tags[i];
-            var $tag = $('.tags .tag[data-tag-slug="' + slug + '"]');
+            var $tag = $all_tags.filter('.tag[data-tag-slug="' + slug + '"]');
         
             $tag.addClass('selected');
             filter += '.tag-' + slug;
@@ -88,8 +88,8 @@ var filter_books = function() {
                 continue;
             }
 
-            if ($('.book.tag-' + slug + ':visible').length == 0) {
-                var $tag = $('.tags .tag[data-tag-slug="' + slug + '"]');
+            if ($books_grid.find('.book.tag-' + slug + ':visible').length == 0) {
+                var $tag = $all_tags.filter('.tag[data-tag-slug="' + slug + '"]');
                 $tag.addClass('unavailable');
                 $tag.parent().addClass('unavailable');
             }
@@ -112,6 +112,11 @@ var filter_books = function() {
  * Filter the print-friendly book list.
  */
 var filter_print_books = function(filter) {
+    // Don't bother with print-friendly on mobile
+    if (MOBILE) {
+        return;
+    }
+
     if (filter) {
         $print_books.find('.print-book').removeClass('visible');
 
