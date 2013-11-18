@@ -287,7 +287,7 @@ var unveil_grid = function() {
  */
  var toggle_filter_modal = function() {
     console.log($filter);
-    $filter.toggleClass('hidden-xs');
+    $filter.toggleClass('hidden-xs').scrollTop(0);
  }
 
 $(function() {
