@@ -305,7 +305,7 @@ $(function() {
     $modal = $('#myModal');
     $modal_content = $('#myModal .modal-content');    
     $print_books = $('.print-friendly ul');
-    $back_to_top = $('#back-to-top')
+    $back_to_top = $('#back-to-top');
     $mobile_filters_btn = $('#mobile-filters');
     $filter = $('.filter.tags');
   
