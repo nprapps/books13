@@ -29,11 +29,7 @@
     });
 
     function unveil() {
-        /*
-         * CEG: Hacked to delay checking image location for a half-second
-         * so that images don't get unveiled while isotope is rearranging.
-         */
-        function not_so_fast() {
+        //console.log('unveil()');
           var inview = images.filter(function() {
             var $e = $(this);
             if ($e.is(":hidden")) return;
@@ -48,15 +44,18 @@
 
           loaded = inview.trigger("unveil");
           images = images.not(loaded);
-        }
-
-        _.delay(not_so_fast, 500);
     }
 
-    $w.scroll(unveil);
-    $w.resize(unveil);
+    /*
+     * CEG: Hacked to throttle checking image location 
+     * so that images don't get unveiled while isotope is rearranging.
+     */
+    var unveil_slow = _.throttle(unveil, 500, { leading: false });
 
-    unveil();
+    $w.scroll(unveil_slow);
+    $w.resize(unveil_slow);
+
+    unveil_slow();
 
     return this;
 
