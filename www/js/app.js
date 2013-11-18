@@ -33,7 +33,7 @@ var scroll = function($el) {
  * Jump back to the top of the page.
  */
 var back_to_top = function() {
-    scroll($body, 0);
+    scroll($content, 0);
 
     return false;
 };
@@ -130,6 +130,7 @@ var filter_print_books = function(filter) {
  * Filter the list to a certain tag.
  */
 var on_tag_clicked = function() {
+    console.log(1);
     var slug = $(this).data('tag-slug');
     var already_selected = selected_tags.indexOf(slug);
 
@@ -147,6 +148,11 @@ var on_tag_clicked = function() {
 
     return false;
 };
+
+var on_modal_tag_clicked = function() {
+    back_to_top();
+    return true;
+}
 
 /*
  * Clear the current tag
@@ -300,10 +306,11 @@ $(function() {
     $filter = $('.filter.tags');
   
     // Event handlers.
-    $body.on('click', '.tag', on_tag_clicked);
+    $body.on('click', '.filter .tag', on_tag_clicked);
     $content.on('click', '.back-to-top', back_to_top);
     $content.on('click', 'button.clear-tags', on_clear_tags_clicked);
     $modal.on('hidden.bs.modal', on_book_modal_closed);
+    $modal.on('click', '.tag', on_modal_tag_clicked);
     $modal.keyup(function (e) {
         if ($('#myModal:visible').length > 0){
            if (e.which === 37 && previous !== null) {
