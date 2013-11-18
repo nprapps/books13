@@ -186,7 +186,7 @@ h1 + #story-meta { margin-top: -11px; }
     }
 
     @media screen and (max-width: 480px){
-    	width: 50%;
+    	width: 100%;
     }
 
     @media screen and (max-width: 320px){
@@ -225,6 +225,13 @@ h1 + #story-meta { margin-top: -11px; }
         img {
         	width: 100%;
             max-width: 300px;
+
+            @media screen and (max-width: 480px) {
+            	display: block;
+            	margin-left: auto;
+		    	margin-right: auto;
+		    	width: 50%;
+            }
         }
     }
 }
