@@ -328,23 +328,26 @@ h1 + #story-meta { margin-top: -11px; }
 	position: relative;
 }
 
-.tags {
-	white-space: nowrap;
-	// border-width: 1px 0;
-	// border-style: solid;
-	// border-color: @gray-lighter;
-	background: desaturate(papayawhip, 60%);
-	margin: 0 -@grid-gutter-width / 2 @line-height-computed;
-	padding: 0 @grid-gutter-width / 2;
-	overflow: auto;
-	position: relative;
-	-webkit-overflow-scrolling: touch;
-	li {
-		display: inline-block;
-		margin: 5px 0;
+@media screen and (max-width: @screen-xs){
+	.tags {
 		white-space: nowrap;
+		// border-width: 1px 0;
+		// border-style: solid;
+		// border-color: @gray-lighter;
+		background: desaturate(papayawhip, 60%);
+		margin: 0 -@grid-gutter-width / 2 @line-height-computed;
+		padding: 0 @grid-gutter-width / 2;
+		overflow: auto;
+		position: relative;
+		-webkit-overflow-scrolling: touch;
+		li {
+			display: inline-block;
+			margin: 5px 0;
+			white-space: nowrap;
+		}
 	}
 }
+
 
 .tag {
 	border: none;
