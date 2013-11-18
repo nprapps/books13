@@ -32,6 +32,10 @@
             <h4 class="hidden-xs">What would you like to&nbsp;read?</h4>
             <!-- All Tags List -->
             <ul class="filter tags option-set list-unstyled hidden-xs" data-filter-group="category">
+                    <li>
+                        <center><button class="btn btn-large btn-info clear-tags" data-filter-value="*">Show All</button></center>
+                    </li>
+
                     <li class="visible-xs close-modal"><span class="close" aria-hidden="true">&times;</span></li>
                     <li class="visible-xs mobile-label">Filter by:</li>
                 {% for row in COPY.tags %}
@@ -41,10 +45,7 @@
                        data-filter-value=".tag-{{ row.key }}" data-tag-slug="{{ row.key }}">{{ row.value }}</button>
                    </li>
                 {% endfor %}
-    
-                    <li>
-                        <button class="btn btn-large btn-info tag clear-tags" data-filter-value="*">Show All</button>
-                    </li>
+
                     <li class="visible-xs close-modal">
                         <button class="btn btn-primary btn-block">Done</button>
                     </li>
