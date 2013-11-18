@@ -51,7 +51,7 @@ a.btn.btn-blue {
 
 // Navbar
 nav {
-	background: #e0e0e0;
+	background: #fff;
 	height: 46px;
 	overflow: hidden;
 	border-bottom: 2px solid #fff;
@@ -109,14 +109,16 @@ nav {
 
 // Header
 header {
-	padding: 30px 0;
-	background: #f5f5f5;
+	padding: 30px @grid-gutter-width / 2;
+	// background: #f5f5f5;
+	background: desaturate(papayawhip, 60%);
+
 
 	h1 { 
 		font-size: 48px; 
 		font-weight: bold;
 		font-family: @font-family-sans-serif; 
-		margin-bottom: 11px; 
+		margin-bottom: @line-height-computed; 
 		color: @red;
 	}
 	h2 { 
@@ -126,8 +128,20 @@ header {
 	}
 
 	@media screen and (min-width: @screen-sm){
-		padding-left: 176px;
-		padding-right: 50px + @grid-gutter-width;
+		display: table;
+		padding: 30px @grid-gutter-width;
+
+
+		.header-wrapper,
+		.adwrapper {
+			display: table-cell;
+			vertical-align: top;
+		}
+		
+		.header-wrapper {
+			padding-left: 206px - @grid-gutter-width;
+			padding-right: 50px + @grid-gutter-width;
+		}
 	}
 }
 
@@ -186,7 +200,7 @@ h1 + #story-meta { margin-top: -11px; }
     }
 
     @media screen and (max-width: 480px){
-    	width: 100%;
+    	width: 50%;
     }
 
     @media screen and (max-width: 320px){
@@ -230,7 +244,6 @@ h1 + #story-meta { margin-top: -11px; }
             	display: block;
             	margin-left: auto;
 		    	margin-right: auto;
-		    	width: 50%;
             }
         }
     }

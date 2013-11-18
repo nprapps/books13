@@ -2,24 +2,23 @@
 
 {% block header_content %}
 <header id="top">
-    <div class="container header-wrapper">
-        <div class="col-md-8">
-            <a href="#/_"><h1>{{ COPY.content.header_title }}</h1></a>
-            <h2>by {{ COPY.attribution.byline }}</h2>
+    <div class="header-wrapper">
+        <a href="#/_"><h1>{{ COPY.content.header_title }}</h1></a>
+        <h2>by {{ COPY.attribution.byline }}</h2>
+    </div>
+
+    <div class="adwrapper">
+        <div id="ad-desktop" class="sponsor300">
+            <script type="text/javascript">
+            <!--
+            if (DFP.shouldRenderForDevice('desktop')) {
+                googletag.cmd.push(function() { googletag.display('ad-desktop'); });
+            }
+            // -->
+            </script>
         </div>
-        <div class="adwrapper col-md-4">
-            <div id="ad-desktop" class="sponsor300">
-                <script type="text/javascript">
-                <!--
-                if (DFP.shouldRenderForDevice('desktop')) {
-                    googletag.cmd.push(function() { googletag.display('ad-desktop'); });
-                }
-                // -->
-                </script>
-            </div>
-            <p class="left">NPR thanks our sponsors</p>
-            <p class="right"><a href="http://www.npr.org/about/place/corpsupport/">Become an NPR sponsor</a></p>
-        </div>
+        <p class="left">NPR thanks our sponsors</p>
+        <p class="right"><a href="http://www.npr.org/about/place/corpsupport/">Become an NPR sponsor</a></p>
     </div>
 </header>
 {% endblock %}
