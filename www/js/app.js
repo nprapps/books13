@@ -110,6 +110,11 @@ var filter_books = function() {
  * Filter the print-friendly book list.
  */
 var filter_print_books = function(filter) {
+    // Don't bother with print-friendly on mobile
+    if (MOBILE) {
+        return;
+    }
+
     if (filter) {
         $print_books.find('.print-book').removeClass('visible');
 
