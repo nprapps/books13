@@ -126,6 +126,10 @@ header {
 		color: #555; 
 		margin: 0; 
 	}
+    
+    .chatter {
+        margin-top: 15px;
+    }
 
 	@media screen and (min-width: @screen-sm){
 		display: table;
@@ -245,6 +249,10 @@ h1 + #story-meta { margin-top: -11px; }
             	margin-left: auto;
 		    	margin-right: auto;
             }
+
+            @media screen and (max-width: 320px) {
+		    	width: 100%;
+            }
         }
     }
 }
@@ -361,8 +369,8 @@ h1 + #story-meta { margin-top: -11px; }
 	}
 
 	&:hover {
-		color: #fff;
-		background: @red;
+		color: @red;
+		background-color: lighten(@red, 40%);
 	}
 
 	&:active,
