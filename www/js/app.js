@@ -336,27 +336,6 @@ $(function() {
 
     });
 
-    for (var i = 0; i < BOOKS.length; i++) {
-        if (BOOKS[i].text.length == 0) {
-            BOOKS[i].teaser = '';
-            continue;
-        }
-
-        var j = 200;
-
-        while (BOOKS[i].text[j] != ' ') {
-            j--;
-        }
-
-        BOOKS[i].teaser = '&#8220;' + BOOKS[i].text.substring(0, j) + '...&#8221;';
-    }
-
-    // Render the book grid
-    $books_grid.html(JST.book_grid({
-        books: BOOKS,
-        book_card: JST.book_card
-    }));
-
     $all_tags = $('.tags .tag');
 
     // Set up the hasher bits to grab the URL hash.

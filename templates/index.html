@@ -54,7 +54,21 @@
     
         <div class=" books-grid-wrapper">
             <h3 class="current-tag">Showing books tagged <span></span></h3>
-            <div id="books-grid" class="filter-inactive"></div>
+            <div id="books-grid" class="filter-inactive">
+                {% for book in books %}
+                <div id="{{ book.slug }}" class="book card isotope-item {% for tag in book.tags %}tag-{{ tag }} {% endfor %} isotope-hidden no-touch" data-sort="{{ loop.index }}">
+                    <a href="#/book/{{  book.slug }}">
+                    <div class="book-outer-wrapper">
+                        <!-- Book Image -->
+                        {% if book.teaser %}
+                        <div class="review">{{ book.teaser|safe }}</div>
+                        {% endif %}
+                        <img src="img/cover-loading.gif" data-src="img/cover/{{ book.slug }}-thumb.jpg" alt="{{ book.title }}"/>
+                    </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 
