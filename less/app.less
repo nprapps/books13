@@ -232,6 +232,10 @@ h1 + #story-meta { margin-top: -11px; }
 		    	margin-right: auto;
 		    	width: 50%;
             }
+
+            @media screen and (max-width: 320px) {
+		    	width: 100%;
+            }
         }
     }
 }
@@ -323,8 +327,8 @@ h1 + #story-meta { margin-top: -11px; }
 	}
 
 	&:hover {
-		color: #fff;
-		background: @red;
+		color: @red;
+		background-color: lighten(@red, 40%);
 	}
 
 	&:active,
