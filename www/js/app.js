@@ -59,6 +59,7 @@ var isotope_grid = function(filter) {
  */
 var filter_books = function() {
     $all_tags.removeClass('selected unavailable');
+    $all_tags.parent().removeClass('selected unavailable');
 
     if (selected_tags.length > 0) {
         var filter = '';
@@ -90,6 +91,7 @@ var filter_books = function() {
             if ($('.book.tag-' + slug + ':visible').length == 0) {
                 var $tag = $('.tags .tag[data-tag-slug="' + slug + '"]');
                 $tag.addClass('unavailable');
+                $tag.parent().addClass('unavailable');
             }
         }
     } else {
