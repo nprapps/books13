@@ -12,6 +12,8 @@ var $modal;
 var $modal_content;
 var $print_books;
 var $back_to_top;
+var $mobile_filters_btn;
+var $filter;
 
 var next;
 var previous;
@@ -280,6 +282,14 @@ var unveil_grid = function() {
     });
 }
 
+/*
+ * Show and hide the filters on small screens
+ */
+ var toggle_filter_modal = function() {
+    console.log($filter);
+    $filter.toggleClass('hidden-xs');
+ }
+
 $(function() {
     $body = $('body');
     $content = $('#content');
@@ -291,6 +301,8 @@ $(function() {
     $modal_content = $('#myModal .modal-content');    
     $print_books = $('.print-friendly ul');
     $back_to_top = $('#back-to-top');
+    $mobile_filters_btn = $('#mobile-filters');
+    $filter = $('.filter.tags');
   
     // Event handlers.
     $body.on('click', '.filter .tag', on_tag_clicked);
@@ -309,6 +321,9 @@ $(function() {
     });
     $back_to_top.on('click', back_to_top);
     $back_to_top.hide();
+    $mobile_filters_btn.on('click', toggle_filter_modal);
+    $filter.find('li.close').on('click', toggle_filter_modal);
+
     $(window).on('scroll', function() {
         var y_scroll_pos = window.pageYOffset;
         var scroll_pos_test = 500;

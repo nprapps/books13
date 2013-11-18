@@ -27,9 +27,12 @@
 {% block content %}
     <div class="book-container">
         <div class="tags-wrapper">
-            <h4>What would you like to&nbsp;read?</h4>
+            <h4 class="hidden-xs">What would you like to&nbsp;read?</h4>
+            <button id="mobile-filters" class="visible-xs btn btn-primary btn-block">What would you like to&nbsp;read?</button>
             <!-- All Tags List -->
-            <ul class="filter tags option-set list-unstyled" data-filter-group="category">
+            <ul class="filter tags option-set list-unstyled hidden-xs" data-filter-group="category">
+                    <li class="visible-xs close"><span class="close" aria-hidden="true">&times;</span></li>
+                    <li class="visible-xs mobile-label">Filter by:</li>
                 {% for row in COPY.tags %}
                    <li> 
                        <button
