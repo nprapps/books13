@@ -130,7 +130,6 @@ var filter_print_books = function(filter) {
  * Filter the list to a certain tag.
  */
 var on_tag_clicked = function() {
-    console.log(1);
     var slug = $(this).data('tag-slug');
     var already_selected = selected_tags.indexOf(slug);
 
@@ -143,7 +142,7 @@ var on_tag_clicked = function() {
     if (selected_tags.length > 0) {
         hasher.setHash('tag', selected_tags.join(','));
     } else {
-        hasher.setHash();
+        hasher.setHash('_');
     }
 
     return false;
@@ -158,7 +157,7 @@ var on_modal_tag_clicked = function() {
  * Clear the current tag
  */
 var on_clear_tags_clicked = function() {
-    hasher.setHash();
+    hasher.setHash('_');
 
     return false;
 };
