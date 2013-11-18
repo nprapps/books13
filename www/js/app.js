@@ -322,7 +322,7 @@ $(function() {
     $back_to_top.on('click', back_to_top);
     $back_to_top.hide();
     $mobile_filters_btn.on('click', toggle_filter_modal);
-    $filter.find('li.close').on('click', toggle_filter_modal);
+    $filter.find('.close-modal').on('click', toggle_filter_modal);
 
     $(window).on('scroll', function() {
         var y_scroll_pos = window.pageYOffset;
