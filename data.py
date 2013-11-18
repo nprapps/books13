@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import csv
 import json
 import os
@@ -118,8 +121,8 @@ def get_tags():
     for i in range(1, sheet.nrows):
         slug, tag = sheet.row_values(i)
 
-        SLUGS_TO_TAGS[slug] = tag
-        TAGS_TO_SLUGS[tag] = slug
+        SLUGS_TO_TAGS[slug] = tag.strip().replace(u'’', "'")
+        TAGS_TO_SLUGS[tag] = slug.strip()
 
 def parse_books_csv():
     """
