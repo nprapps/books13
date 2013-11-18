@@ -371,6 +371,11 @@ h1 + #story-meta { margin-top: -11px; }
 	&:hover {
 		color: @red;
 		background-color: lighten(@red, 40%);
+
+		@media screen and (min-width: @screen-sm){
+			color: #fff;
+			background-color: @red;
+		}
 	}
 
 	&:active,
@@ -672,14 +677,15 @@ footer {
 			text-align: right;
 
 			h4 {
-				font-size: 1px;
+				font-size: 17px;
 				line-height: 1.2;
 				margin-top: 0;
 				// text-transform: uppercase;
 				// color: @cream;
 				// background: @red;
 				padding: 7px;
-				border: 3px solid @red;
+				border: 3px solid desaturate(papayawhip, 60%);
+				color: @red;
 				position: relative;
 				text-align: right;
 				margin-bottom: @line-height-computed;
@@ -697,7 +703,7 @@ footer {
 					border-left: 10px solid transparent;
 					border-right: 10px solid transparent;
 					
-					border-top: 10px solid @red;
+					border-top: 10px solid desaturate(papayawhip, 60%);
 				}
 			}
 
