@@ -10,10 +10,11 @@ var $clear_tags;
 var $current_tag;
 var $modal;
 var $modal_content;
-var $print_books;
+var $books_list;
 var $back_to_top;
 var $mobile_filters_btn;
 var $filter;
+var $toggle_text;
 
 var next;
 var previous;
@@ -77,7 +78,7 @@ var filter_books = function() {
 
         label = label.join(', ');
 
-        filter_print_books(filter);
+        filter_books_list(filter);
         isotope_grid(filter);
         $clear_tags.show();
         $current_tag.find('span').text(label);
@@ -96,7 +97,7 @@ var filter_books = function() {
             }
         }
     } else {
-        filter_print_books(null);
+        filter_books_list(null);
         isotope_grid('*');
         $clear_tags.hide();
         $current_tag.hide();
@@ -110,16 +111,16 @@ var filter_books = function() {
 };
 
 /*
- * Filter the print-friendly book list.
+ * Filter the text book list.
  */
-var filter_print_books = function(filter) {
-    // Don't bother with print-friendly on mobile
+var filter_books_list = function(filter) {
+    // Don't bother with text on mobile
     if (MOBILE) {
         return;
     }
 
     if (filter) {
-        $print_books.find('.print-book').removeClass('visible');
+        $books_list.find('li').removeClass('visible');
 
         var filter = '';
 
@@ -128,9 +129,9 @@ var filter_print_books = function(filter) {
             filter += '.tag-' + slug;
         }
 
-        $print_books.find(filter).addClass('visible');
+        $books_list.find(filter).addClass('visible');
     } else {
-        $print_books.find('.print-book').addClass('visible');
+        $books_list.find('li').addClass('visible');
     }
 }
 
@@ -293,10 +294,14 @@ var unveil_grid = function() {
 /*
  * Show and hide the filters on small screens
  */
- var toggle_filter_modal = function() {
-    console.log($filter);
+var toggle_filter_modal = function() {
     $filter.toggleClass('hidden-xs').scrollTop(0);
- }
+}
+
+var toggle_books_list = function() {
+    $books_grid.toggle();
+    $books_list.toggle();
+}
 
 $(function() {
     $body = $('body');
@@ -307,10 +312,11 @@ $(function() {
     $current_tag = $('.current-tag');
     $modal = $('#myModal');
     $modal_content = $('#myModal .modal-content');    
-    $print_books = $('.print-friendly ul');
+    $books_list = $('#books-list');
     $back_to_top = $('#back-to-top');
     $mobile_filters_btn = $('#mobile-filters');
     $filter = $('.filter.tags');
+    $toggle_text = $('.toggle-text');
   
     // Event handlers.
     $body.on('click', '.filter .tag', on_tag_clicked);
@@ -331,6 +337,7 @@ $(function() {
     $back_to_top.hide();
     $mobile_filters_btn.on('click', toggle_filter_modal);
     $filter.find('.close-modal').on('click', toggle_filter_modal);
+    $toggle_text.on('click', toggle_books_list);
 
     $(window).on('scroll', function() {
         var y_scroll_pos = window.pageYOffset;

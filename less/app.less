@@ -685,8 +685,27 @@ footer {
 	}
 }
 
-.print-friendly {
+#books-list {
     display: none;
+    line-height: 1.4em;
+    list-style: none;
+    padding-left: 0;
+
+    li {
+        display: none;
+        font-style: normal;
+
+        &.visible {
+            display: list-item;
+        }
+
+        .title {
+            font-weight: bold;
+        }
+
+        .author {
+        }
+    }
 }
 
 // Media queries
