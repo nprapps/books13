@@ -25,7 +25,6 @@ var first_hash = true;
  */
 var scroll = function($el) {
     var top = $el.offset().top;
-
     $body.scrollTop(top);
 };
 
@@ -33,8 +32,7 @@ var scroll = function($el) {
  * Jump back to the top of the page.
  */
 var back_to_top = function() {
-    scroll($content, 0);
-
+    $body.scrollTo($content, { duration:450 }, 'y');
     return false;
 };
 
@@ -334,6 +332,7 @@ $(function() {
 
     $(window).on('scroll', function() {
         var y_scroll_pos = window.pageYOffset;
+
         var scroll_pos_test = 500;
 
         if(y_scroll_pos > scroll_pos_test && $('#myModal:visible').length === 0) {
