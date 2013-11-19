@@ -70,6 +70,7 @@ var filter_books = function() {
             var $tag = $all_tags.filter('.tag[data-tag-slug="' + slug + '"]');
         
             $tag.addClass('selected');
+            $tag.parent().addClass('selected');
             filter += '.tag-' + slug;
             label.push(COPY.tags[slug]);
         }
@@ -91,6 +92,7 @@ var filter_books = function() {
             if ($books_grid.find('.tag-' + slug + ':not(.isotope-hidden)').length == 0) {
                 var $tag = $all_tags.filter('.tag[data-tag-slug="' + slug + '"]');
                 $tag.parent().addClass('unavailable');
+                $tag.addClass('unavailable');
             }
         }
     } else {

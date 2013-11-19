@@ -33,8 +33,7 @@
             <!-- All Tags List -->
             <ul class="filter tags option-set list-unstyled hidden-xs" data-filter-group="category">
                 
-                    <li class="visible-xs close-modal"><span class="close" aria-hidden="true">&times;</span></li>
-                    <li class="visible-xs mobile-label">Filter by:</li>
+                    <li class="visible-xs mobile-label">Filter by: <span class="close visible-xs close-modal"aria-hidden="true">&times;</span></li>
 
                     <li>
                         <center><button class="btn btn-large btn-info clear-tags" data-filter-value="*">Show All</button></center>
@@ -47,9 +46,7 @@
                    </li>
                 {% endfor %}
 
-                    <li class="visible-xs close-modal">
-                        <button class="btn btn-primary btn-block">Done</button>
-                    </li>
+                    <a href="javascript:;" class="visible-xs close-modal" id="close-mobile-filter"><li >Done</li></a>
             </ul>
         </div>
         <!-- Book Cards Grid -->

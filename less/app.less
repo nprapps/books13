@@ -467,7 +467,7 @@ h1 + #story-meta { margin-top: -11px; }
 .clear-tags {
     display: none;
     border: none;
-    width: 134px;
+    width: 100%;
     background-color: transparent;
     color: @red;
     margin: 0;
@@ -496,6 +496,28 @@ h1 + #story-meta { margin-top: -11px; }
     span {
         font-style: italic; 
     }
+}
+
+#close-mobile-filter{
+	background: @red;
+	color: #fff;
+	padding: 10px 5px 10px 5px;
+	margin: 25px 0 0 0;
+	white-space: normal;
+	font-size: 17px;
+	text-align: center;
+	-webkit-font-smoothing: subpixel-antialiased;
+	display: block;
+	width: 100%;
+
+	&:hover {
+		background: darken(@red, 20%);
+	}
+
+	&:active,
+	&:focus {
+		.box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+	}
 }
 
 //Modal
