@@ -66,7 +66,8 @@ var filter_books = function() {
         var filter = '';
         var label = [];
 
-        for (i in selected_tags) {
+        // Update selected tags
+        for (var i in selected_tags) {
             var slug = selected_tags[i];
             var $tag = $all_tags.filter('.tag[data-tag-slug="' + slug + '"]');
 
@@ -78,29 +79,52 @@ var filter_books = function() {
 
         label = label.join(', ');
 
-        filter_books_list(filter);
-        isotope_grid(filter);
-        $clear_tags.show();
-        $current_tag.find('span').text(label);
-        $current_tag.show();
+        // Replicate isotope filtering so that we can update
+        // available tags without waiting for isotope to do its thing
+        var remaining_books = _.filter(BOOKS, function(book) {
+            for (var i in selected_tags) {
+                var slug = selected_tags[i];
 
-        // Hide tags with no books left in them
-        for (slug in COPY.tags) {
-            if (selected_tags.indexOf(slug) >= 0) {
-                continue;
+                if (_.indexOf(book.tags, slug) == -1) {
+                    return false;
+                }
             }
 
-            if ($books_grid.find('.tag-' + slug + ':not(.isotope-hidden)').length == 0) {
+            return true;
+        });
+
+        // Hide empty tags
+        for (var slug in COPY.tags) { 
+            var has_results = false;
+
+            for (var i = 0; i < remaining_books.length; i++) {
+                var book = remaining_books[i];
+
+                if (_.indexOf(book.tags, slug) >= 0) {
+                    has_results = true;
+                    break;
+                }
+            }
+
+            if (!has_results) {
                 var $tag = $all_tags.filter('.tag[data-tag-slug="' + slug + '"]');
                 $tag.parent().addClass('unavailable');
                 $tag.addClass('unavailable');
             }
         }
+
+        $clear_tags.show();
+        $current_tag.find('span').text(label);
+        $current_tag.show();
+
+        filter_books_list(filter);
+        _.defer(isotope_grid, filter);
     } else {
-        filter_books_list(null);
-        isotope_grid('*');
         $clear_tags.hide();
         $current_tag.hide();
+
+        filter_books_list(null);
+        _.defer(isotope_grid, '*');
     }
 
     // NB: Force scroll event so that unveils will happen auto-magically
@@ -297,8 +321,11 @@ var unveil_grid = function() {
  */
 var toggle_filter_modal = function() {
     $filter.toggleClass('hidden-xs').scrollTop(0);
- };
+};
 
+/*
+ * Toggle the text books list.
+ */
 var toggle_books_list = function() {
     $books_grid.toggle();
     $books_list.toggle();
