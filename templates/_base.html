@@ -43,9 +43,11 @@
     {{ JS.push('js/lib/jquery.isotope.js') }}
     {{ JS.push('js/lib/html5.js') }}
     {{ JS.push('js/lib/modernizr.js') }}
+    {{ JS.push('js/lib/jquery.scrollTo-1.4.3.1.js') }}
     {{ JS.push('js/responsive-ad.js') }}
     {% block extra_head_js %}{% endblock extra_head_js %}
     {{ JS.render('js/app-header.min.js') }}
+
 
     <script>
         googletag.cmd.push(function() {
