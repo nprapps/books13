@@ -356,10 +356,7 @@ h1 + #story-meta { margin-top: -11px; }
 	color: @red;
 	font-weight: normal;
 	font-size: 12px;
-
-
-
-
+	
 	&:hover {
 		color: @red;
 		background-color: lighten(@red, 40%);
@@ -389,11 +386,11 @@ h1 + #story-meta { margin-top: -11px; }
 
 		&:before {
 			font-family: FontAwesome;
-			font-size: 18px;
-			content: "\f057";
+			font-size: 16px;
+			content: "\f056";
 			position: absolute;
-			left: 5px;
-			top: 3px;
+			left: 9px;
+			top: 5px;
 			color: lighten(@red, 30%);
 		}
 
@@ -472,8 +469,14 @@ h1 + #story-meta { margin-top: -11px; }
     color: @red;
     margin: 0;
     padding: 5px 5px 15px 5px;
-    font-size: 17px;
+    font-size: 15px;
     border-bottom: 3px solid #eeeeee;
+    text-align: right;
+
+    @media screen and (max-width: @screen-sm) {
+    	text-align: left;
+    	margin-top: 10px;
+    }
 
     &:hover, &.selected, &:active, &:focus {
     	background-color: transparent;
@@ -483,6 +486,21 @@ h1 + #story-meta { margin-top: -11px; }
 		border-radius: none;
 		outline: none;
 		border-color: #eeeeee;
+    }
+
+    .icon-remove-circle {
+    	font-size: 20px;
+    	position: absolute;
+    	left: 7px;
+    	top: 5px;
+    	text-decoration: none;
+
+    	@media screen and (max-width: @screen-sm) {
+			left: auto;
+	    	right: 0;
+	    	top: 13px;
+	    }
+
     }
 }
 
@@ -769,6 +787,7 @@ footer {
 				&:before {
 					left: auto; 
 					right: 10px;
+					top: 8px;
 				}
 
 				&:active {

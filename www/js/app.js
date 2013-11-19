@@ -24,7 +24,7 @@ var first_hash = true;
 /*
  * Scroll to a given element.
  */
-var scroll = function($el) {
+var scroll_to = function($el) {
     var top = $el.offset().top;
 
     $body.scrollTop(top);
@@ -34,7 +34,7 @@ var scroll = function($el) {
  * Jump back to the top of the page.
  */
 var back_to_top = function() {
-    scroll($content, 0);
+    scroll_to($content, 0);
 
     return false;
 };
@@ -53,7 +53,7 @@ var isotope_grid = function(filter) {
         },
         sortBy: 'id'
     });
-}
+};
 
 /*
  * Show/hide books in the grid.
@@ -69,7 +69,7 @@ var filter_books = function() {
         for (i in selected_tags) {
             var slug = selected_tags[i];
             var $tag = $all_tags.filter('.tag[data-tag-slug="' + slug + '"]');
-        
+
             $tag.addClass('selected');
             $tag.parent().addClass('selected');
             filter += '.tag-' + slug;
@@ -133,7 +133,7 @@ var filter_books_list = function(filter) {
     } else {
         $books_list.find('li').addClass('visible');
     }
-}
+};
 
 /*
  * Filter the list to a certain tag.
@@ -160,7 +160,7 @@ var on_tag_clicked = function() {
 var on_modal_tag_clicked = function() {
     back_to_top();
     return true;
-}
+};
 
 /*
  * Clear the current tag
@@ -172,7 +172,7 @@ var on_clear_tags_clicked = function() {
 };
 
 /*
- * New tag hash url. 
+ * New tag hash url.
  */
 var on_tag_hash = function(tags) {
     selected_tags = tags.split(',');
@@ -192,7 +192,7 @@ var on_book_hash = function(slug) {
     var grid_item = $('#' + book.slug);
     next = grid_item.nextAll(':not(.isotope-hidden)').first();
 
-    if (next.length == 0) {
+    if (next.length === 0) {
         next = null;
     } else {
         next = next.attr('id');
@@ -200,7 +200,7 @@ var on_book_hash = function(slug) {
 
     previous = grid_item.prevAll(':not(.isotope-hidden)').first();
 
-    if (previous.length == 0) {
+    if (previous.length === 0) {
         previous = null;
     } else {
         previous = previous.attr('id');
@@ -211,7 +211,7 @@ var on_book_hash = function(slug) {
         next: next,
         previous: previous,
         SMALL_MOBILE: (SMALL && MOBILE)
-    }));   
+    }));
 
     $modal.modal();
     $back_to_top.hide();
@@ -230,6 +230,7 @@ var on_hash_changed = function(new_hash, old_hash) {
         on_tag_hash(hash_slug);
     } else if (hash_type == 'book') {
         on_book_hash(hash_slug);
+        back_to_top(); // #174.
 
         // On first load, we need to load in the books. #142
         if (first_hash) {
@@ -247,7 +248,7 @@ var on_hash_changed = function(new_hash, old_hash) {
     }
 
     _gaq.push(['_trackPageview', location.pathname + '#' + new_hash]);
-            
+
     first_hash = false;
 
     return false;
@@ -286,17 +287,17 @@ var unveil_grid = function() {
         //console.log('unveil');
 
         $(this).load(function() {
-            relayout(); 
+            relayout();
         });
     });
-}
+};
 
 /*
  * Show and hide the filters on small screens
  */
 var toggle_filter_modal = function() {
     $filter.toggleClass('hidden-xs').scrollTop(0);
-}
+ };
 
 var toggle_books_list = function() {
     $books_grid.toggle();
@@ -328,9 +329,9 @@ $(function() {
         if ($('#myModal:visible').length > 0){
            if (e.which === 37 && previous !== null) {
             hasher.setHash('book', previous);
-            } else if (e.which === 39 && next !== null) { 
+            } else if (e.which === 39 && next !== null) {
                 hasher.setHash('book', next);
-            } 
+            }
         }
     });
     $back_to_top.on('click', back_to_top);
@@ -347,7 +348,7 @@ $(function() {
             $back_to_top.fadeIn(1000);
         } else {
             $back_to_top.fadeOut(1000);
-        } 
+        }
 
     });
 
@@ -357,6 +358,6 @@ $(function() {
     hasher.changed.add(on_hash_changed);
     hasher.initialized.add(on_hash_changed);
     hasher.init();
-    
+
     _.delay(unveil_grid, 1000);
 });
