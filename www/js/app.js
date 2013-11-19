@@ -10,10 +10,11 @@ var $clear_tags;
 var $current_tag;
 var $modal;
 var $modal_content;
-var $print_books;
+var $books_list;
 var $back_to_top;
 var $mobile_filters_btn;
 var $filter;
+var $toggle_text;
 
 var next;
 var previous;
@@ -23,7 +24,7 @@ var first_hash = true;
 /*
  * Scroll to a given element.
  */
-var scroll = function($el) {
+var scroll_to = function($el) {
     var top = $el.offset().top;
     $body.scrollTop(top);
 };
@@ -50,7 +51,7 @@ var isotope_grid = function(filter) {
         },
         sortBy: 'id'
     });
-}
+};
 
 /*
  * Show/hide books in the grid.
@@ -66,7 +67,7 @@ var filter_books = function() {
         for (i in selected_tags) {
             var slug = selected_tags[i];
             var $tag = $all_tags.filter('.tag[data-tag-slug="' + slug + '"]');
-        
+
             $tag.addClass('selected');
             $tag.parent().addClass('selected');
             filter += '.tag-' + slug;
@@ -75,7 +76,7 @@ var filter_books = function() {
 
         label = label.join(', ');
 
-        filter_print_books(filter);
+        filter_books_list(filter);
         isotope_grid(filter);
         $clear_tags.show();
         $current_tag.find('span').text(label);
@@ -94,7 +95,7 @@ var filter_books = function() {
             }
         }
     } else {
-        filter_print_books(null);
+        filter_books_list(null);
         isotope_grid('*');
         $clear_tags.hide();
         $current_tag.hide();
@@ -108,16 +109,16 @@ var filter_books = function() {
 };
 
 /*
- * Filter the print-friendly book list.
+ * Filter the text book list.
  */
-var filter_print_books = function(filter) {
-    // Don't bother with print-friendly on mobile
+var filter_books_list = function(filter) {
+    // Don't bother with text on mobile
     if (MOBILE) {
         return;
     }
 
     if (filter) {
-        $print_books.find('.print-book').removeClass('visible');
+        $books_list.find('li').removeClass('visible');
 
         var filter = '';
 
@@ -126,11 +127,11 @@ var filter_print_books = function(filter) {
             filter += '.tag-' + slug;
         }
 
-        $print_books.find(filter).addClass('visible');
+        $books_list.find(filter).addClass('visible');
     } else {
-        $print_books.find('.print-book').addClass('visible');
+        $books_list.find('li').addClass('visible');
     }
-}
+};
 
 /*
  * Filter the list to a certain tag.
@@ -157,7 +158,7 @@ var on_tag_clicked = function() {
 var on_modal_tag_clicked = function() {
     back_to_top();
     return true;
-}
+};
 
 /*
  * Clear the current tag
@@ -169,7 +170,7 @@ var on_clear_tags_clicked = function() {
 };
 
 /*
- * New tag hash url. 
+ * New tag hash url.
  */
 var on_tag_hash = function(tags) {
     selected_tags = tags.split(',');
@@ -189,7 +190,7 @@ var on_book_hash = function(slug) {
     var grid_item = $('#' + book.slug);
     next = grid_item.nextAll(':not(.isotope-hidden)').first();
 
-    if (next.length == 0) {
+    if (next.length === 0) {
         next = null;
     } else {
         next = next.attr('id');
@@ -197,7 +198,7 @@ var on_book_hash = function(slug) {
 
     previous = grid_item.prevAll(':not(.isotope-hidden)').first();
 
-    if (previous.length == 0) {
+    if (previous.length === 0) {
         previous = null;
     } else {
         previous = previous.attr('id');
@@ -208,7 +209,7 @@ var on_book_hash = function(slug) {
         next: next,
         previous: previous,
         SMALL_MOBILE: (SMALL && MOBILE)
-    }));   
+    }));
 
     $modal.modal();
     $back_to_top.hide();
@@ -227,6 +228,7 @@ var on_hash_changed = function(new_hash, old_hash) {
         on_tag_hash(hash_slug);
     } else if (hash_type == 'book') {
         on_book_hash(hash_slug);
+        back_to_top(); // #174.
 
         // On first load, we need to load in the books. #142
         if (first_hash) {
@@ -244,7 +246,7 @@ var on_hash_changed = function(new_hash, old_hash) {
     }
 
     _gaq.push(['_trackPageview', location.pathname + '#' + new_hash]);
-            
+
     first_hash = false;
 
     return false;
@@ -283,18 +285,22 @@ var unveil_grid = function() {
         //console.log('unveil');
 
         $(this).load(function() {
-            relayout(); 
+            relayout();
         });
     });
-}
+};
 
 /*
  * Show and hide the filters on small screens
  */
- var toggle_filter_modal = function() {
-    console.log($filter);
+var toggle_filter_modal = function() {
     $filter.toggleClass('hidden-xs').scrollTop(0);
- }
+ };
+
+var toggle_books_list = function() {
+    $books_grid.toggle();
+    $books_list.toggle();
+}
 
 $(function() {
     $body = $('body');
@@ -305,10 +311,11 @@ $(function() {
     $current_tag = $('.current-tag');
     $modal = $('#myModal');
     $modal_content = $('#myModal .modal-content');    
-    $print_books = $('.print-friendly ul');
+    $books_list = $('#books-list');
     $back_to_top = $('#back-to-top');
     $mobile_filters_btn = $('#mobile-filters');
     $filter = $('.filter.tags');
+    $toggle_text = $('.toggle-text');
   
     // Event handlers.
     $body.on('click', '.filter .tag', on_tag_clicked);
@@ -320,15 +327,16 @@ $(function() {
         if ($('#myModal:visible').length > 0){
            if (e.which === 37 && previous !== null) {
             hasher.setHash('book', previous);
-            } else if (e.which === 39 && next !== null) { 
+            } else if (e.which === 39 && next !== null) {
                 hasher.setHash('book', next);
-            } 
+            }
         }
     });
     $back_to_top.on('click', back_to_top);
     $back_to_top.hide();
     $mobile_filters_btn.on('click', toggle_filter_modal);
     $filter.find('.close-modal').on('click', toggle_filter_modal);
+    $toggle_text.on('click', toggle_books_list);
 
     $(window).on('scroll', function() {
         var y_scroll_pos = window.pageYOffset;
@@ -339,7 +347,7 @@ $(function() {
             $back_to_top.fadeIn(1000);
         } else {
             $back_to_top.fadeOut(1000);
-        } 
+        }
 
     });
 
@@ -349,6 +357,6 @@ $(function() {
     hasher.changed.add(on_hash_changed);
     hasher.initialized.add(on_hash_changed);
     hasher.init();
-    
+
     _.delay(unveil_grid, 1000);
 });

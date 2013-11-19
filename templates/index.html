@@ -27,6 +27,7 @@
 {% endblock %}
 
 {% block content %}
+    <button class="toggle-text btn btn-info">Show text only</button>
     <div class="book-container">
         <div class="tags-wrapper">
             <h4 class="hidden-xs">What would you like to&nbsp;read?</h4>
@@ -51,7 +52,7 @@
         </div>
         <!-- Book Cards Grid -->
     
-        <div class=" books-grid-wrapper">
+        <div class="books-grid-wrapper">
             <h3 class="current-tag">Showing books tagged <span></span></h3>
             <div id="books-grid" class="filter-inactive">
                 {% for book in books %}
@@ -68,21 +69,15 @@
                 </div>
                 {% endfor %}
             </div>
+
+            <ul id="books-list">
+                {% for book in books %}
+                <li class="visible {% for tag in book.tags %}tag-{{ tag }} {% endfor %}" data-sort="{{ loop.index }}">
+                    <span class="title">{{ book.title }}</span> by <span class="author">{{ book.author }}</span>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
-    </div>
-
-    <!-- Print-friendly list -->
-
-    <div class="print-friendly">
-        <h1>{{ COPY.content.header_title }}</h1>
-        <h3 class="current-tag">Books tagged <span></span></h3>
-        <ul>
-            {% for book in books %}
-            <li class="print-book visible {% for tag in book.tags %}tag-{{ tag }} {% endfor %}" data-sort="{{ loop.index }}">
-                <span class="title">{{ book.title }}</span> by <span class="author">{{ book.author }}</span>
-            </li>
-            {% endfor %}
-        </ul>
     </div>
 
     <button class="btn" id="back-to-top">
