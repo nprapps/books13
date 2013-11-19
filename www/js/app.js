@@ -15,6 +15,8 @@ var $back_to_top;
 var $mobile_filters_btn;
 var $filter;
 var $toggle_text;
+var $show_text_button;
+var $show_books_button;
 
 var next;
 var previous;
@@ -327,6 +329,8 @@ var toggle_filter_modal = function() {
 var toggle_books_list = function() {
     $books_grid.toggle();
     $books_list.toggle();
+    $show_text_button.toggle();
+    $show_books_button.toggle();
 }
 
 $(function() {
@@ -342,7 +346,10 @@ $(function() {
     $back_to_top = $('#back-to-top');
     $mobile_filters_btn = $('#mobile-filters');
     $filter = $('.filter.tags');
+    $show_text_button = $('.show-text');
+    $show_books_button = $('.show-books');
     $toggle_text = $('.toggle-text');
+
 
     _.each($all_tags, function(tag) {
         var $tag = $(tag);
@@ -383,6 +390,7 @@ $(function() {
 
     });
 
+    $show_books_button.hide();
 
     // Set up the hasher bits to grab the URL hash.
     hasher.changed.add(on_hash_changed);

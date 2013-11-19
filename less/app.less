@@ -20,7 +20,7 @@ a, a:link, a:visited {
     color: @red; 
     text-decoration: none;
 }
-a:hover, a:active { 
+a:hover { 
     color: lighten(@red, 20%); 
     text-decoration: none; 
 }
@@ -257,6 +257,7 @@ h1 + #story-meta { margin-top: -11px; }
     }
 }
 
+
 // Button/Tag Styling
 .btn {
 	border-radius: 0px;
@@ -461,7 +462,7 @@ h1 + #story-meta { margin-top: -11px; }
 // }
 
 
-.clear-tags {
+.clear-tags, .show-text, .show-books {
     display: none;
     border: none;
     width: 100%;
@@ -502,6 +503,18 @@ h1 + #story-meta { margin-top: -11px; }
 	    }
 
     }
+}
+
+.show-text, .show-books {
+	display: inline-block;
+	border: none;
+	margin: 0;
+	margin-top: 25px;
+	padding: 0;
+	font-size: 13px;
+	text-align: left;
+	white-space: normal;
+	-webkit-font-smoothing: subpixel-antialiased;
 }
 
 .current-tag {
@@ -709,9 +722,22 @@ footer {
     list-style: none;
     padding-left: 0;
 
+    a {
+    	color: #000;
+    }
+
+    a:hover {
+    	color: @red;
+    }
+
     li {
         display: none;
         font-style: normal;
+        font-size: 15px;
+		white-space: normal;
+		margin: 25px;
+		line-height: 1.5em;
+		list-style-type: disc;
 
         &.visible {
             display: list-item;
@@ -722,6 +748,8 @@ footer {
         }
 
         .author {
+        	color: #999;
+			font-size: 13px;
         }
     }
 }
