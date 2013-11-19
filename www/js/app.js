@@ -4,8 +4,8 @@ var SMALL = Modernizr.mq('only all and (max-width: 480px)');
 var $body;
 var $content;
 var $books_grid;
-var $tags;
 var $all_tags;
+var $tags = {};
 var $clear_tags;
 var $current_tag;
 var $modal;
@@ -67,7 +67,7 @@ var filter_books = function() {
         // Update selected tags
         for (var i in selected_tags) {
             var slug = selected_tags[i];
-            var $tag = $all_tags.filter('.tag[data-tag-slug="' + slug + '"]');
+            var $tag = $tags[slug];
 
             $tag.addClass('selected');
             $tag.parent().addClass('selected');
@@ -105,7 +105,7 @@ var filter_books = function() {
             }
 
             if (!has_results) {
-                var $tag = $all_tags.filter('.tag[data-tag-slug="' + slug + '"]');
+                var $tag = $tags[slug];
                 $tag.parent().addClass('unavailable');
                 $tag.addClass('unavailable');
             }
@@ -332,8 +332,8 @@ var toggle_books_list = function() {
 $(function() {
     $body = $('body');
     $content = $('#content');
-    $tags = $('.tags');
     $books_grid = $('#books-grid');
+    $all_tags = $('.tags .tag');
     $clear_tags = $('.clear-tags');
     $current_tag = $('.current-tag');
     $modal = $('#myModal');
@@ -343,6 +343,11 @@ $(function() {
     $mobile_filters_btn = $('#mobile-filters');
     $filter = $('.filter.tags');
     $toggle_text = $('.toggle-text');
+
+    _.each($all_tags, function(tag) {
+        var $tag = $(tag);
+        $tags[$tag.data('tag-slug')] = $tag;
+    });
   
     // Event handlers.
     $body.on('click', '.filter .tag', on_tag_clicked);
@@ -378,7 +383,6 @@ $(function() {
 
     });
 
-    $all_tags = $('.tags .tag');
 
     // Set up the hasher bits to grab the URL hash.
     hasher.changed.add(on_hash_changed);
