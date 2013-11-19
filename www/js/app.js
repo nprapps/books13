@@ -58,7 +58,6 @@ var isotope_grid = function(filter) {
  * Show/hide books in the grid.
  */
 var filter_books = function() {
-    $all_tags.removeClass('selected unavailable');
     $all_tags.parent().removeClass('selected unavailable');
 
     if (selected_tags.length > 0) {
@@ -88,9 +87,8 @@ var filter_books = function() {
                 continue;
             }
 
-            if ($books_grid.find('.book.tag-' + slug + ':visible').length == 0) {
+            if ($books_grid.find('.tag-' + slug + ':not(.isotope-hidden)').length == 0) {
                 var $tag = $all_tags.filter('.tag[data-tag-slug="' + slug + '"]');
-                $tag.addClass('unavailable');
                 $tag.parent().addClass('unavailable');
             }
         }

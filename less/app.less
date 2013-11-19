@@ -466,6 +466,24 @@ h1 + #story-meta { margin-top: -11px; }
 
 .clear-tags {
     display: none;
+    border: none;
+    width: 134px;
+    background-color: transparent;
+    color: @red;
+    margin: 0;
+    padding: 5px 5px 15px 5px;
+    font-size: 17px;
+    border-bottom: 3px solid #eeeeee;
+
+    &:hover, &.selected, &:active, &:focus {
+    	background-color: transparent;
+    	color: @red;
+    	text-decoration: underline;
+    	box-shadow: none;
+		border-radius: none;
+		outline: none;
+		border-color: #eeeeee;
+    }
 }
 
 .current-tag {
@@ -801,6 +819,7 @@ footer {
 					display: block;
 					text-align: right;
 				}
+
 			}
 		}
 
