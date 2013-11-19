@@ -59,6 +59,7 @@ var isotope_grid = function(filter) {
  */
 var filter_books = function() {
     $all_tags.parent().removeClass('selected unavailable');
+    $all_tags.removeClass('selected unavailable');
 
     if (selected_tags.length > 0) {
         var filter = '';
