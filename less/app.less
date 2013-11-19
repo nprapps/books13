@@ -475,6 +475,7 @@ h1 + #story-meta { margin-top: -11px; }
 
     @media screen and (max-width: @screen-sm) {
     	text-align: left;
+    	margin-top: 10px;
     }
 
     &:hover, &.selected, &:active, &:focus {
@@ -494,9 +495,11 @@ h1 + #story-meta { margin-top: -11px; }
     	top: 5px;
     	text-decoration: none;
 
-    	&:hover {
-    		text-decoration: none;
-    	}
+    	@media screen and (max-width: @screen-sm) {
+			left: auto;
+	    	right: 0;
+	    	top: 13px;
+	    }
 
     }
 }
@@ -765,6 +768,7 @@ footer {
 				&:before {
 					left: auto; 
 					right: 10px;
+					top: 8px;
 				}
 
 				&:active {
