@@ -29,16 +29,24 @@ def index():
         books_text_only = books[:]
         books_text_only = sorted(books, key=lambda k: k['title'])
 
+    from PIL import Image
+
     for book in books:
         if not book['text']:
             book['teaser'] = None
             continue
 
-        if len(book['text']) <= 200:
+        img = Image.open('www/img/cover/%s-thumb.jpg' % book['slug'])
+        width, height = img.size
+
+        chars = height / 30 * 14;
+        print height, chars
+
+        if len(book['text']) <= chars:
             book['teaser'] = book['text']
             continue
 
-        i = 199 
+        i = chars 
 
         while book['text'][i] != ' ':
             i -= 1 
