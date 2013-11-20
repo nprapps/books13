@@ -254,7 +254,7 @@ var on_hash_changed = function(new_hash, old_hash) {
         on_tag_hash(hash_slug);
     } else if (hash_type == 'book') {
         on_book_hash(hash_slug);
-        back_to_top(); // #174.
+        $modal.scrollTop(0);
 
         // On first load, we need to load in the books. #142
         if (first_hash) {
