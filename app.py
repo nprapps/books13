@@ -26,6 +26,8 @@ def index():
     with open('www/static-data/books.json', 'rb') as readfile:
         context['books_js'] = readfile.read()
         books = json.loads(context['books_js'])
+        books_text_only = books[:]
+        books_text_only = sorted(books, key=lambda k: k['title'])
 
     for book in books:
         if not book['text']:
@@ -44,8 +46,10 @@ def index():
         book['teaser'] = '&#8220;' + book['text'][:i] + '...&#8221;'
 
     context['books'] = books
+    context['books_text_only'] = books_text_only
 
     return render_template('index.html', **context)
+
 
 @app.route('/test/test.html')
 def test_dir():

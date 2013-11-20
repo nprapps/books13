@@ -75,7 +75,7 @@
             </div>
 
             <ul id="books-list">
-                {% for book in books %}
+                {% for book in books_text_only %}
                 <a href="#/book/{{  book.slug }}">
                     <li class="visible {% for tag in book.tags %}tag-{{ tag }} {% endfor %}" data-sort="{{ loop.index }}">
                         <span class="title">{{ book.title }}</span> 
