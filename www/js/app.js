@@ -447,8 +447,6 @@ $(function() {
         $books_grid.addClass('no-transition');
     }
 
-    $show_books_button.hide();
-
     // Set up the hasher bits to grab the URL hash.
     hasher.changed.add(on_hash_changed);
     hasher.initialized.add(on_hash_changed);
