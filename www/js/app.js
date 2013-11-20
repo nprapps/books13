@@ -117,6 +117,8 @@ var filter_books = function() {
         $current_tag.find('#showing-span').text('Showing books tagged ');
         $current_tag.find('#tag-span').text(label);
 
+        console.log(filter);
+
         filter_books_list(filter);
         _.defer(isotope_grid, filter);
     } else {
@@ -374,6 +376,10 @@ var toggle_books_list = function() {
     $books_list.toggle();
     $show_text_button.toggle();
     $show_books_button.toggle();
+
+    if ($books_grid.is(':visible')) {
+        isotope_grid(); 
+    }
 };
 
 $(function() {

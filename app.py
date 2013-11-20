@@ -2,10 +2,12 @@
 
 import json
 from mimetypes import guess_type
+import re
 import urllib
 
 import envoy
 from flask import Flask, Markup, abort, render_template
+from PIL import Image
 
 import app_config
 import copytext
@@ -29,7 +31,7 @@ def index():
         books_text_only = books[:]
         books_text_only = sorted(books, key=lambda k: k['title'])
 
-    from PIL import Image
+    tag_stripper = re.compile(r'<.*?>')
 
     for book in books:
         if not book['text']:
@@ -42,16 +44,18 @@ def index():
         chars = height / 30 * 14;
         print height, chars
 
-        if len(book['text']) <= chars:
-            book['teaser'] = book['text']
+        text = tag_stripper.sub('', book['text'])
+
+        if len(text) <= chars:
+            book['teaser'] = text
             continue
 
         i = chars 
 
-        while book['text'][i] != ' ':
+        while text[i] != ' ':
             i -= 1 
 
-        book['teaser'] = '&#8220;' + book['text'][:i] + '...&#8221;'
+        book['teaser'] = '&#8220;' + text[:i] + '...&#8221;'
 
     context['books'] = books
     context['books_text_only'] = books_text_only
