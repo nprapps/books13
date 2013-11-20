@@ -515,6 +515,10 @@ h1 + #story-meta { margin-top: -11px; }
 	text-align: left;
 	white-space: normal;
 	-webkit-font-smoothing: subpixel-antialiased;
+
+	@media screen and (max-width: @screen-sm) {
+		display: none;
+	}
 }
 
 .current-tag {
