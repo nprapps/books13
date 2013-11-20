@@ -18,10 +18,10 @@ PROJECT_NAME = 'Best Books of 2013'
 
 # Project name in urls
 # Use dashes, not underscores!
-PROJECT_SLUG = 'books13'
+PROJECT_SLUG = 'best-books-2013'
 
 # The name of the repository containing the source
-REPOSITORY_NAME = 'books13'
+REPOSITORY_NAME = 'best-books-2013'
 REPOSITORY_URL = 'git@github.com:nprapps/%s.git' % REPOSITORY_NAME
 REPOSITORY_ALT_URL = None # 'git@bitbucket.org:nprapps/%s.git' % REPOSITORY_NAME'
 

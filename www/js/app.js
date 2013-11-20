@@ -94,7 +94,7 @@ var filter_books = function() {
         });
 
         // Hide empty tags
-        for (var slug in COPY.tags) { 
+        for (var slug in COPY.tags) {
             var has_results = false;
 
             for (var i = 0; i < remaining_books.length; i++) {
@@ -114,14 +114,13 @@ var filter_books = function() {
         }
 
         $clear_tags.show();
-        $current_tag.find('span').text(label);
-        $current_tag.show();
+        $current_tag.find('span').text('Showing books tagged ' + label);
 
         filter_books_list(filter);
         _.defer(isotope_grid, filter);
     } else {
         $clear_tags.hide();
-        $current_tag.hide();
+        $current_tag.find('span').text('Showing all books');
 
         filter_books_list(null);
         _.defer(isotope_grid, '*');
@@ -254,7 +253,7 @@ var on_hash_changed = function(new_hash, old_hash) {
         on_tag_hash(hash_slug);
     } else if (hash_type == 'book') {
         on_book_hash(hash_slug);
-        $modal.scrollTop(0);
+        $modal.scrollTop(0); // #174.
 
         // On first load, we need to load in the books. #142
         if (first_hash) {
@@ -341,7 +340,7 @@ $(function() {
     $clear_tags = $('.clear-tags');
     $current_tag = $('.current-tag');
     $modal = $('#myModal');
-    $modal_content = $('#myModal .modal-content');    
+    $modal_content = $('#myModal .modal-content');
     $books_list = $('#books-list');
     $back_to_top = $('#back-to-top');
     $mobile_filters_btn = $('#mobile-filters');
@@ -355,7 +354,7 @@ $(function() {
         var $tag = $(tag);
         $tags[$tag.data('tag-slug')] = $tag;
     });
-  
+
     // Event handlers.
     $body.on('click', '.filter .tag', on_tag_clicked);
     $content.on('click', '.back-to-top', back_to_top);
@@ -389,6 +388,9 @@ $(function() {
         }
 
     });
+
+    $current_tag.find('span').text('Showing all books');
+    $current_tag.show();
 
     // Disable isotope transitions
     if (MOBILE) {
