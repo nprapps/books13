@@ -94,7 +94,7 @@ var filter_books = function() {
         });
 
         // Hide empty tags
-        for (var slug in COPY.tags) { 
+        for (var slug in COPY.tags) {
             var has_results = false;
 
             for (var i = 0; i < remaining_books.length; i++) {
@@ -253,7 +253,7 @@ var on_hash_changed = function(new_hash, old_hash) {
         on_tag_hash(hash_slug);
     } else if (hash_type == 'book') {
         on_book_hash(hash_slug);
-        back_to_top(); // #174.
+        $modal.scrollTop(0); // #174.
 
         // On first load, we need to load in the books. #142
         if (first_hash) {
@@ -340,7 +340,7 @@ $(function() {
     $clear_tags = $('.clear-tags');
     $current_tag = $('.current-tag');
     $modal = $('#myModal');
-    $modal_content = $('#myModal .modal-content');    
+    $modal_content = $('#myModal .modal-content');
     $books_list = $('#books-list');
     $back_to_top = $('#back-to-top');
     $mobile_filters_btn = $('#mobile-filters');
@@ -354,7 +354,7 @@ $(function() {
         var $tag = $(tag);
         $tags[$tag.data('tag-slug')] = $tag;
     });
-  
+
     // Event handlers.
     $body.on('click', '.filter .tag', on_tag_clicked);
     $content.on('click', '.back-to-top', back_to_top);
