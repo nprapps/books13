@@ -380,7 +380,7 @@ $(function() {
     $(window).on('scroll', function() {
         var y_scroll_pos = window.pageYOffset;
 
-        var scroll_pos_test = 500;
+        var scroll_pos_test = 1000;
 
         if(y_scroll_pos > scroll_pos_test && $('#myModal:visible').length === 0) {
             $back_to_top.fadeIn(1000);
