@@ -37,14 +37,14 @@
             <h4 class="hidden-xs">What would you like to&nbsp;read?</h4>
             <!-- All Tags List -->
             <ul class="filter tags option-set list-unstyled hidden-xs" data-filter-group="category">
-                
+
                     <li class="visible-xs mobile-label">Filter by: <span class="close visible-xs close-modal"aria-hidden="true">&times;</span></li>
 
                     <li>
                         <button class="btn btn-large btn-info clear-tags" data-filter-value="*"><i class="icon-remove-circle">&nbsp;&nbsp;</i>Clear Filters</button>
                     </li>
                 {% for row in COPY.tags %}
-                   <li> 
+                   <li>
                        <button
                        class="btn btn-large btn-info tag"
                        data-filter-value=".tag-{{ row.key }}" data-tag-slug="{{ row.key }}">{{ row.value }}</button>
@@ -55,14 +55,14 @@
             </ul>
         </div>
         <!-- Book Cards Grid -->
-    
+
         <div class="books-grid-wrapper">
             <h3 class="current-tag"><span></span></h3>
 
             <div id="books-grid" class="filter-inactive">
                 {% for book in books %}
                 <div id="{{ book.slug }}" class="book card isotope-item {% for tag in book.tags %}tag-{{ tag }} {% endfor %} isotope-hidden no-touch" data-sort="{{ loop.index }}">
-                    <a href="#/book/{{  book.slug }}">
+                    <a href="#/book/{{ book.slug }}">
                     <div class="book-outer-wrapper">
                         <!-- Book Image -->
                         {% if book.teaser %}
@@ -77,12 +77,12 @@
 
             <ul id="books-list">
                 {% for book in books_text_only %}
-                <a href="#/book/{{  book.slug }}">
-                    <li class="visible {% for tag in book.tags %}tag-{{ tag }} {% endfor %}" data-sort="{{ loop.index }}">
-                        <span class="title">{{ book.title }}</span> 
+                <li class="visible {% for tag in book.tags %}tag-{{ tag }} {% endfor %}{{ book.slug }}" data-sort="{{ loop.index }}" data-slug="{{ book.slug }}">
+                    <a href="#/book/{{  book.slug }}">
+                        <span class="title">{{ book.title }}</span>
                         <span class="author">by&nbsp;{{ book.author }}</span>
-                    </li>
-                </a>
+                    </a>
+                </li>
                 {% endfor %}
             </ul>
         </div>

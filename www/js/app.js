@@ -206,29 +206,68 @@ var on_tag_hash = function(tags) {
  * New book hash url and previous/next buttons.
  */
 var on_book_hash = function(slug) {
+
+    // Get rid of the old modal.
+    // They smell so musty.
     $modal_content.empty();
 
+    // Find this book from the list.
     book = _.find(BOOKS, function(book){
         return book['slug'] == slug;
     });
 
-    var grid_item = $('#' + book.slug);
-    next = grid_item.nextAll(':not(.isotope-hidden)').first();
+    // Set up a variable to represent this book in the grid.
+    // It's null because we have TWO DIFFERENT GRIDS AAAAAAA.
+    var grid_item;
 
-    if (next.length === 0) {
-        next = null;
+    // This next/prev list is sorted two different ways.
+    // The first way it can be sorted is for the grid view.
+    // This time, we're checking for if the $books_grid is visible.
+    if ($books_grid.is(':visible')) {
+
+        // The grid item is an id of the book slug.
+        grid_item = $('#' + book.slug);
+
+        // Next and previous are based on hidden/not hidden isotope elements.
+        next = grid_item.nextAll(':not(.isotope-hidden)').first();
+        previous = grid_item.prevAll(':not(.isotope-hidden)').first();
+
+
+        // And the buttons fetch the ID of the next element.
+        if (next.length === 0) {
+            next = null;
+        } else {
+            next = next.attr('id');
+        }
+        if (previous.length === 0) {
+            previous = null;
+        } else {
+            previous = previous.attr('id');
+        }
+
     } else {
-        next = next.attr('id');
+
+        // The grid item in the second case is the anchor with the slug as it's class.
+        grid_item = $('li.' + book.slug);
+
+        // Next and previous are based whether these items are visible.
+        next = grid_item.nextAll(':visible').first();
+        previous = grid_item.prevAll(':visible').first();
+
+        // And the buttons fetch the data-slug attribute of the next element.
+        if (next.length === 0) {
+            next = null;
+        } else {
+            next = next.attr('data-slug');
+        }
+        if (previous.length === 0) {
+            previous = null;
+        } else {
+            previous = previous.attr('data-slug');
+        }
     }
 
-    previous = grid_item.prevAll(':not(.isotope-hidden)').first();
-
-    if (previous.length === 0) {
-        previous = null;
-    } else {
-        previous = previous.attr('id');
-    }
-
+    // Now, go about our normal business of building the modal.
     $modal_content.append(JST.book_modal({
         book: book,
         next: next,
@@ -236,7 +275,10 @@ var on_book_hash = function(slug) {
         SMALL_MOBILE: (SMALL && MOBILE)
     }));
 
+    // Modals should be modaled whenever modalable.
     $modal.modal();
+
+    // And hide the "back to the top" button.
     $back_to_top.hide();
 };
 
@@ -330,7 +372,7 @@ var toggle_books_list = function() {
     $books_list.toggle();
     $show_text_button.toggle();
     $show_books_button.toggle();
-}
+};
 
 $(function() {
     $body = $('body');
