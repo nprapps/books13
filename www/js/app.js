@@ -390,6 +390,11 @@ $(function() {
 
     });
 
+    // Disable isotope transitions
+    if (MOBILE) {
+        $books_grid.addClass('no-transition');
+    }
+
     $show_books_button.hide();
 
     // Set up the hasher bits to grab the URL hash.
