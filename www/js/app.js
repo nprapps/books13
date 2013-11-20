@@ -114,14 +114,13 @@ var filter_books = function() {
         }
 
         $clear_tags.show();
-        $current_tag.find('span').text(label);
-        $current_tag.show();
+        $current_tag.find('span').text('Showing books tagged ' + label);
 
         filter_books_list(filter);
         _.defer(isotope_grid, filter);
     } else {
         $clear_tags.hide();
-        $current_tag.hide();
+        $current_tag.find('span').text('Showing all books');
 
         filter_books_list(null);
         _.defer(isotope_grid, '*');
@@ -389,6 +388,9 @@ $(function() {
         }
 
     });
+
+    $current_tag.find('span').text('Showing all books');
+    $current_tag.show();
 
     // Disable isotope transitions
     if (MOBILE) {
