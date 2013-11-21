@@ -49,7 +49,7 @@ var isotope_grid = function(filter) {
         transformsEnabled: !MOBILE,
         getSortData: {
             'id': function($el) {
-                return parseInt($el.data('sort'));
+                return parseInt($el.data('sort'), 10);
             }
         },
         sortBy: 'id'
