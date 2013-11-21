@@ -213,6 +213,28 @@ header {
 }
 h1 + #story-meta { margin-top: -11px; }
 
+.toggle-text {
+	margin: 0 0 @line-height-computed; 
+
+	@media screen and (max-width: @screen-xs-max){
+		margin-bottom: @line-height-computed;
+		margin-left: 11px;
+		.clearfix;
+	}
+
+	.btn.btn-default {
+		margin: 0;
+		color: @red;
+	}
+
+	&.grid-active .btn.btn-default.grid,
+	&.list-active .btn.btn-default.list {
+		background: @red;
+		color: #fff;
+		border-color: @red;
+	}
+}
+
 // Book cards
 .card {
 	width: 16.66666666666667%;
@@ -363,7 +385,7 @@ h1 + #story-meta { margin-top: -11px; }
 
 .tags-wrapper {
 	position: relative;
-	padding-top: 46px;
+	padding-top: 0;
 
 	@media screen and (max-width: @screen-sm-max) {
 		padding-top: 0;
@@ -563,7 +585,7 @@ h1 + #story-meta { margin-top: -11px; }
     display: none;
     padding-left: 11px;
     padding-bottom: @line-height-computed / 2;
-    margin-top: 0;
+    margin-top: 11px;
     color: darken(@red, 10%);
 
     #tag-span {
@@ -977,20 +999,20 @@ footer {
 			text-align: right;
 
 			h4 {
-				font-size: 17px;
+				font-size: 16px;
 				line-height: 1.2;
 				margin-top: 0;
-				// text-transform: uppercase;
-				// color: @cream;
-				// background: @red;
-				padding: 7px;
-				border: 3px solid desaturate(papayawhip, 60%);
-				color: @red;
+				clear: both;
+				background: @red;
+				padding: 7px 14px 7px 7px;
+				border: 3px solid @red;
+				color: desaturate(papayawhip, 60%);
 				position: relative;
 				text-align: right;
 				margin-bottom: @line-height-computed;
 				font-weight: bold;
-				// -webkit-font-smoothing: antialiased;
+				-webkit-font-smoothing: antialiased;
+				.border-radius(6px);
 
 				&:after {
 					display: block;
@@ -1003,7 +1025,7 @@ footer {
 					border-left: 10px solid transparent;
 					border-right: 10px solid transparent;
 					
-					border-top: 10px solid desaturate(papayawhip, 60%);
+					border-top: 10px solid @red;
 				}
 			}
 
