@@ -8,7 +8,7 @@
     <div class="modal-book-cover col-lg-6">
         <img id="book-image" src="img/cover/<%= book.slug %><% if (SMALL_MOBILE) { %>-thumb<% } %>.jpg" alt="<%= book.title %>"/>
     </div>
-    
+
     <div class="modal-text col-lg-6">
         <h4 class="modal-title" id="myModalLabel"><%= book.title %></h4>
         <% if(book.author) { %><p class="author">By <%= book.author %></p> <% } %>
@@ -35,27 +35,28 @@
         </p>
 
         <ul>
-            <% if (book.book_seamus_id){  %>
-            <li class="book_seamus_id book-modal-links">
-                <a href="http://npr.org/<%= book.book_seamus_id %>" target="_blank"><%= COPY.content.npr_book_link %></a>
+            <% if (book.review_seamus_id){  %>
+            <li class="review_seamus_id book-modal-links">
+            <a href="http://npr.org/<%= book.review_seamus_id %>" target="_blank"><%= COPY.content.npr_review_link %> <%= book.review_seamus_headline %></a>
             </li>
             <% } %>
 
             <% if (book.author_seamus_id){  %>
             <li class="author_seamus_id book-modal-links">
-                <a href="http://npr.org/<%= book.author_seamus_id %>" target="_blank"><%= COPY.content.npr_author_link %></a>
+                <a href="http://npr.org/<%= book.author_seamus_id %>" target="_blank">
+                    <%= COPY.content.npr_author_link %>
+                    <% if (book.author_seamus_headline) { %>
+                        <%= book.author_seamus_headline %>
+                    <% } else { %>
+                        <%= book.author %>
+                    <% } %>
+                </a>
             </li>
             <% } %>
 
-            <% if (book.review_seamus_id){  %>
-            <li class="review_seamus_id book-modal-links">
-                <a href="http://npr.org/<%= book.review_seamus_id %>" target="_blank"><%= COPY.content.npr_review_link %></a>
-            </li>
-            <% } %>
-
-            <% if (book.other_seamus_id){  %>
-            <li class="other_seamus_id book-modal-links">
-                <a href="http://npr.org/<%= book.other_seamus_id %>" target="_blank"><%= COPY.content.other_link %></a>
+            <% if (book.book_seamus_id){  %>
+            <li class="book_seamus_id book-modal-links">
+                <a href="http://npr.org/<%= book.book_seamus_id %>" target="_blank"><%= COPY.content.npr_book_link %></a>
             </li>
             <% } %>
         </ul>
