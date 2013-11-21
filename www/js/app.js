@@ -279,6 +279,7 @@ var on_book_hash = function(slug) {
         previous: previous,
         SMALL_MOBILE: (SMALL && MOBILE)
     }));
+    $modal.scrollTop(0); // #174.
 
     // Modals should be modaled whenever modalable.
     $modal.modal();
@@ -300,7 +301,8 @@ var on_hash_changed = function(new_hash, old_hash) {
         on_tag_hash(hash_slug);
     } else if (hash_type == 'book') {
         on_book_hash(hash_slug);
-        $modal.scrollTop(0); // #174.
+        $modal.show().css('overflow-y','hidden').scrollTop(0).css('overflow-y','scroll');
+
 
         // On first load, we need to load in the books. #142
         if (first_hash) {
@@ -412,6 +414,9 @@ $(function() {
     $content.on('click', '.back-to-top', back_to_top);
     $content.on('click', 'button.clear-tags', on_clear_tags_clicked);
     $modal.on('hidden.bs.modal', on_book_modal_closed);
+    // $modal.on('shown.bs.modal', function(){
+    //     $modal.css('overflow-y','hidden').scrollTop(0).css('overflow-y','scroll');
+    // });
     $modal.on('click', '.tag', on_modal_tag_clicked);
     $modal.keyup(function (e) {
         if ($('#myModal:visible').length > 0){

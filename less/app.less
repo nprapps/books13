@@ -587,6 +587,10 @@ h1 + #story-meta { margin-top: -11px; }
 }
 
 //Modal
+.modal {
+	-webkit-overflow-scrolling: touch;
+}
+
 .modal-book-cover {
 	margin-left: auto;
 	margin-right: auto;
@@ -878,16 +882,41 @@ footer {
 		}
 	}
 
+	.modal-backdrop.fade.in {
+		background: #fff;
+		opacity: 1;
+	}
+
 	#myModal {
+		-webkit-overflow-scrolling: touch;
 
 		.modal-dialog {
 			width: 100%;
 			padding: 0;
 
+			.modal-header {
+				background: #f6f6f6;
+				margin-bottom: @line-height-computed;
+
+				.npr-logo {
+					width: 127px;
+					display: inline-block !important;
+
+					img {
+						max-width: 100%;
+					}
+				}
+			}
+
 			.modal-content {
 				border-radius: 0;
 				border: none;
 			}
+		}
+
+		.modal-body.row {
+			margin: 0;
+			padding: 0;
 		}
 
 		.modal-book-cover {
