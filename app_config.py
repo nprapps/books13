@@ -87,16 +87,16 @@ PROJECT_DESCRIPTION = 'Find your next great read with NPR Books\' best-of-2013 r
 SHARE_URL = 'http://%s/%s/' % (PRODUCTION_S3_BUCKETS[0], PROJECT_SLUG)
 
 TWITTER = {
-    'TEXT': 'Find your next great read with @nprbooks\' best-of-2013 reading guide!',
+    'TEXT': 'Find your next great read with @nprbooks\' guide to 2013\'s best books.',
     'URL': SHARE_URL,
     # Will be resized to 120x120, can't be larger than 1MB
     'IMAGE_URL': 'http://%s/%s/img/preview.png' % (PRODUCTION_S3_BUCKETS[0], PROJECT_SLUG)
 }
 
 FACEBOOK = {
-    'TITLE': PROJECT_NAME,
+    'TITLE': 'NPR\'s Book Concierge',
     'URL': SHARE_URL,
-    'DESCRIPTION': PROJECT_DESCRIPTION,
+    'DESCRIPTION': 'Find your next great read with our guide to 2013\'s best books.',
     # Should be square. No documented restrictions on size
     'IMAGE_URL': TWITTER['IMAGE_URL'],
     'APP_ID': '138837436154588'
