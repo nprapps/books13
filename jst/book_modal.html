@@ -36,7 +36,7 @@
         <ul>
             <% if (book.review_seamus_id){  %>
             <li class="review_seamus_id book-modal-links">
-            <a href="http://npr.org/<%= book.review_seamus_id %>" target="_blank"><%= COPY.content.npr_review_link %> "<%= book.review_seamus_headline %>"</a>
+            <a href="http://npr.org/<%= book.review_seamus_id %>" target="_blank"><%= COPY.content.npr_review_link %> <%= book.review_seamus_headline %></a>
             </li>
             <% } %>
 
