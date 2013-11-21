@@ -83,14 +83,14 @@ DATA_GOOGLE_DOC_KEY = '0AlPD88PpyGPUdExyUWV1Z2ZleVl6cGpJa0tOQkMzZnc'
 """
 SHARING
 """
-PROJECT_DESCRIPTION = 'An opinionated project template for (mostly) server-less apps.'
+PROJECT_DESCRIPTION = 'Find your next great read with NPR\'s 2013 reading guide.'
 SHARE_URL = 'http://%s/%s/' % (PRODUCTION_S3_BUCKETS[0], PROJECT_SLUG)
 
 TWITTER = {
     'TEXT': PROJECT_NAME,
     'URL': SHARE_URL,
     # Will be resized to 120x120, can't be larger than 1MB
-    'IMAGE_URL': ''
+    'IMAGE_URL': 'http://%s/%s/img/preview.png' % (PRODUCTION_S3_BUCKETS[0], PROJECT_SLUG)
 }
 
 FACEBOOK = {
