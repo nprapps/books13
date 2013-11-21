@@ -87,7 +87,7 @@ PROJECT_DESCRIPTION = 'Find your next great read with NPR Books\' best-of-2013 r
 SHARE_URL = 'http://%s/%s/' % (PRODUCTION_S3_BUCKETS[0], PROJECT_SLUG)
 
 TWITTER = {
-    'TEXT': 'Find your next great read with @nprbooks\' guide to 2013\'s best books.',
+    'TEXT': 'Find your next great read with NPR\'s guide to 2013\'s best books. @nprbooks',
     'URL': SHARE_URL,
     # Will be resized to 120x120, can't be larger than 1MB
     'IMAGE_URL': 'http://%s/%s/img/preview.png' % (PRODUCTION_S3_BUCKETS[0], PROJECT_SLUG)
