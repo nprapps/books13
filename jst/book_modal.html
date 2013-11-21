@@ -42,7 +42,14 @@
 
             <% if (book.author_seamus_id){  %>
             <li class="author_seamus_id book-modal-links">
-            <a href="http://npr.org/<%= book.author_seamus_id %>" target="_blank"><%= COPY.content.npr_author_link %> <%= book.author %></a>
+                <a href="http://npr.org/<%= book.author_seamus_id %>" target="_blank">
+                    <%= COPY.content.npr_author_link %>
+                    <% if (book.author_seamus_headline) { %>
+                        <%= book.author_seamus_headline %>
+                    <% } else { %>
+                        <%= book.author %>
+                    <% } %>
+                </a>
             </li>
             <% } %>
 

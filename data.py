@@ -58,7 +58,7 @@ class Book(object):
             if key in ['book_seamus_id', 'author_seamus_id', 'review_seamus_id'] and value:
                 try:
                     int(value)
-                    if key == 'review_seamus_id':
+                    if key in ['review_seamus_id', 'author_seamus_id']:
                         r = requests.get('http://www.npr.org/%s' % value)
                         soup = BeautifulSoup(r.content)
                         setattr(
@@ -71,7 +71,7 @@ class Book(object):
                     continue
 
                 except IndexError:
-                    print '#%s Invalid headline string for http://www.npr.org/%s' % (kwargs['#'], value)
+                    print '#%s Invalid headline for http://www.npr.org/%s' % (kwargs['#'], value)
 
             if key == 'isbn':
                 value = value.zfill(10)
