@@ -34,9 +34,9 @@
         </p>
 
         <ul>
-            <% if (book.book_seamus_id){  %>
-            <li class="book_seamus_id book-modal-links">
-                <a href="http://npr.org/<%= book.book_seamus_id %>" target="_blank"><%= COPY.content.npr_book_link %></a>
+            <% if (book.review_seamus_id){  %>
+            <li class="review_seamus_id book-modal-links">
+            <a href="http://npr.org/<%= book.review_seamus_id %>" target="_blank"><%= COPY.content.npr_review_link %> "<%= book.review_seamus_headline %>"</a>
             </li>
             <% } %>
 
@@ -46,15 +46,9 @@
             </li>
             <% } %>
 
-            <% if (book.review_seamus_id){  %>
-            <li class="review_seamus_id book-modal-links">
-            <a href="http://npr.org/<%= book.review_seamus_id %>" target="_blank"><%= COPY.content.npr_review_link %> "<%= book.review_seamus_headline %>"</a>
-            </li>
-            <% } %>
-
-            <% if (book.other_seamus_id){  %>
-            <li class="other_seamus_id book-modal-links">
-                <a href="http://npr.org/<%= book.other_seamus_id %>" target="_blank"><%= COPY.content.other_link %></a>
+            <% if (book.book_seamus_id){  %>
+            <li class="book_seamus_id book-modal-links">
+                <a href="http://npr.org/<%= book.book_seamus_id %>" target="_blank"><%= COPY.content.npr_book_link %></a>
             </li>
             <% } %>
         </ul>
