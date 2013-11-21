@@ -70,7 +70,7 @@ var filter_books = function() {
         // Update selected tags
         for (var i in selected_tags) {
             var slug = selected_tags[i];
-            var $tag = $tags[slug];
+            $tag = $tags[slug];
 
             $tag.addClass('selected');
             $tag.parent().addClass('selected');
@@ -95,20 +95,20 @@ var filter_books = function() {
         });
 
         // Hide empty tags
-        for (var slug in COPY.tags) {
+        for (var tag_slug in COPY.tags) {
             var has_results = false;
 
-            for (var i = 0; i < remaining_books.length; i++) {
-                var book = remaining_books[i];
+            for (var z = 0; z < remaining_books.length; z++) {
+                var book = remaining_books[z];
 
-                if (_.indexOf(book.tags, slug) >= 0) {
+                if (_.indexOf(book.tags, tag_slug) >= 0) {
                     has_results = true;
                     break;
                 }
             }
 
             if (!has_results) {
-                var $tag = $tags[slug];
+                $tag = $tags[tag_slug];
                 $tag.parent().addClass('unavailable');
                 $tag.addClass('unavailable');
             }
@@ -118,11 +118,11 @@ var filter_books = function() {
         $current_tag.find('#showing-span').text('Showing books tagged ');
         $current_tag.find('#tag-span').text(label);
 
-        console.log(filter);
-
         filter_books_list(filter);
         _.defer(isotope_grid, filter);
+
     } else {
+
         $clear_tags.hide();
         $current_tag.find('#showing-span').text('Showing all books');
         $current_tag.find('#tag-span').text('');
@@ -131,8 +131,8 @@ var filter_books = function() {
         _.defer(isotope_grid, '*');
     }
 
-    // NB: Force scroll event so that unveils will happen auto-magically
-    // We wait a moment first so the grid has animated in
+    // NB: Force scroll event so that unveils will happen auto-magically.
+    // We wait a moment first so the grid has animated in.
     _.delay(function() {
         $(window).trigger('scroll');
     }, 1000);
@@ -150,7 +150,7 @@ var filter_books_list = function(filter) {
     if (filter) {
         $books_list.find('li').removeClass('visible');
 
-        var filter = '';
+        filter = '';
 
         for (var i in selected_tags) {
             var slug = selected_tags[i];
@@ -185,6 +185,24 @@ var on_tag_clicked = function() {
     return false;
 };
 
+/*
+* Handles transitions related to scrolling.
+*/
+var on_page_scroll = function() {
+    var y_scroll_pos = window.pageYOffset;
+    var scroll_pos_test = 1000;
+
+    if(y_scroll_pos > scroll_pos_test && $('#myModal:visible').length === 0) {
+        $back_to_top.fadeIn(1000);
+    } else {
+        $back_to_top.fadeOut(1000);
+    }
+};
+
+/*
+* Handles tag clicks on modal.
+*/
+
 var on_modal_tag_clicked = function() {
     back_to_top();
     return true;
@@ -195,7 +213,6 @@ var on_modal_tag_clicked = function() {
  */
 var on_clear_tags_clicked = function() {
     hasher.setHash('_');
-
     return false;
 };
 
@@ -355,9 +372,6 @@ var relayout = _.throttle(function() {
  */
 var unveil_grid = function() {
     $books_grid.find('img').unveil(800, function() {
-        //console.log('unveiling: ' + $(this).parent().parent().parent().attr('id'));
-        //console.log('unveil');
-
         $(this).load(function() {
             relayout();
         });
@@ -381,11 +395,13 @@ var toggle_books_list = function() {
     $show_books_button.toggle();
 
     if ($books_grid.is(':visible')) {
-        isotope_grid(); 
+        isotope_grid();
     }
 };
 
 $(function() {
+
+    // Set up the global variables.
     $body = $('body');
     $content = $('#content');
     $books_grid = $('#books-grid');
@@ -403,21 +419,17 @@ $(function() {
     $toggle_text = $('.toggle-text');
     $review = $('.review');
 
-
-    _.each($all_tags, function(tag) {
-        var $tag = $(tag);
-        $tags[$tag.data('tag-slug')] = $tag;
-    });
-
     // Event handlers.
     $body.on('click', '.filter .tag', on_tag_clicked);
     $content.on('click', '.back-to-top', back_to_top);
     $content.on('click', 'button.clear-tags', on_clear_tags_clicked);
     $modal.on('hidden.bs.modal', on_book_modal_closed);
-    // $modal.on('shown.bs.modal', function(){
-    //     $modal.css('overflow-y','hidden').scrollTop(0).css('overflow-y','scroll');
-    // });
     $modal.on('click', '.tag', on_modal_tag_clicked);
+    $back_to_top.on('click', back_to_top);
+    $mobile_filters_btn.on('click', toggle_filter_modal);
+    $filter.find('.close-modal').on('click', toggle_filter_modal);
+    $toggle_text.on('click', toggle_books_list);
+    $(window).on('scroll', on_page_scroll);
     $modal.keyup(function (e) {
         if ($('#myModal:visible').length > 0){
            if (e.which === 37 && previous !== null) {
@@ -427,27 +439,15 @@ $(function() {
             }
         }
     });
-    $back_to_top.on('click', back_to_top);
+
+    // Set up the page.
     $back_to_top.hide();
-    $mobile_filters_btn.on('click', toggle_filter_modal);
-    $filter.find('.close-modal').on('click', toggle_filter_modal);
-    $toggle_text.on('click', toggle_books_list);
-
-    $(window).on('scroll', function() {
-        var y_scroll_pos = window.pageYOffset;
-
-        var scroll_pos_test = 1000;
-
-        if(y_scroll_pos > scroll_pos_test && $('#myModal:visible').length === 0) {
-            $back_to_top.fadeIn(1000);
-        } else {
-            $back_to_top.fadeOut(1000);
-        }
-
-    });
-
     $current_tag.find('#showing-span').text('Showing all books');
     $current_tag.show();
+    _.each($all_tags, function(tag) {
+        var $tag = $(tag);
+        $tags[$tag.data('tag-slug')] = $tag;
+    });
 
     // Disable isotope transitions
     if (MOBILE) {
@@ -460,5 +460,7 @@ $(function() {
     hasher.initialized.add(on_hash_changed);
     hasher.init();
 
+    // Set up the grid.
     _.delay(unveil_grid, 1000);
+
 });
