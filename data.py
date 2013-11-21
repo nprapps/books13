@@ -6,6 +6,7 @@ import json
 import os
 import re
 
+from bs4 import BeautifulSoup
 from PIL import Image
 import requests
 import xlrd
@@ -30,9 +31,12 @@ class Book(object):
     slug = None
     tags = None
     book_seamus_id = None
+
     author_seamus_id = None
+    author_seamus_headline = None
+
     review_seamus_id = None
-    other_seamus_id = None
+    review_seamus_headline = None
 
     def __unicode__(self):
         """
@@ -54,9 +58,20 @@ class Book(object):
             if key in ['book_seamus_id', 'author_seamus_id', 'review_seamus_id'] and value:
                 try:
                     int(value)
+                    if key == 'review_seamus_id':
+                        r = requests.get('http://www.npr.org/%s' % value)
+                        soup = BeautifulSoup(r.content)
+                        setattr(
+                            self,
+                            key.replace('_id', '_headline'),
+                            soup.select('div.storytitle h1')[0].text.strip())
+
                 except ValueError:
                     print '#%s Invalid %s: "%s"' % (kwargs['#'], key, value)
                     continue
+
+                except IndexError:
+                    print '#%s Invalid headline string for http://www.npr.org/%s' % (kwargs['#'], value)
 
             if key == 'isbn':
                 value = value.zfill(10)
@@ -115,7 +130,7 @@ def get_tags():
     print 'Extracting tags from COPY'
 
     book = xlrd.open_workbook(copytext.COPY_XLS)
-    
+
     sheet = book.sheet_by_name('tags')
 
     for i in range(1, sheet.nrows):
@@ -129,7 +144,7 @@ def parse_books_csv():
     Parses the books CSV to JSON.
     Creates book objects which are cleaned and then serialized to JSON.
     """
-    get_tags() 
+    get_tags()
 
     # Open the CSV.
     with open('data/books.csv', 'rb') as readfile:
@@ -207,7 +222,7 @@ def load_images():
         if file_size < 10000:
             print "Image not available for ISBN: %s" % book['isbn']
 
-        image = Image.open(path) 
+        image = Image.open(path)
 
         width = 300
         height = int((float(width) / image.size[0]) * image.size[1])
