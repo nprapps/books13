@@ -14,7 +14,7 @@ import os
 NAMES
 """
 # Project name used for display
-PROJECT_NAME = 'Best Books of 2013'
+PROJECT_NAME = 'NPR\'s Book Concierge: Our Guide to 2013\'s Great Reads'
 
 # Project name in urls
 # Use dashes, not underscores!
