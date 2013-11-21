@@ -4,11 +4,11 @@
 
 <div class="modal-body row">
 
-    <div class="modal-book-cover col-lg-6">
+    <div class="modal-book-cover col-lg-5">
         <img id="book-image" src="img/cover/<%= book.slug %><% if (SMALL_MOBILE) { %>-thumb<% } %>.jpg" alt="<%= book.title %>"/>
     </div>
 
-    <div class="modal-text col-lg-6">
+    <div class="modal-text col-lg-7">
         <h4 class="modal-title" id="myModalLabel"><%= book.title %></h4>
         <% if(book.author) { %><p class="author">By <%= book.author %></p> <% } %>
         <% if(book.genre) { %><p class="genre"><strong><%= COPY.content.genre %> </strong><%= book.genre %></p> <% } %>
