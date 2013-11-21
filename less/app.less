@@ -126,6 +126,13 @@ header {
 		color: @red;
 	}
 	h2 { 
+		font-size: 32px; 
+		font-weight: normal;
+		font-family: @font-family-sans-serif; 
+		margin-bottom: @line-height-computed; 
+		color: @red;
+	}
+	.byline { 
 		font-size: 15px; 
 		color: #555; 
 		margin: 0; 
@@ -596,10 +603,19 @@ h1 + #story-meta { margin-top: -11px; }
 	margin-left: auto;
 	margin-right: auto;
     text-align: center;
+
+    @media screen and (min-width: @screen-sm) {
+    	padding-right: 0;
+    }
 }
 .modal-book-cover img {
-	width: 400px;
+	width: 100%;
+	max-width: 400px;
 	margin-bottom: 2em;
+
+	@media screen and (max-width: 1200px) {
+		width: 300px;
+	}
 }
 
 .modal-text {
@@ -1010,9 +1026,7 @@ footer {
 		.primary { float: none; }
 		.secondary ul, .secondary p { margin-left: 0; float: left; }
 	}
-	.modal-book-cover img{
-		width: 300px;
-	}
+	
 	.modal-dialog {
 		width: 70%;
 	}
@@ -1043,6 +1057,7 @@ footer {
 	}
 	header {
 		h1 { font-size: 36px; }
+		h2 { font-size: 24px; }
 	}
 	footer { border-top: 1px solid #CCC; margin-top: 24px; }
 
