@@ -599,10 +599,18 @@ h1 + #story-meta { margin-top: -11px; }
 	margin-left: auto;
 	margin-right: auto;
     text-align: center;
+
+    @media screen and (min-width: @screen-sm) {
+    	padding-right: 0;
+    }
 }
 .modal-book-cover img {
-	width: 400px;
+	width: 100%;
 	margin-bottom: 2em;
+
+	@media screen and (max-width: 1200px) {
+		width: 300px;
+	}
 }
 
 .modal-text {
@@ -1013,9 +1021,7 @@ footer {
 		.primary { float: none; }
 		.secondary ul, .secondary p { margin-left: 0; float: left; }
 	}
-	.modal-book-cover img{
-		width: 300px;
-	}
+	
 	.modal-dialog {
 		width: 70%;
 	}
