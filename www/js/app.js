@@ -17,6 +17,7 @@ var $filter;
 var $toggle_text;
 var $show_text_button;
 var $show_books_button;
+var $review;
 
 var next;
 var previous;
@@ -398,6 +399,7 @@ $(function() {
     $show_text_button = $('.show-text');
     $show_books_button = $('.show-books');
     $toggle_text = $('.toggle-text');
+    $review = $('.review');
 
 
     _.each($all_tags, function(tag) {
@@ -445,6 +447,7 @@ $(function() {
     // Disable isotope transitions
     if (MOBILE) {
         $books_grid.addClass('no-transition');
+        $review.remove();
     }
 
     // Set up the hasher bits to grab the URL hash.
