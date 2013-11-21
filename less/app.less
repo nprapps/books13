@@ -52,9 +52,8 @@ a.btn.btn-blue {
 // Navbar
 nav {
 	background: #fff;
-	height: 46px;
+	height: 44px;
 	overflow: hidden;
-	border-bottom: 2px solid #fff;
 
 	ul { list-style: none; margin: 0; padding: 0; }
 	ul li { float: left; height: 44px; line-height: 44px; margin-left: 22px; font-size: 12px; }
@@ -126,6 +125,13 @@ header {
 		color: @red;
 	}
 	h2 { 
+		font-size: 32px; 
+		font-weight: normal;
+		font-family: @font-family-sans-serif; 
+		margin-bottom: @line-height-computed; 
+		color: @red;
+	}
+	.byline { 
 		font-size: 15px; 
 		color: #555; 
 		margin: 0; 
@@ -208,23 +214,20 @@ header {
 h1 + #story-meta { margin-top: -11px; }
 
 // Book cards
-// CEG: Widths adjusted so on desktop the review teaser
-// is always fully visible.
 .card {
-	//width: 16.66666666666667%;
-    width: 300px;
+	width: 16.66666666666667%;
 	padding-bottom: @line-height-computed;
   
     @media screen and (max-width: 1400px){
-	    //width: 20%;
+	    width: 20%;
     }
     
     @media screen and (max-width: @screen-md-max){
-    	//width 25%;
+    	width: 25%;
     }
 
     @media screen and (max-width: @screen-sm-max){
-    	//width: 33.33333%;
+    	width: 33.33333%;
     }
 
     @media screen and (max-width: 480px){
@@ -363,7 +366,7 @@ h1 + #story-meta { margin-top: -11px; }
 	padding-top: 46px;
 
 	@media screen and (max-width: @screen-sm-max) {
-		display: none;
+		padding-top: 0;
 	}
 }
 
@@ -599,10 +602,19 @@ h1 + #story-meta { margin-top: -11px; }
 	margin-left: auto;
 	margin-right: auto;
     text-align: center;
+
+    @media screen and (min-width: @screen-sm) {
+    	padding-right: 0;
+    }
 }
 .modal-book-cover img {
-	width: 400px;
+	width: 100%;
+	max-width: 400px;
 	margin-bottom: 2em;
+
+	@media screen and (max-width: 1200px) {
+		width: 300px;
+	}
 }
 
 .modal-text {
@@ -655,13 +667,13 @@ h1 + #story-meta { margin-top: -11px; }
 }
 
 #modal-close-btn {
-	color: #7590c4;
+	color: @red;
 	border: none;
 }
 
 #modal-close-btn:hover {
 	background-color: transparent;
-	color: #bccae5;
+	color: darken(@red, 30%);
 }
 
 //Styling for tags and links inside modal
@@ -910,6 +922,14 @@ footer {
 						max-width: 100%;
 					}
 				}
+
+				.close {
+					display: none;
+				}
+
+				a {
+					font-weight: bold;
+				}
 			}
 
 			.modal-content {
@@ -1013,9 +1033,7 @@ footer {
 		.primary { float: none; }
 		.secondary ul, .secondary p { margin-left: 0; float: left; }
 	}
-	.modal-book-cover img{
-		width: 300px;
-	}
+	
 	.modal-dialog {
 		width: 70%;
 	}
@@ -1046,6 +1064,7 @@ footer {
 	}
 	header {
 		h1 { font-size: 36px; }
+		h2 { font-size: 24px; }
 	}
 	footer { border-top: 1px solid #CCC; margin-top: 24px; }
 
