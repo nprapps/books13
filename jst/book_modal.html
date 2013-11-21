@@ -7,7 +7,7 @@
     <div class="modal-book-cover col-lg-6">
         <img id="book-image" src="img/cover/<%= book.slug %><% if (SMALL_MOBILE) { %>-thumb<% } %>.jpg" alt="<%= book.title %>"/>
     </div>
-    
+
     <div class="modal-text col-lg-6">
         <h4 class="modal-title" id="myModalLabel"><%= book.title %></h4>
         <% if(book.author) { %><p class="author">By <%= book.author %></p> <% } %>
@@ -48,7 +48,7 @@
 
             <% if (book.review_seamus_id){  %>
             <li class="review_seamus_id book-modal-links">
-                <a href="http://npr.org/<%= book.review_seamus_id %>" target="_blank"><%= COPY.content.npr_review_link %></a>
+                <a href="http://npr.org/<%= book.review_seamus_id %>" target="_blank"><%= book.review_seamus_headline %></a>
             </li>
             <% } %>
 
