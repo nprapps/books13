@@ -42,13 +42,13 @@
 
             <% if (book.author_seamus_id){  %>
             <li class="author_seamus_id book-modal-links">
-                <a href="http://npr.org/<%= book.author_seamus_id %>" target="_blank">Read Our Interview With <%= book.author %></a>
+            <a href="http://npr.org/<%= book.author_seamus_id %>" target="_blank"><%= COPY.content.npr_author_link %> <%= book.author %></a>
             </li>
             <% } %>
 
             <% if (book.review_seamus_id){  %>
             <li class="review_seamus_id book-modal-links">
-                <a href="http://npr.org/<%= book.review_seamus_id %>" target="_blank"><%= book.review_seamus_headline %></a>
+            <a href="http://npr.org/<%= book.review_seamus_id %>" target="_blank"><%= COPY.content.npr_review_link %> "<%= book.review_seamus_headline %>"</a>
             </li>
             <% } %>
 
