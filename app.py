@@ -41,8 +41,8 @@ def index():
         img = Image.open('www/img/cover/%s-thumb.jpg' % book['slug'])
         width, height = img.size
 
+        # Poor man's packing algorithm. How much text will fit?
         chars = height / 30 * 14;
-        print height, chars
 
         text = tag_stripper.sub('', book['text'])
 
