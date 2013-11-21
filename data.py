@@ -31,7 +31,10 @@ class Book(object):
     slug = None
     tags = None
     book_seamus_id = None
+
     author_seamus_id = None
+    author_seamus_headline = None
+
     review_seamus_id = None
     review_seamus_headline = None
 
@@ -58,11 +61,17 @@ class Book(object):
                     if key == 'review_seamus_id':
                         r = requests.get('http://www.npr.org/%s' % value)
                         soup = BeautifulSoup(r.content)
-                        setattr(self, 'review_seamus_headline', soup.select('div.storytitle h1')[0].text.strip())
+                        setattr(
+                            self,
+                            key.replace('_id', '_headline'),
+                            soup.select('div.storytitle h1')[0].text.strip())
 
                 except ValueError:
                     print '#%s Invalid %s: "%s"' % (kwargs['#'], key, value)
                     continue
+
+                except IndexError:
+                    print '#%s Invalid headline string for http://www.npr.org/%s' % (kwargs['#'], value)
 
             if key == 'isbn':
                 value = value.zfill(10)
