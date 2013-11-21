@@ -55,6 +55,10 @@ class Book(object):
             # Handle wacky characters.
             value = unicode(value.decode('utf-8')).strip()
 
+            if key == 'text':
+                if value == '' or value == None:
+                    print '#%s Missing text (review) for %s.' % (kwargs['#'], kwargs['title'])
+
             if key in ['book_seamus_id', 'author_seamus_id', 'review_seamus_id'] and value:
                 try:
                     int(value)
