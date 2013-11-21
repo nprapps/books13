@@ -662,13 +662,13 @@ h1 + #story-meta { margin-top: -11px; }
 }
 
 #modal-close-btn {
-	color: #7590c4;
+	color: @red;
 	border: none;
 }
 
 #modal-close-btn:hover {
 	background-color: transparent;
-	color: #bccae5;
+	color: darken(@red, 30%);
 }
 
 //Styling for tags and links inside modal
@@ -916,6 +916,14 @@ footer {
 					img {
 						max-width: 100%;
 					}
+				}
+
+				.close {
+					display: none;
+				}
+
+				a {
+					font-weight: bold;
 				}
 			}
 
