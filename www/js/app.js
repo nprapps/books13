@@ -450,7 +450,7 @@ $(function() {
         $books_grid.addClass('no-transition');
         $review.remove();
     } else {
-        $body.append('<style>.book.card { width: 300px; }</style>');
+        $body.append('<style>.book.card { width: 250px; }</style>');
     }
 
     // Set up the hasher bits to grab the URL hash.
