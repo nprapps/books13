@@ -1,0 +1,59 @@
+<html>
+<head></head>
+<body>
+
+<p>If you're setting this up locally, follow these instructions:
+    <ol>
+        <li>Update your /etc/hosts to point fake.dev to 127.0.0.1.</li>
+        <li>Talk to Jeremy, who needs to add you to the post.</li>
+        <li>python -m SimpleHTTPServer to serve the directory where this file lives.</li>
+        <li>Hit the form at http://fake.dev:8000/this-file-name.html</li>
+    </ol>
+</p>
+
+<textarea style="width:600px;height:200px;" placeholder="This is some sample comment text."></textarea>
+<br/>
+<button style="display:none;">Submit</button>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    var submit_comment = function() {
+        var comment_text = $('textarea').val();
+        FB.api('/10152391581446258/comments', 'post', { message: comment_text }, function(response) {
+            console.log(response);
+        });
+    };
+
+    var setup_comments = function() {
+        $('button').show();
+    };
+
+    var fb_login = function(){
+         FB.login(function(response) {
+           if (response.authResponse) {
+             FB.api('/me', function(response) {
+               setup_comments();
+             });
+           } else {
+             console.log('User cancelled login or did not fully authorize.');
+           }
+         }, {scope: 'email, publish_actions'});
+    };
+
+    $(document).ready(function() {
+        $.ajaxSetup({ cache: true });
+        $.getScript('//connect.facebook.net/en_UK/all.js', function(){
+            FB.init({
+                appId: '155883879032',
+                status: true
+            });
+            $('#loginbutton,#feedbutton').removeAttr('disabled');
+            FB.getLoginStatus(fb_login);
+        });
+        $('button').on('click', submit_comment);
+    });
+</script>
+</body>
+
+</html>
