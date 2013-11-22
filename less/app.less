@@ -216,11 +216,16 @@ h1 + #story-meta { margin-top: -11px; }
 .toggle-text {
 	margin: 0 0 @line-height-computed; 
 
-	@media screen and (max-width: @screen-xs-max){
+	@media screen and (max-width: @screen-xs-max) {
 		margin-bottom: @line-height-computed;
 		margin-left: 11px;
 		.clearfix;
 	}
+
+    @media screen and (min-width: @screen-sm) {
+        float: right;
+        margin-left: 10px;
+    }
 
 	.btn.btn-default {
 		margin: 0;

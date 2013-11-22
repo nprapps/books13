@@ -35,10 +35,6 @@
 
     <div class="book-container">
         <div class="tags-wrapper">
-            <div class="btn-group btn-group-lg toggle-text grid-active pull-right hidden-xs">
-               <button class="grid btn btn-default"><i class="icon-th"></i></button>
-               <button class="list btn btn-default"><i class="icon-list-ul"></i></button>
-            </div>
 
             <h4 class="hidden-xs">What would you like to&nbsp;read?</h4>
             <!-- All Tags List -->
@@ -64,12 +60,12 @@
 
         <div class="books-grid-wrapper">
             
-            <h3 class="current-tag"><span id="showing-span"></span><span id="tag-span"></span></h3>
-
-            <div class="btn-group btn-group-lg toggle-text grid-active visible-xs">
+            <div class="btn-group btn-group-lg toggle-text grid-active">
                <button class="grid btn btn-default"><i class="icon-th"></i></button>
                <button class="list btn btn-default"><i class="icon-list-ul"></i></button>
             </div>
+
+            <h3 class="current-tag"><span id="showing-span"></span><span id="tag-span"></span></h3>
 
             <div id="books-grid" class="filter-inactive">
                 {% for book in books %}
