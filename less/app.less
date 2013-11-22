@@ -216,11 +216,16 @@ h1 + #story-meta { margin-top: -11px; }
 .toggle-text {
 	margin: 0 0 @line-height-computed; 
 
-	@media screen and (max-width: @screen-xs-max){
+	@media screen and (max-width: @screen-xs-max) {
 		margin-bottom: @line-height-computed;
 		margin-left: 11px;
 		.clearfix;
 	}
+
+    @media screen and (min-width: @screen-sm) {
+        float: right;
+        margin-left: 10px;
+    }
 
 	.btn.btn-default {
 		margin: 0;
@@ -986,12 +991,20 @@ footer {
 		display: table;
 		width: 100%;
 
+        .top-row,
+        .grid-row {
+            display: table-row;
+        }
+
+        .spacer,
+        .title-area,
 		.tags-wrapper,
 		.books-grid-wrapper {
 			display: table-cell;
 			vertical-align: top;
 		}
 
+        .spacer,
 		.tags-wrapper {
 			width: 150px;
 			padding-left: 16px;
@@ -1043,6 +1056,7 @@ footer {
 			}
 		}
 
+        .title-area,
 		.books-grid-wrapper {
 			padding-left: @grid-gutter-width;
 		}
