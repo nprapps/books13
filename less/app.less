@@ -116,7 +116,6 @@ header {
 		padding-bottom: 15px;
 	}
 
-
 	h1 { 
 		font-size: 44px; 
 		font-weight: bold;
@@ -198,7 +197,14 @@ header {
 
 
 //Content
-#content { margin-top: 30px; }
+#content {
+    margin-top: 30px;
+
+    @media screen and (max-width: @screen-xs) {
+		margin-top: 5px;
+	}
+
+}
 
 #story-meta {
 	margin-bottom: 22px;
@@ -230,6 +236,7 @@ h1 + #story-meta { margin-top: -11px; }
 	.btn.btn-default {
 		margin: 0;
 		color: @red;
+        font-size: 14px;
 	}
 
 	&.grid-active .btn.btn-default.grid,
