@@ -54,7 +54,7 @@
                 <!-- All Tags List -->
                 <ul class="filter tags option-set list-unstyled hidden-xs" data-filter-group="category">
 
-                        <li class="mobile-label">Filter by: <span class="close close-modal"aria-hidden="true">&times;</span></li>
+                        <li class="visible-xs mobile-label">Filter by: <span class="close visible-xs close-modal"aria-hidden="true">&times;</span></li>
 
                         <li>
                             <button class="btn btn-large btn-info clear-tags" data-filter-value="*"><i class="icon-remove-circle">&nbsp;&nbsp;</i>Clear Filters</button>
@@ -67,13 +67,13 @@
                        </li>
                     {% endfor %}
 
-                        <a href="javascript:;" class="close-modal" id="close-mobile-filter"><li >Done</li></a>
+                        <a href="javascript:;" class="visible-xs close-modal" id="close-mobile-filter"><li >Done</li></a>
                 </ul>
             </div>
             <!-- Book Cards Grid -->
 
             <div class="books-grid-wrapper">
-
+                
                 <div id="books-grid" class="filter-inactive">
                     {% for book in books %}
                     <div id="{{ book.slug }}" class="book card isotope-item {% for tag in book.tags %}tag-{{ tag }} {% endfor %} isotope-hidden no-touch" data-sort="{{ loop.index }}">
