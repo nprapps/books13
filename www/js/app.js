@@ -142,11 +142,6 @@ var filter_books = function() {
  * Filter the text book list.
  */
 var filter_books_list = function(filter) {
-    // Don't bother with text on mobile
-    if (MOBILE) {
-        return;
-    }
-
     if (filter) {
         $books_list.find('li').removeClass('visible');
 
