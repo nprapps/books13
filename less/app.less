@@ -993,12 +993,20 @@ footer {
 		display: table;
 		width: 100%;
 
+        .top-row,
+        .grid-row {
+            display: table-row;
+        }
+
+        .spacer,
+        .title-area,
 		.tags-wrapper,
 		.books-grid-wrapper {
 			display: table-cell;
 			vertical-align: top;
 		}
 
+        .spacer,
 		.tags-wrapper {
 			width: 150px;
 			padding-left: 16px;
@@ -1050,6 +1058,7 @@ footer {
 			}
 		}
 
+        .title-area,
 		.books-grid-wrapper {
 			padding-left: @grid-gutter-width;
 		}
