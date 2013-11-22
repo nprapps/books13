@@ -20,6 +20,10 @@
 <script type="text/javascript">
     var submit_comment = function() {
         var comment_text = $('textarea').val();
+        // WHY DOESN'T THIS WORK.
+        // (#200) Cannot access object_id: 10152391581446258
+        // I found one post indicating it may have to be a public post in order for this to work
+        // Maybe to prevent apps from writing private messages?
         FB.api('/10152391581446258/comments', 'post', { message: comment_text }, function(response) {
             console.log(response);
         });
@@ -38,7 +42,7 @@
            } else {
              console.log('User cancelled login or did not fully authorize.');
            }
-         }, {scope: 'email, publish_actions'});
+         }, {scope: 'email, publish_actions, publish_stream, read_stream'});
     };
 
     $(document).ready(function() {
