@@ -81,7 +81,7 @@
                         <div class="book-outer-wrapper">
                             <!-- Book Image -->
                             {% if book.teaser %}
-                            <div class="review">{{ book.teaser|safe }}<br /><div class="reviewer">Read <strong>{{ book.reviewer }}'s</strong><br /> full recommendation &raquo;</div></div>
+                            <div class="review">{{ book.teaser|safe }}<br /><div class="reviewer">Read <strong>{{ book.reviewer }}'{% if book.reviewer[-1] != 's' %}s{% endif %}</strong><br /> full recommendation &raquo;</div></div>
                             {% endif %}
                             <img src="img/cover-loading.gif" data-src="img/cover/{{ book.slug }}-thumb.jpg" alt="{{ book.title }}"/>
                         </div>
