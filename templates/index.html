@@ -12,7 +12,7 @@
 
         <button class="toggle-text btn btn-info show-books">Show With Book Covers</button>
  -->
-        <button id="mobile-filters" class="visible-xs btn btn-primary btn-block">Filter by genre</button>
+<button id="mobile-filters" class="visible-xs btn btn-primary btn-block">{{ COPY.content.filter_button }}</button>
     </div>
 
     <div class="adwrapper">
@@ -54,10 +54,10 @@
                 <!-- All Tags List -->
                 <ul class="filter tags option-set list-unstyled hidden-xs" data-filter-group="category">
 
-                        <li class="visible-xs mobile-label">Filter by: <span class="close visible-xs close-modal"aria-hidden="true">&times;</span></li>
+                    <li class="visible-xs mobile-label">{{ COPY.content.filter_by }} <span class="close visible-xs close-modal"aria-hidden="true">&times;</span></li>
 
                         <li>
-                            <button class="btn btn-large btn-info clear-tags" data-filter-value="*"><i class="icon-remove-circle">&nbsp;&nbsp;</i>Clear Filters</button>
+                        <button class="btn btn-large btn-info clear-tags" data-filter-value="*"><i class="icon-remove-circle">&nbsp;&nbsp;</i>{{ COPY.content.clear_filtesr }}</button>
                         </li>
                     {% for row in COPY.tags %}
                        <li>
