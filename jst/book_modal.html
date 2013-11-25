@@ -38,14 +38,14 @@
         <ul>
             <% if (book.review_seamus_id){  %>
             <li class="review_seamus_id book-modal-links">
-            <a href="http://npr.org/<%= book.review_seamus_id %>" target="_blank"><%= COPY.content.npr_review_link %> <%= book.review_seamus_headline %></a>
+            <a href="http://npr.org/<%= book.review_seamus_id %>" target="_blank"><strong><%= COPY.content.npr_review_link %></strong> <%= book.review_seamus_headline %></a>
             </li>
             <% } %>
 
             <% if (book.author_seamus_id){  %>
             <li class="author_seamus_id book-modal-links">
                 <a href="http://npr.org/<%= book.author_seamus_id %>" target="_blank">
-                    <%= COPY.content.npr_author_link %>
+                    <strong><%= COPY.content.npr_author_link %></strong>
                     <% if (book.author_seamus_headline) { %>
                         <%= book.author_seamus_headline %>
                     <% } else { %>
@@ -55,6 +55,7 @@
             </li>
             <% } %>
         </ul>
+
     </div>
 </div>
 
