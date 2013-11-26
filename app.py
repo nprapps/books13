@@ -50,10 +50,10 @@ def index():
             book['teaser'] = text
             continue
 
-        i = chars 
+        i = chars
 
         while text[i] != ' ':
-            i -= 1 
+            i -= 1
 
         book['teaser'] = '&#8220;' + text[:i] + '...&#8221;'
 
@@ -62,10 +62,6 @@ def index():
 
     return render_template('index.html', **context)
 
-
-@app.route('/test/test.html')
-def test_dir():
-    return render_template('index.html', **make_context())
 
 # Render LESS files on-demand
 @app.route('/less/<string:filename>')
