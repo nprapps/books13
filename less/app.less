@@ -466,7 +466,7 @@ h1 + #story-meta { margin-top: -11px; }
 		background: @red;
 		color: @cream;
 		position: relative;
-		padding: 8px 25px 8px;
+		padding: 8px 25px 8px 15px;
 
 		&:before {
 			font-family: FontAwesome;
@@ -503,11 +503,11 @@ h1 + #story-meta { margin-top: -11px; }
 		.tags-wrapper & {
 			background: lighten(#f1d0ca, 8%);
 			color: @red;
-			padding: 5px 25px 5px;
+			padding: 5px 25px 5px 15px;
 			margin: 0;
 			white-space: normal;
 			font-size: 15px;
-			text-align: center;
+			text-align: left;
 			-webkit-font-smoothing: subpixel-antialiased;
 			display: block;
 			width: 100%;
@@ -519,7 +519,7 @@ h1 + #story-meta { margin-top: -11px; }
 
 			&.selected {
 				background: @red;
-				padding: 5px 25px 5px;
+				padding: 5px 25px 5px 15px;
 				color: desaturate(@cream, 50%);
 				display: block;
 
@@ -551,9 +551,9 @@ h1 + #story-meta { margin-top: -11px; }
     background-color: transparent;
     color: @red;
     margin: 0;
-    padding: 5px 5px 15px 5px;
+    padding: 5px 5px 15px 15px;
     font-size: 16px;
-    text-align: center;
+    text-align: left;
 
     @media screen and (max-width: @screen-sm) {
     	text-align: left;
@@ -573,7 +573,7 @@ h1 + #story-meta { margin-top: -11px; }
     .icon-remove-circle {
     	font-size: 20px;
     	position: absolute;
-    	right: 7px;
+    	right: -3px;
     	top: 5px;
     	text-decoration: none;
 
