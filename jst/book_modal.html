@@ -4,58 +4,59 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 </div>
 
-<div class="modal-body row">
+<div class="modal-body">
+    <div class="row">
+        <div class="modal-book-cover col-md-5">
+            <img id="book-image" src="img/cover/<%= book.slug %><% if (SMALL_MOBILE) { %>-thumb<% } %>.jpg" alt="<%= book.title %>"/>
+        </div>
 
-    <div class="modal-book-cover col-lg-5">
-        <img id="book-image" src="img/cover/<%= book.slug %><% if (SMALL_MOBILE) { %>-thumb<% } %>.jpg" alt="<%= book.title %>"/>
-    </div>
+        <div class="modal-text col-md-7">
+            <h4 class="modal-title" id="myModalLabel"><%= book.title %></h4>
+            <% if(book.author) { %><p class="author">By <%= book.author %></p> <% } %>
+            <% if(book.genre) { %><p class="genre"><strong><%= COPY.content.genre %> </strong><%= book.genre %></p> <% } %>
 
-    <div class="modal-text col-lg-7">
-        <h4 class="modal-title" id="myModalLabel"><%= book.title %></h4>
-        <% if(book.author) { %><p class="author">By <%= book.author %></p> <% } %>
-        <% if(book.genre) { %><p class="genre"><strong><%= COPY.content.genre %> </strong><%= book.genre %></p> <% } %>
-
-        <!-- Tags -->
-        <% if(book.tags.length > 0) { %><p class="tags"><strong><%= COPY.content.tag_list %> </strong><% _.each(book.tags, function(tag, index, list){ %>
-            <a
-                class="btn btn-large btn-info tag"
-                href="#/tag/<%= tag %>"><%= COPY.tags[tag] %>
-            </a>
-        <% }); %></p> <% } %>
-
-        <!-- Book Description/Review -->
-        <% if(book.text) { %><p class="text"><%= book.text %></p> <% } %>
-        <% if(book.reviewer) { %><p class="reviewer">&mdash; <%= COPY.content.recommended_by %> <strong><% if (book['reviewer link']) { %><a href="<%= book['reviewer link'] %>" target="_blank"><%= book.reviewer %></a><% } else { %><%= book.reviewer %><% } %></strong><% if (book['reviewer ID']) { %>, <%= book['reviewer ID'] %><% } %></p> <% } %>
-
-        <!-- Purchase/Related Links -->
-
-        <p class="book-modal-links">
-            <a href="http://www.amazon.com/dp/<%= book.isbn %>?tag=npr-5-20" target="_blank" class="purchase-link">Amazon</a>
-            <a href="https://itunes.apple.com/us/book/isbn<%= book.isbn %>?&at=11l79Y" target="_blank" class="purchase-link">iBookstore</a>
-            <a href="http://www.indiebound.org/book/<%= book.isbn %>?aff=NPR" target="_blank" class="purchase-link">Independent&nbsp;Booksellers</a>
-        </p>
-
-        <ul>
-            <% if (book.review_seamus_id){  %>
-            <li class="review_seamus_id book-modal-links">
-            <a href="http://npr.org/<%= book.review_seamus_id %>" target="_blank"><strong><%= COPY.content.npr_review_link %></strong> <%= book.review_seamus_headline %></a>
-            </li>
-            <% } %>
-
-            <% if (book.author_seamus_id){  %>
-            <li class="author_seamus_id book-modal-links">
-                <a href="http://npr.org/<%= book.author_seamus_id %>" target="_blank">
-                    <strong><%= COPY.content.npr_author_link %></strong>
-                    <% if (book.author_seamus_headline) { %>
-                        <%= book.author_seamus_headline %>
-                    <% } else { %>
-                        <%= book.author %>
-                    <% } %>
+            <!-- Tags -->
+            <% if(book.tags.length > 0) { %><p class="tags"><strong><%= COPY.content.tag_list %> </strong><% _.each(book.tags, function(tag, index, list){ %>
+                <a
+                    class="btn btn-large btn-info tag"
+                    href="#/tag/<%= tag %>"><%= COPY.tags[tag] %>
                 </a>
-            </li>
-            <% } %>
-        </ul>
+            <% }); %></p> <% } %>
 
+            <!-- Book Description/Review -->
+            <% if(book.text) { %><p class="text"><%= book.text %></p> <% } %>
+            <% if(book.reviewer) { %><p class="reviewer">&mdash; <%= COPY.content.recommended_by %> <strong><% if (book['reviewer link']) { %><a href="<%= book['reviewer link'] %>" target="_blank"><%= book.reviewer %></a><% } else { %><%= book.reviewer %><% } %></strong><% if (book['reviewer ID']) { %>, <%= book['reviewer ID'] %><% } %></p> <% } %>
+
+            <!-- Purchase/Related Links -->
+
+            <p class="book-modal-links">
+                <a href="http://www.amazon.com/dp/<%= book.isbn %>?tag=npr-5-20" target="_blank" class="purchase-link">Amazon</a>
+                <a href="https://itunes.apple.com/us/book/isbn<%= book.isbn %>?&at=11l79Y" target="_blank" class="purchase-link">iBookstore</a>
+                <a href="http://www.indiebound.org/book/<%= book.isbn %>?aff=NPR" target="_blank" class="purchase-link">Independent&nbsp;Booksellers</a>
+            </p>
+
+            <ul>
+                <% if (book.review_seamus_id){  %>
+                <li class="review_seamus_id book-modal-links">
+                <a href="http://npr.org/<%= book.review_seamus_id %>" target="_blank"><strong><%= COPY.content.npr_review_link %></strong> <%= book.review_seamus_headline %></a>
+                </li>
+                <% } %>
+
+                <% if (book.author_seamus_id){  %>
+                <li class="author_seamus_id book-modal-links">
+                    <a href="http://npr.org/<%= book.author_seamus_id %>" target="_blank">
+                        <strong><%= COPY.content.npr_author_link %></strong>
+                        <% if (book.author_seamus_headline) { %>
+                            <%= book.author_seamus_headline %>
+                        <% } else { %>
+                            <%= book.author %>
+                        <% } %>
+                    </a>
+                </li>
+                <% } %>
+            </ul>
+
+        </div>
     </div>
 </div>
 

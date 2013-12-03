@@ -650,10 +650,6 @@ h1 + #story-meta { margin-top: -11px; }
 	margin-left: auto;
 	margin-right: auto;
     text-align: center;
-
-    @media screen and (min-width: @screen-sm) {
-    	padding-right: 0;
-    }
 }
 .modal-book-cover img {
 	width: 100%;
@@ -688,6 +684,12 @@ h1 + #story-meta { margin-top: -11px; }
 
 	.tags {
 		margin-bottom: @line-height-computed;
+
+		strong {
+			text-transform: uppercase;
+			font-size: 13px;
+			color: @gray;
+		}
 	}
 
 	ul {
