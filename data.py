@@ -144,8 +144,11 @@ def get_tags():
     for i in range(1, sheet.nrows):
         slug, tag = sheet.row_values(i)
 
-        SLUGS_TO_TAGS[slug] = tag.strip().replace(u'’', "'")
-        TAGS_TO_SLUGS[tag] = slug.strip()
+        slug = slug.strip()
+        tag = tag.replace(u'’', "'").strip()
+
+        SLUGS_TO_TAGS[slug] = tag
+        TAGS_TO_SLUGS[tag] = slug
 
 def parse_books_csv():
     """
