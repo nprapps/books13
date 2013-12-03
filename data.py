@@ -52,6 +52,10 @@ class Book(object):
         """
         for key, value in kwargs.items():
 
+            # Kill smart quotes in fields
+            value = value.replace('“','"').replace('”','"')
+            value = value.replace('’', "'")
+
             # Handle wacky characters.
             value = unicode(value.decode('utf-8')).strip()
 
