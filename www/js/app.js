@@ -114,7 +114,7 @@ var filter_books = function() {
             }
         }
 
-        $clear_tags.show();
+        $clear_tags.removeClass('hide');
         $current_tag.find('#showing-span').text('Showing books tagged ');
         $current_tag.find('#tag-span').text(label);
 
@@ -123,7 +123,7 @@ var filter_books = function() {
 
     } else {
 
-        $clear_tags.hide();
+        $clear_tags.addClass('hide');
         $current_tag.find('#showing-span').text('Showing all books');
         $current_tag.find('#tag-span').text('');
 
