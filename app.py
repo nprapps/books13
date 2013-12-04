@@ -55,7 +55,7 @@ def index():
         while text[i] != ' ':
             i -= 1
 
-        book['teaser'] = '&#8220;' + text[:i] + '...&#8221;'
+        book['teaser'] = '&#8220;' + text[:i] + ' ...&#8221;'
 
     context['books'] = books
     context['books_text_only'] = books_text_only
