@@ -561,12 +561,14 @@ h1 + #story-meta { margin-top: -11px; }
     text-align: left;
     position: relative;
     .transition(all 0.4s ease-in-out);
+    .scale(1);
     max-height: 50px;
     opacity: 1;
     display: block;
 
     &.hide {
-    	display: none !important;
+    	display: block !important;
+    	.scale(0);
     	max-height: 0;
     	opacity: 0;
     }
