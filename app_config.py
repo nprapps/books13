@@ -98,7 +98,7 @@ FACEBOOK = {
     'URL': SHARE_URL,
     'DESCRIPTION': 'Find your next great read with our guide to 2013\'s best books.',
     # Should be square. No documented restrictions on size
-    'IMAGE_URL': TWITTER['IMAGE_URL'],
+    'IMAGE_URL': 'http://%s/%s/img/facebook.png' % (PRODUCTION_S3_BUCKETS[0], PROJECT_SLUG),
     'APP_ID': '138837436154588'
 }
 
