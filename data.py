@@ -23,6 +23,7 @@ class Book(object):
     __init__ cleans the data.
     """
     isbn = None
+    isbn13 = None
     title = None
     author = None
     genre = None
@@ -114,11 +115,24 @@ class Book(object):
                 # Don't modify the value for stuff that isn't in the list above.
                 setattr(self, key, value)
 
+        # Calculate ISBN-13
+        # To resolve #249
+        # See: http://www.ehow.com/how_5928497_convert-10-digit-isbn-13.html
+        #print 'ISBN10: %s' % self.isbn
+        isbn = '978%s' % self.isbn[:9]
+        sum_even = 3 * sum(map(int, [isbn[1], isbn[3], isbn[5], isbn[7], isbn[9], isbn[11]]))
+        sum_odd = sum(map(int, [isbn[0], isbn[2], isbn[4], isbn[6], isbn[8], isbn[10]]))
+        remainder = (sum_even + sum_odd) % 10
+        check = 10 - remainder if remainder else 0
+
+        self.isbn13 = '%s%s' % (isbn, check)
+        #print 'ISBN13: %s' % self.isbn13
+
         # Slugify.
         slug = self.title.lower()
         slug = re.sub(r"[^\w\s]", '', slug)
         slug = re.sub(r"\s+", '-', slug)
-        setattr(self, "slug", slug[:254])
+        self.slug = slug[:254]
 
 def get_books_csv():
     """
