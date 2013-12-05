@@ -24,6 +24,7 @@ class Book(object):
     """
     isbn = None
     isbn13 = None
+    hide_ibooks = False
     title = None
     author = None
     genre = None
