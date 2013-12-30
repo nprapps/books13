@@ -487,11 +487,15 @@ def bootstrap():
     First, loads books data from Google docs.
     Next, loads images from Baker & Taylor's API.
     """
+    # Reimport app_config in case this is part of the app_template bootstrap
+    import app_config
+
+    local('npm install less universal-jst -g --prefix node_modules')
+    local('pip install -r requirements.txt')
+    local('ln -s ~/Dropbox/nprapps/assets/%(PROJECT_NAME)s/ www/assets' % app_config.__dict__)
+
     update_copy()
     load_books()
-    local('rm -rf www/img/cover/*.jpg')
-    load_images()
-
 
 """
 Destruction

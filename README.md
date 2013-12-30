@@ -28,6 +28,8 @@ What is this?
 
 NPR's Book Concierge: Our Guide To 2013's Great Reads.
 
+This application requires Baker & Taylor credentials to download book covers. This should be set as environment variables `books13_BAKER_TAYLOR_USERID` and `books13_BAKER_TAYLOR_PASSWORD`.
+
 Assumptions
 -----------
 
@@ -75,13 +77,12 @@ brew install node
 curl https://npmjs.org/install.sh | sh
 ```
 
-Then install the project requirements:
+Then bootstrap the project:
 
 ```
 cd books13
-npm install less universal-jst -g --prefix node_modules
 mkvirtualenv --no-site-packages books13
-pip install -r requirements.txt
+fab bootstrap
 ```
 
 Project secrets
