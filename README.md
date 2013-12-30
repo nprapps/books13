@@ -10,6 +10,7 @@ books13
 * [What's in here?](#whats-in-here)
 * [Install requirements](#install-requirements)
 * [Project secrets](#project-secrets)
+* [Download book covers](#download-book-covers)
 * [Adding a template/view](#adding-a-templateview)
 * [Run the project locally](#run-the-project-locally)
 * [Editing workflow](#editing-workflow)
@@ -27,8 +28,6 @@ What is this?
 -------------
 
 NPR's Book Concierge: Our Guide To 2013's Great Reads.
-
-This application requires Baker & Taylor credentials to download book covers. This should be set as environment variables `books13_BAKER_TAYLOR_USERID` and `books13_BAKER_TAYLOR_PASSWORD`.
 
 Assumptions
 -----------
@@ -99,6 +98,10 @@ Any copyrighted or large binary assets (images, audio, video), should not be add
 
 These assets will be deployed, but will not be committed to the repository. This is both make cloning the repository faster and also to make it easier to open source new projects.
 
+Download book covers
+--------------------
+
+This application requires Baker & Taylor credentials to download book covers. This should be set as environment variables `books13_BAKER_TAYLOR_USERID` and `books13_BAKER_TAYLOR_PASSWORD`. Once set, run `fab load_images` to download them to your dropbox folder.
 
 Adding a template/view
 ----------------------
