@@ -21,7 +21,7 @@ PROJECT_NAME = 'NPR\'s Book Concierge: Our Guide to 2013\'s Great Reads'
 PROJECT_SLUG = 'best-books-2013'
 
 # The name of the repository containing the source
-REPOSITORY_NAME = 'best-books-2013'
+REPOSITORY_NAME = 'books13'
 REPOSITORY_URL = 'git@github.com:nprapps/%s.git' % REPOSITORY_NAME
 REPOSITORY_ALT_URL = None # 'git@bitbucket.org:nprapps/%s.git' % REPOSITORY_NAME'
 
