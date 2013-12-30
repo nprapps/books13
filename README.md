@@ -26,7 +26,7 @@ books13
 What is this?
 -------------
 
-**Describe books13 here.**
+NPR's Book Concierge: Our Guide To 2013's Great Reads.
 
 Assumptions
 -----------
@@ -36,6 +36,7 @@ The following things are assumed to be true in this documentation.
 * You are running OSX.
 * You are using Python 2.7. (Probably the version that came OSX.)
 * You have [virtualenv](https://pypi.python.org/pypi/virtualenv) and [virtualenvwrapper](https://pypi.python.org/pypi/virtualenvwrapper) installed and working.
+* You have Dropbox installed and mounted at `~/Dropbox` (the default location) and you have the `nprapps` folder synchronized.
 
 For more details on the technology stack used with the app-template, see our [development environment blog post](http://blog.apps.npr.org/2013/06/06/how-to-setup-a-developers-environment.html).
 
@@ -52,6 +53,7 @@ The project contains the following folders and important files:
 * ``templates`` -- HTML ([Jinja2](http://jinja.pocoo.org/docs/)) templates, to be compiled locally.
 * ``tests`` -- Python unit tests.
 * ``www`` -- Static and compiled assets to be deployed. (a.k.a. "the output")
+* ``www/assets`` -- A symlink to a Dropbox folder containing binary assets (images, audio).
 * ``www/live-data`` -- "Live" data deployed to S3 via cron jobs or other mechanisms. (Not deployed with the rest of the project.)
 * ``www/test`` -- Javascript tests and supporting files.
 * ``app.py`` -- A [Flask](http://flask.pocoo.org/) app for rendering the project locally.
@@ -89,6 +91,14 @@ Project secrets should **never** be stored in ``app_config.py`` or anywhere else
 
 The secrets for this project are stored in DropBox in `books13/baker_taylor_creds.txt`; please add these to your `~/.bashrc` or `~/.zshrc`.
 
+Save media assets
+-----------------
+
+Any copyrighted or large binary assets (images, audio, video), should not be added to the Github repository, but rather to the folder in Dropbox corresponding to this project: ``~/Dropbox/nprapps/assets/$NEW_PROJECT_NAME``. This folder is symlinked to ``www/assets`` during the bootstrap process.
+
+These assets will be deployed, but will not be committed to the repository. This is both make cloning the repository faster and also to make it easier to open source new projects.
+
+
 Adding a template/view
 ----------------------
 
@@ -115,9 +125,13 @@ Visit [localhost:8000](http://localhost:8000) in your browser.
 Editing workflow
 -------------------
 
-The app is rigged up to Google Docs for a simple key/value store that provides an editing workflow.
+This app uses a Google Spreadsheet for a simple key/value store that provides an editing workflow.
 
-View the sample copy spreadsheet [here](https://docs.google.com/spreadsheet/pub?key=0AlXMOHKxzQVRdHZuX1UycXplRlBfLVB0UVNldHJYZmc#gid=0). A few things to note:
+View the [sample copy spreadsheet](https://docs.google.com/spreadsheet/pub?key=0AlXMOHKxzQVRdHZuX1UycXplRlBfLVB0UVNldHJYZmc#gid=0).
+
+This document is specified in ``app_config`` with the variable ``COPY_GOOGLE_DOC_KEY``. To use your own spreadsheet, change this value to reflect your document's key (found in the Google Docs URL after ``&key=``).
+
+A few things to note:
 
 * If there is a column called ``key``, there is expected to be a column called ``value`` and rows will be accessed in templates as key/value pairs
 * Rows may also be accessed in templates by row index using iterators (see below)
