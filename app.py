@@ -38,7 +38,7 @@ def index():
             book['teaser'] = None
             continue
 
-        img = Image.open('www/img/cover/%s-thumb.jpg' % book['slug'])
+        img = Image.open('www/assets/cover/%s-thumb.jpg' % book['slug'])
         width, height = img.size
 
         # Poor man's packing algorithm. How much text will fit?
