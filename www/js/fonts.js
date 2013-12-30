@@ -1,7 +1,14 @@
 WebFont.load({
-	custom: {
-		families: ['Gotham SSm:n4,n7'],
-		urls: ['font/GothamSSm.css']
-	},
-	timeout: 10000
+     custom: {
+         families: [
+             'Gotham SSm:n4,n7',
+             'Gotham:n4,n7'
+         ],
+         urls: [
+             'http://s.npr.org/templates/css/fonts/GothamSSm.css',
+             'http://s.npr.org/templates/css/fonts/Gotham.css'
+         ]
+     },
+     timeout: 10000
 });
+

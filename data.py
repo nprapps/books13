@@ -237,7 +237,7 @@ def load_images():
         # Request the image.
         r = requests.get(book_url)
 
-        path = 'www/img/cover/%s.jpg' % book['slug']
+        path = 'www/assets/cover/%s.jpg' % book['slug']
 
         # Write the image to www using the slug as the filename.
         with open(path, 'wb') as writefile:

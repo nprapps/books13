@@ -90,7 +90,7 @@ TWITTER = {
     'TEXT': 'Find your next great read with NPR\'s guide to 2013\'s best books. @nprbooks',
     'URL': SHARE_URL,
     # Will be resized to 120x120, can't be larger than 1MB
-    'IMAGE_URL': 'http://%s/%s/img/preview.png' % (PRODUCTION_S3_BUCKETS[0], PROJECT_SLUG)
+    'IMAGE_URL': 'http://%s/%s/assets/preview.png' % (PRODUCTION_S3_BUCKETS[0], PROJECT_SLUG)
 }
 
 FACEBOOK = {
@@ -98,7 +98,7 @@ FACEBOOK = {
     'URL': SHARE_URL,
     'DESCRIPTION': 'Find your next great read with our guide to 2013\'s best books.',
     # Should be square. No documented restrictions on size
-    'IMAGE_URL': 'http://%s/%s/img/facebook.png' % (PRODUCTION_S3_BUCKETS[0], PROJECT_SLUG),
+    'IMAGE_URL': 'http://%s/%s/assets/facebook.png' % (PRODUCTION_S3_BUCKETS[0], PROJECT_SLUG),
     'APP_ID': '138837436154588'
 }
 
