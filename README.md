@@ -1,7 +1,3 @@
-Copyright 2013 NPR.  All rights reserved.  No part of these materials may be reproduced, modified, stored in a retrieval system, or retransmitted, in any form or by any means, electronic, mechanical or otherwise, without prior written permission from NPR.
-
-(Want to use this code? Send an email to nprapps@npr.org!)
-
 books13
 ========================
 
@@ -28,6 +24,8 @@ What is this?
 -------------
 
 NPR's Book Concierge: Our Guide To 2013's Great Reads.
+
+This code is open source under the MIT license. See `LICENSE` for complete details.
 
 Assumptions
 -----------
