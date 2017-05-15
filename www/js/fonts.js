@@ -5,8 +5,8 @@ WebFont.load({
              'Gotham:n4,n7'
          ],
          urls: [
-            'https://secure.npr.org/templates/css/fonts/GothamSSm.css',
-            'https://secure.npr.org/templates/css/fonts/Gotham.css'
+            'https://s.npr.org/templates/css/fonts/GothamSSm.css',
+            'https://s.npr.org/templates/css/fonts/Gotham.css'
          ]
      },
      timeout: 10000
