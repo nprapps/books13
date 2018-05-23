@@ -79,6 +79,7 @@ Then bootstrap the project:
 ```
 cd books13
 mkvirtualenv --no-site-packages books13
+pip install -r requirements.txt
 fab bootstrap
 ```
 
