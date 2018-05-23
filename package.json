@@ -1,0 +1,8 @@
+{
+  "name": "npr-app-template",
+  "version": "1.0.0",
+  "dependencies": {
+    "less": "^3.0.4",
+    "universal-jst": "github:nprapps/universal-jst#1.0.6"
+  }
+}

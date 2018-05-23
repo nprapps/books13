@@ -79,6 +79,7 @@ Then bootstrap the project:
 ```
 cd books13
 mkvirtualenv --no-site-packages books13
+pip install -r requirements.txt
 fab bootstrap
 ```
 
@@ -126,6 +127,8 @@ Visit [localhost:8000](http://localhost:8000) in your browser.
 
 Editing workflow
 -------------------
+
+**IMPORTANT NOTE: Google Spreadsheets now serves up XLSX files, not the XLS file that this project expects. For now, the connection has been disabled (see the `update_copy` function in `fabfile.py`), and the project instead pulls from a spreadsheet stored in `data/copy.xls`.**
 
 This app uses a Google Spreadsheet for a simple key/value store that provides an editing workflow.
 

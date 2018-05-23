@@ -119,8 +119,9 @@ def download_copy():
 def update_copy():
     """
     Fetches the latest Google Doc and updates local JSON.
+    5/23/2018 - DISABLED GOOGLE DOC FETCH
     """
-    download_copy()
+    # download_copy()
 
 def app_config_js():
     """
@@ -152,7 +153,7 @@ def render():
     """
     from flask import g
 
-    update_copy()
+    # update_copy()
     less()
     jst()
 
@@ -490,11 +491,10 @@ def bootstrap():
     # Reimport app_config in case this is part of the app_template bootstrap
     import app_config
 
-    local('npm install less universal-jst -g --prefix node_modules')
-    local('pip install -r requirements.txt')
-    local('ln -s ~/Dropbox/nprapps/assets/%(REPOSITORY_NAME)s/ www/assets' % app_config.__dict__)
+    local('npm install')
+    # local('ln -s ~/Google Drive/NPR/Projects/Book Concierge/%(REPOSITORY_NAME)s/ www/assets' % app_config.__dict__)
 
-    update_copy()
+    # update_copy()
     load_books()
 
 """
